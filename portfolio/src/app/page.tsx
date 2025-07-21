@@ -1,36 +1,34 @@
-'use client';
-import { useEffect, useState } from "react";
-import { Github, Linkedin, SunMoon } from "lucide-react";
+'use client'
+
+import { useTheme } from 'next-themes'
+import { useEffect, useState } from 'react'
+import { Github, Linkedin } from "lucide-react";
+import { Sun, Moon } from 'lucide-react'
 
 export function ThemeToggle() {
-  const [isDark, setIsDark] = useState(false);
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  // Prevent hydration mismatch
   useEffect(() => {
-    const html = document.documentElement;
-    const darkClassPresent = html.classList.contains("dark");
-    setIsDark(darkClassPresent);
+    setMounted(true)
+  }, [])
 
-  }, []);
+  if (!mounted) return null
 
-  const ToggleTheme = () => {
-    const html = document.documentElement;
-    if (isDark) {
-      html.classList.remove("dark");
-      setIsDark(false);
-    } else {
-      html.classList.add("dark");
-      setIsDark(true);
-    }
-  };
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark')
+  }
 
   return (
     <button
-    onClick={ToggleTheme}
-    aria-label="Toggle Dark Mode"
-    className="p-2 rounded hover:bg-gray-200 dark:hover-bg-gray-700 transition"
+      onClick={toggleTheme}
+      aria-label="Toggle Dark Mode"
+      className="p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition"
     >
-      <SunMoon size={24} className="text-current" />
+      {theme === 'dark' ? <Sun size={24} /> : <Moon size={24} />}
     </button>
-  );
+  )
 }
 
 export default function Home() {
@@ -46,10 +44,10 @@ export default function Home() {
             
             {/*Mid Spacing */}
             <div className="flex gap-6 sm:gap-12">
-                <a href="#home" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Home</a>
-                <a href="#experience" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Experience</a>
-                <a href="#projects" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Projects</a>
-                <a href="#skills" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Skills</a>
+                <a href="#home" className="hover:text-rose-600 dark:hover:text-green-200 transition-colors">Home</a>
+                <a href="#experience" className="hover:text-blue-600 dark:hover:text-amber-700 transition-colors">Experience</a>
+                <a href="#projects" className="hover:text-orange-600 dark:hover:text-indigo-700 transition-colors">Projects</a>
+                <a href="#skills" className="hover:text-red-600 dark:hover:text-slate-350 transition-colors">Skills</a>
             </div>
             
             {/*Far right */}
