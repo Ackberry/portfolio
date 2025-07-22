@@ -5,32 +5,9 @@ import { useEffect, useState } from 'react'
 import { Github, Linkedin } from "lucide-react";
 import { Sun, Moon } from 'lucide-react'
 import Skills from "./components/skills"
+import ThemeToggle from './components/themetoggle'
 
-export function ThemeToggle() {
-  const { theme, setTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
 
-  // Prevent hydration mismatch
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) return null
-
-  const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark')
-  }
-
-  return (
-    <button
-      onClick={toggleTheme}
-      aria-label="Toggle Dark Mode"
-      className="p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition"
-    >
-      {theme === 'dark' ? <Sun size={24} /> : <Moon size={24} />}
-    </button>
-  )
-}
 
 export default function Home() {
   return (
