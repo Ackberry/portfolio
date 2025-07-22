@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        mono: ['"DM Mono"', 'monospace']
+      },
       colors: {
         lightbg: '#FFF2E0',
         buttonlight: '#A2AADB',
