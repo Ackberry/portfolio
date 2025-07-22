@@ -48,7 +48,7 @@ const skills = [
 export default function Skills() {
   return (
     <section className="my-12">
-      <h2 className="text-3xl font-mono mb-6 text-center">skills i've worked with so far..</h2>
+      <h2 className="text-3xl font-mono mb-6 text-center">skills i’ve worked with so far..</h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 justify-items-center">
         {skills.map((skill) => (
           <div
