@@ -86,7 +86,7 @@ export default function Home() {
         className="min-h-screen flex flex-col justify-center items-center text-center bg-white dark:bg-black text-black dark:text-white px-4 sm:px-8"
       >
         <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-          Hi, I'm <span className="text-blue-600 dark:text-blue-400">Deep Akbari.</span>
+          Hi, I’m <span className="text-blue-600 dark:text-blue-400">Deep Akbari.</span>
         </h1>
 
         <h2 className="text-xl sm:text-2xl text-gray-700 dark:text-gray-300 mb-6">
@@ -94,7 +94,7 @@ export default function Home() {
         </h2>
 
         <p className="max-w-2xl text-md sm:text-lg text-gray-600 dark:text-gray-400 mb-8 font-mono">
-          I'm passionate about building cool projects with AI, or any new technology that interests
+          I’m passionate about building cool projects with AI, or any new technology that interests
           me. Currently, I am building <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="text-blue-600">[**HIDDEN**]</a>
         </p>
 
@@ -121,7 +121,7 @@ export default function Home() {
         <section id="projects" className="min-h-screen flex flex-col justify-center items-center text-center bg-white dark:bg-black text-black dark:text-white px-4 sm:px-8">
         <h2 className="text 3x1 font-semibold mb4">Projects</h2>
         <p className="max-w-xl text-center font-mono">
-          List and link to projects you've worked on, with short descriptions.
+          List and link to projects you’ve worked on, with short descriptions.
         </p>
         </section>
 
