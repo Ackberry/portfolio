@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div>
         <header className="fixed top-0 left-0 w-full bg-lightbg/30 dark:bg-black/20 backdrop-blur-md  z-50 shadow-sm">
-          <nav className="flex justify-between gap-6 sm:gap-12 p-4 font-medium text-sm sm:text-base text-black dark:text-white">
+          <nav className="flex flex-wrap justify-between gap-6 sm:gap-12 p-4 font-medium text-sm sm:text-base text-black dark:text-white">
           
             {/*Left Spacing */}
             <div className="flex-1">
