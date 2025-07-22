@@ -35,7 +35,7 @@ export function ThemeToggle() {
 export default function Home() {
   return (
     <div>
-        <header className="fixed top-0 left-0 w-full bg-lightbg/80 dark:bg-black/80 backdrop-blur-md z-50 shadow-sm">
+        <header className="fixed top-0 left-0 w-full bg-lightbg/30 dark:bg-black/20 backdrop-blur-md  z-50 shadow-sm">
           <nav className="flex justify-between gap-6 sm:gap-12 p-4 font-medium text-sm sm:text-base text-black dark:text-white">
           
             {/*Left Spacing */}
@@ -111,7 +111,7 @@ export default function Home() {
       
       <section id="experience" className="min-h-screen p-8 flex flex-col justify-center items-center bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
         <h2 className="text 3x1 font-semibold mb4">Experience</h2>
-        <p className="max-w-xl text-center">
+        <p className="max-w-xl text-center font-mono">
           Professional background, internships type shit
         </p>
       </section>
@@ -120,7 +120,7 @@ export default function Home() {
       
         <section id="projects" className="min-h-screen flex flex-col justify-center items-center text-center bg-white dark:bg-black text-black dark:text-white px-4 sm:px-8">
         <h2 className="text 3x1 font-semibold mb4">Projects</h2>
-        <p className="max-w-xl text-center">
+        <p className="max-w-xl text-center font-mono">
           List and link to projects you've worked on, with short descriptions.
         </p>
         </section>

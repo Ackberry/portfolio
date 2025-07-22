@@ -9,21 +9,39 @@ import {
   SiGooglecloud,
   SiGit,
   SiPostgresql,
+  SiCplusplus,
+  SiVite,
+  SiScikitlearn
 } from 'react-icons/si';
 
 import { VscAzure } from "react-icons/vsc";
+import { RiFirebaseFill, RiSupabaseFill, RiGeminiFill } from "react-icons/ri";
+import { FaNodeJs, FaLinode, FaLinux } from "react-icons/fa";
 
 const skills = [ 
   { name: 'JavaScript', icon: <SiJavascript className="text-yellow-400" /> },
   { name: 'TypeScript', icon: <SiTypescript className="text-blue-500" /> },
+  { name: 'C++', icon: <SiCplusplus className="text-black dark:text-white" /> },
   { name: 'React', icon: <SiReact className="text-cyan-400" /> },
   { name: 'Next.js', icon: <SiNextdotjs className="text-black dark:text-white" /> },
-  { name: 'Tailwind', icon: <SiTailwindcss className="text-sky-400" /> },
+  { name: 'Node.js', icon: <FaNodeJs className='text-black dark:text-white'/>},
   { name: 'Python', icon: <SiPython className="text-yellow-500" /> },
+  { name: 'Tailwind', icon: <SiTailwindcss className="text-sky-400" /> },
+  { name: 'Vite', icon: <SiVite className='text-[#06B6D4]'/>},
+  { name: 'GeminiAPI', icon: <RiGeminiFill className='text-[#5E7DD3]'/>},
   { name: 'Azure', icon: <VscAzure className="text-blue-700" /> },
   { name: 'Google Cloud', icon: <SiGooglecloud className="text-blue-400" /> },
-  { name: 'Git', icon: <SiGit className="text-orange-500" /> },
+  { name: 'Linode', icon: <FaLinode className='text-green-500'/>},
   { name: 'PostgreSQL', icon: <SiPostgresql className="text-indigo-700" /> },
+  {name: 'Firebase', icon: <RiFirebaseFill className='text-[#FF7F24]'/>},
+  { name: 'Supabase', icon: <RiSupabaseFill className='text-[#2CC27B]'/>},
+  {name: 'Linux', icon: <FaLinux className='text-black dark:text-white'/>},
+  
+  
+  
+  {name: 'Scikit-learn', icon:<SiScikitlearn className=' text-[#D9B300]'/>},
+  
+  { name: 'Git', icon: <SiGit className="text-orange-500" /> },
 
 ];
 
