@@ -9,7 +9,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        mono: ['"DM Mono"', 'monospace']
+        mono: ['"DM Mono"', 'monospace'],
+        oxygen: ['var(--font-oxygen-mono)', 'monospace'],
       },
       colors: {
         lightbg: '#FFF2E0',

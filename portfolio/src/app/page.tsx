@@ -6,7 +6,7 @@ import { Github, Linkedin } from "lucide-react";
 import { Sun, Moon } from 'lucide-react'
 import Skills from "./components/skills"
 import ThemeToggle from './components/themetoggle'
-
+import ProjectCard from './components/ProjectCard'
 
 
 export default function Home() {
@@ -87,7 +87,7 @@ export default function Home() {
       <div className="h-16 w-full bg-gradient-to-b from-white to-gray-100 dark:from-black dark:to-gray-900" />
       
       <section id="experience" className="min-h-screen p-8 flex flex-col justify-center items-center bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
-        <h2 className="text 3x1 font-semibold mb4">Experience</h2>
+        <h2 className="text 3x1 font-oxygen mb4">Experience</h2>
         <p className="max-w-xl text-center font-mono">
           Professional background, internships type shit
         </p>
@@ -96,10 +96,23 @@ export default function Home() {
       <div className="h-16 w-full bg-gradient-to-b from-gray-100 to-white dark:from-gray-900 dark:to-black" />
       
         <section id="projects" className="min-h-screen flex flex-col justify-center items-center text-center bg-white dark:bg-black text-black dark:text-white px-4 sm:px-8">
-        <h2 className="text 3x1 font-semibold mb4">Projects</h2>
-        <p className="max-w-xl text-center font-mono">
-          List and link to projects you’ve worked on, with short descriptions.
-        </p>
+        <h2 className="text 3x1 font-oxygen mb4">Projects</h2>
+          <div className="text-left w-full px-4 backdrop-blur-md flex flex-col gap-7">
+            <ProjectCard
+              title="Portfolio Website"
+              description="clean and minimal portfolio website designed in React and Nextjs to showcase my portfolio"
+              githubLink="https://github.com/ackberry/portfolio"
+              liveLink="https://ackberry.club"
+              skills={['React', 'Tailwind', 'Typescript', 'Vercel']}
+            />
+            <ProjectCard
+              title="Portfolio Site"
+              description="The personal site you're looking at."
+              githubLink="https://github.com/ackberry/portfolio"
+              skills={['Next.js', 'Tailwind', 'TypeScript']}
+            />
+          </div>
+
         </section>
 
       
