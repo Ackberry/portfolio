@@ -6,6 +6,7 @@ type ProjectCardProps = {
   githubLink: string;
   liveLink?: string;
   skills: string[];
+  features: string[];
 };
 
 export default function ProjectCard({
@@ -14,6 +15,7 @@ export default function ProjectCard({
   githubLink,
   liveLink,
   skills,
+  features,
 }: ProjectCardProps) {
   return (
     <div className="bg-white/10 dark:bg-white/5 backdrop-blur-md rounded-2xl p-6 w-full h-full shadow-md hover:shadow-lg transition-all border border-white/10">
@@ -35,11 +37,13 @@ export default function ProjectCard({
       </div>
       <p className="text-sm text-muted-foreground font-oxygen mb-3">{description}</p>
 
-      <ul className="list-disc pl-5 mb-3 text-sm text-muted-foreground font-oxygen">
-        <li>Feature 1</li>
-        <li>Feature 6</li>
-        <li>Feature 3</li>
-      </ul>
+        {features && (
+          <ul className="list-disc pl-5 mb-3 text-sm text-muted-foreground font-oxygen">
+            {features.map((feature, idx) => (
+              <li key={idx}>{feature}</li>
+            ))}
+          </ul>
+        )}
 
       <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
         {skills.map((skill, idx) => (
