@@ -3,7 +3,7 @@
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 import { Github, Linkedin } from "lucide-react";
-import { Sun, Moon } from 'lucide-react'
+import { Sun, Moon, FileText } from 'lucide-react'
 import Skills from "./components/skills"
 import ThemeToggle from './components/themetoggle'
 import ProjectCard from './components/ProjectCard'
@@ -30,6 +30,16 @@ export default function Home() {
             
             {/*Far right */}
             <div className="flex gap-4 flex-1 justify-end">
+            <a
+            href="https://drive.google.com/file/d/1SuDcvyeogC_O4cbKGdj6gbP6WBmV2jWk/view"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="FileText"
+            className="hover:text-green-600 dark:hover:text-pink-400 transition"
+              >
+            <FileText size={20} />
+                </a>
+            
               <a
             href="https://github.com/ackberry"
             target="_blank"
@@ -48,6 +58,7 @@ export default function Home() {
               >
             <Linkedin size={20} />
                 </a>
+
             </div>
             
           </nav>
