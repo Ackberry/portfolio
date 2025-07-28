@@ -7,7 +7,7 @@ import { Sun, Moon, FileText } from 'lucide-react'
 import Skills from "./components/skills"
 import ThemeToggle from './components/themetoggle'
 import ProjectCard from './components/ProjectCard'
-
+import ExperienceCard from './components/ExperienceCard'
 
 export default function Home() {
   return (
@@ -98,16 +98,70 @@ export default function Home() {
       <div className="h-16 w-full bg-gradient-to-b from-white to-gray-100 dark:from-black dark:to-gray-900" />
       
       <section id="experience" className="min-h-screen p-8 flex flex-col justify-center items-center bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
-        <h2 className="text 3x1 font-oxygen mb4">Experience</h2>
-        <p className="max-w-xl text-center font-mono">
-          Professional background, internships type shit
-        </p>
+        <h2 className="text 3x1 font-oxygen mb4"></h2>
+          <div className='text-left w-full px-4 backdrop-blur-md flex flex-col gap-7'>
+          <ExperienceCard
+          company="CacheAi"
+          timeline="July 2025 - Present"
+          position="Software Engineer Intern"
+          location="Remote"
+          descriptionPoints={[
+            "Building a scoring system to rank candidates based on their profile using LLM. Just began!",
+          ]}
+        />
+          <ExperienceCard
+          company="Rare Lab (USF College of Engineering)"
+          timeline="May 2025 - Present"
+          position="ML Researcher and Software Developer"
+          location="Tampa, FL"
+          descriptionPoints={[
+            "Fine-tuned Llama2 model for context-aware storytelling on Misty robot, achieving 30% increase in user engagement and 50% reduction in response latency through optimized speech-to-text integration and algorithm improvements.",
+            "Developed a pipeline integrating a local Text-to-Speech (TTS) API with Gemini and a downstream Speech-to-Text (STT) API, enabling audio-text-audio conversion with ~5s latency",
+            "Deployed neural text-to-speech system on Raspberry Pi, achieving 90% synthesis accuracy and 150ms average response time for edge computing applications."
+          ]}
+        />
+          <ExperienceCard
+          company="University of Turku"
+          timeline="March 2023 - Aug 2023"
+          position="Research Assistant"
+          location="Turku, Finland"
+          descriptionPoints={[
+            "Researched on intersection between Information Overload and Hyperchondriac, drafting documents based on the findings.",
+             ]}
+        />
+          </div>
+        {/*From here its club experience and all */}
+          <h2 className='text-bold flex-center font-mono mt-10 mb-2 text-xl'>Club Involvement</h2>
+          <ExperienceCard
+          company="Google Developer Student Club"
+          timeline="April 2025 - Present"
+          position="Techincal Lead"
+          location="University of South Florida"
+          descriptionPoints={[
+            "Built the principal website for GDSC featuring member registration portal, project showcase gallery, event calendar integration, and sponsor dashboard, using CSS and JavaScript.",
+            "Developed backend infrastructure for hackathon website using JavaScript and Firebase, implementing participant check-in system with categorization, real-time registration management.",
+            "Led workshops on Data Scraping and Git tutorials as part of the Data Science and Cybersecurity team."
+             ]}
+          />
+          <div className='mb-5'></div>
+          <ExperienceCard
+          company="HackUSF "
+          timeline="March 2025 - April 2025"
+          position="Hackathon Organizer"
+          location="University of South Florida"
+          descriptionPoints={[
+            "Managed logistics for 300+ participant hackathon, managing venue setup, transportation coordination, and equipment distribution while ensuring seamless event execution and participant satisfaction.",
+            "Led and coordinated a team of 10 volunteers across multiple operational areas including participant registration, wayfinding, and technical session support to maintain smooth hackathon flow.",
+            "Facilitated partnerships with sponsors, mentors, and university departments, ensuring stakeholder alignment and comprehensive support for participant needs throughout the event."
+             ]}
+        />
+
       </section>
 
       <div className="h-16 w-full bg-gradient-to-b from-gray-100 to-white dark:from-gray-900 dark:to-black" />
       
         <section id="projects" className="min-h-screen flex flex-col justify-center items-center text-center bg-white dark:bg-black text-black dark:text-white px-4 sm:px-8">
-        <h2 className="text 3x1 font-oxygen mb4">Projects</h2>
+        <h2 className="text 3x1 font-oxygen mb4"></h2>
           <div className="text-left w-full px-4 backdrop-blur-md flex flex-col gap-7">
             <ProjectCard
               title="Portfolio Website"
