@@ -27,7 +27,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "portfolio",
-  description: "created by deep ackberry (the goat)",
+  description: "created by deep ackberry",
 };
 
 export default function RootLayout({
