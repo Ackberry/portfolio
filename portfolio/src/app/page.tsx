@@ -106,7 +106,9 @@ export default function Home() {
           position="Software Engineer Intern"
           location="Remote"
           descriptionPoints={[
-            "Building a scoring system to rank candidates based on their profile using LLM. Just began!",
+            "Designed and implemented an LLM-powered candidate scoring system using Gemini, integrating user profiles with a scraped dataset of 3,000+ colleges.",
+            "Engineered a normalized PostgreSQL schema to store and query enriched college data, enabling seamless integration with user profiles and scoring logic.",
+            "Helped automate candidate ranking workflows, reducing manual screening efforts by an estimated 30%, based on 100+ active users.",
           ]}
         />
           <ExperienceCard
