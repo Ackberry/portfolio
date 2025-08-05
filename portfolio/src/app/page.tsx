@@ -117,9 +117,9 @@ export default function Home() {
           position="ML Researcher and Software Developer"
           location="Tampa, FL"
           descriptionPoints={[
-            "Fine-tuned Llama2 model for context-aware storytelling on Misty robot, achieving 30% increase in user engagement and 50% reduction in response latency through optimized speech-to-text integration and algorithm improvements.",
-            "Developed a pipeline integrating a local Text-to-Speech (TTS) API with Gemini and a downstream Speech-to-Text (STT) API, enabling audio-text-audio conversion with ~5s latency",
-            "Deployed neural text-to-speech system on Raspberry Pi, achieving 90% synthesis accuracy and 150ms average response time for edge computing applications."
+            "Fine-tuned Gemini 2.5 Flash and LLaMA2 models for multimodal elderly-assistive robot, enabling end-to-end audio-to-text interaction with a custom pipeline and achieving a 35% increase in task success rate in user trials.",
+            "Led speech-to-text integration and inference optimization on Raspberry Pi, reducing end-to-end response time to ¡150ms and achieving 95%+ speech synthesis accuracy, enabling real-time conversational interaction on edge hardware.",
+            "Engineered custom hardware station using AutoCAD 3D modeling to seamlessly integrate tablet and Misty robot systems, improving system stability and reducing setup time by 70% for user interactions."
           ]}
         />
           <ExperienceCard
