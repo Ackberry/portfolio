@@ -133,7 +133,7 @@ export default function Home() {
         {/*From here its club experience and all */}
           <h2 className='text-bold flex-center font-mono mt-10 mb-2 text-xl'>Club Involvement</h2>
           <ExperienceCard
-          company="Google Developer Student Club"
+          company="Google Developer Group"
           timeline="April 2025 - Present"
           position="Techincal Lead"
           location="University of South Florida"
