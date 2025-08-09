@@ -83,7 +83,7 @@ export default function Home() {
 
         <p className="max-w-2xl text-md sm:text-lg text-gray-600 dark:text-gray-400 mb-8 font-mono">
           I’m passionate about building cool projects with AI, or any new technology that interests
-          me. Currently, I am building <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="text-blue-600">[**HIDDEN**]</a>
+          me. Currently, I am building <a className="text-blue-600">Discord RPC</a>
         </p>
 
         <a
