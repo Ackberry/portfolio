@@ -83,7 +83,7 @@ export default function Home() {
 
         <p className="max-w-2xl text-md sm:text-lg text-gray-600 dark:text-gray-400 mb-8 font-mono">
           I’m passionate about building cool projects with AI, or any new technology that interests
-          me. Currently, I am building <a className="text-blue-600">Discord RPC</a>
+          me. Currently, I am building <a className="text-blue-600">CineTune, a Spotify + Letterboxd clone</a>
         </p>
 
         <a
@@ -102,7 +102,7 @@ export default function Home() {
           <div className='text-left w-full px-4 backdrop-blur-md flex flex-col gap-7'>
           <ExperienceCard
           company="CacheAi"
-          timeline="July 2025 - Present"
+          timeline="July 2025 - Sep 2025"
           position="Software Engineer Intern"
           location="Remote"
           descriptionPoints={[
@@ -113,7 +113,7 @@ export default function Home() {
         />
           <ExperienceCard
           company="Rare Lab (USF College of Engineering)"
-          timeline="May 2025 - Present"
+          timeline="May 2025 - July 2025"
           position="ML Researcher and Software Developer"
           location="Tampa, FL"
           descriptionPoints={[
@@ -165,6 +165,15 @@ export default function Home() {
         <section id="projects" className="min-h-screen flex flex-col justify-center items-center text-center bg-white dark:bg-black text-black dark:text-white px-4 sm:px-8">
         <h2 className="text 3x1 font-oxygen mb4"></h2>
           <div className="text-left w-full px-4 backdrop-blur-md flex flex-col gap-7">
+            <ProjectCard
+              title="Spotify + Letterboxd clone"
+              description="a fullstack app that combines letterboxd and spotify (the apps i cannot live without)"
+              githubLink="https://github.com/ackberry/cinetune"
+              liveLink="https://ackberry.club"
+              skills={['Javascript', 'Express.js', 'Node.js', 'Firebase', 'SQL']}
+              features={[' Built a full-stack movie and music logging platform with Node.js, Express, and PostgreSQL, integrating Spotify Web API and TMDb API for metadata sync. Added indexing and query optimization for fast search/filter across 500+ titles.', ' Built Express.js backend with REST APIs and PostgreSQL integration, ensuring scalable data persistence and eliminating 100% of duplicate entries with FK constraints.', 'Developed a responsive JavaScript frontend, optimized API calls for sub-200ms load times, and achieved 95%+ browser/device compatibility across 5 tested environments.']}
+            />
+            
             <ProjectCard
               title="Portfolio Website"
               description="clean and minimal portfolio website designed in React and Nextjs to showcase my portfolio"
