@@ -8,11 +8,13 @@ import Skills from "./components/skills"
 import ThemeToggle from './components/themetoggle'
 import ProjectCard from './components/ProjectCard'
 import ExperienceCard from './components/ExperienceCard'
+import InfiniteGrid from './components/InfiniteGrid'
 
 export default function Home() {
   return (
-    <div>
-        <header className="fixed top-0 left-0 w-full bg-lightbg/30 dark:bg-black/20 backdrop-blur-md  z-50 shadow-sm">
+    <div className="relative min-h-screen">
+        <InfiniteGrid />
+        <header className="fixed top-0 left-0 w-full bg-lightbg/30 dark:bg-black/20 backdrop-blur-md z-50 shadow-sm">
           <nav className="flex flex-wrap justify-between gap-6 sm:gap-12 p-4 font-medium text-sm sm:text-base text-black dark:text-white">
           
             {/*Left Spacing */}
@@ -68,10 +70,10 @@ export default function Home() {
 
         </header>
 
-    <main className="font-sans">
+    <main className="font-sans relative z-10">
       <section
         id="home"
-        className="min-h-screen flex flex-col justify-center items-center text-center bg-white dark:bg-black text-black dark:text-white px-4 sm:px-8"
+        className="min-h-screen flex flex-col justify-center items-center text-center bg-transparent text-black dark:text-white px-4 sm:px-8 relative"
       >
         <h1 className="text-4xl sm:text-5xl font-bold mb-4">
           Hi, I’m <span className="text-blue-600 dark:text-blue-400">Deep Akbari.</span>
@@ -83,7 +85,7 @@ export default function Home() {
 
         <p className="max-w-2xl text-md sm:text-lg text-gray-600 dark:text-gray-400 mb-8 font-mono">
           I’m passionate about building cool projects with AI, or any new technology that interests
-          me. Currently, I am working on <a className="text-blue-600">Yelp Hackathon and a MCP</a>
+          me. Currently, I am working on <a className="text-blue-600">this website</a>
         </p>
 
         <a
@@ -95,9 +97,9 @@ export default function Home() {
       </section>
 
 
-      <div className="h-16 w-full bg-gradient-to-b from-white to-gray-100 dark:from-black dark:to-gray-900" />
+      <div className="h-16 w-full bg-transparent" />
       
-      <section id="experience" className="min-h-screen p-8 flex flex-col justify-center items-center bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
+      <section id="experience" className="min-h-screen p-8 flex flex-col justify-center items-center bg-transparent text-black dark:text-white">
         <h2 className="text 3x1 font-oxygen mb4"></h2>
           <div className='text-left w-full px-4 backdrop-blur-md flex flex-col gap-7'>
           <ExperienceCard
@@ -160,9 +162,9 @@ export default function Home() {
 
       </section>
 
-      <div className="h-16 w-full bg-gradient-to-b from-gray-100 to-white dark:from-gray-900 dark:to-black" />
+      <div className="h-16 w-full bg-transparent" />
       
-        <section id="projects" className="min-h-screen flex flex-col justify-center items-center text-center bg-white dark:bg-black text-black dark:text-white px-4 sm:px-8">
+        <section id="projects" className="min-h-screen flex flex-col justify-center items-center text-center bg-transparent text-black dark:text-white px-4 sm:px-8">
         <h2 className="text 3x1 font-oxygen mb4"></h2>
           <div className="text-left w-full px-4 backdrop-blur-md flex flex-col gap-7">
             <ProjectCard
@@ -216,10 +218,10 @@ export default function Home() {
         </section>
 
       
-       <div className="h-16 w-full bg-gradient-to-b from-white to-gray-100 dark:from-black dark:to-gray-900" />
+       <div className="h-16 w-full bg-transparent" />
 
 
-        <section id="skills" className="min-h-screen p-8 flex flex-col justify-center items-center bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
+        <section id="skills" className="min-h-screen p-8 flex flex-col justify-center items-center bg-transparent text-black dark:text-white">
         
         <div className="max-w-xl text-center">
         <Skills/> { /*To change the text, go to skills.tsx */}
