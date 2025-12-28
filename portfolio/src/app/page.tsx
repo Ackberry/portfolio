@@ -2,7 +2,7 @@
 
 import { Github, Linkedin } from "lucide-react";
 import { FileText } from 'lucide-react'
-import Skills from "./components/skills"
+import SkillsCarousels from "./components/SkillsCarousel"
 import ThemeToggle from './components/themetoggle'
 import ProjectCard from './components/ProjectCard'
 import ExperienceCard from './components/ExperienceCard'
@@ -219,10 +219,10 @@ export default function Home() {
        <div className="h-16 w-full bg-transparent" />
 
 
-        <section id="skills" className="min-h-screen p-8 flex flex-col justify-center items-center bg-transparent text-black dark:text-white">
+        <section id="skills" className="min-h-screen py-8 px-0 flex flex-col justify-center items-center bg-transparent text-black dark:text-white">
         
-        <div className="max-w-xl text-center">
-        <Skills/> { /*To change the text, go to skills.tsx */}
+        <div className="w-full">
+          <SkillsCarousels />
         </div>
       </section>
 
