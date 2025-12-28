@@ -161,7 +161,7 @@ export default function SkillsCarousels() {
 
   return (
     <section className="my-12 w-full">
-      <h2 className="text-3xl font-mono mb-12 text-center">skills i've worked with so far..</h2>
+      <h2 className="text-3xl font-mono mb-12 text-center">skills i&apos;ve worked with so far..</h2>
       
       <div className="space-y-8 w-full">
         <SkillsCarousel category="Languages" skills={languages} direction="left" speed={1} />
