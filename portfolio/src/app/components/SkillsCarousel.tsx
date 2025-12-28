@@ -62,20 +62,27 @@ const SkillsCarousel = ({ category, skills, direction = 'right', speed = 1 }: Sk
   
   // Get the actual background color based on theme
   const isDark = mounted && (resolvedTheme === 'dark' || (resolvedTheme === 'system' && theme === 'dark'));
+  // Softer gradient with more gradual fade - less sharp edges
   const bgGradient = isDark 
-    ? 'linear-gradient(to right, hsl(222.2, 84%, 4.9%), hsl(222.2, 84%, 4.9% / 0.95), hsl(222.2, 84%, 4.9% / 0.85), hsl(222.2, 84%, 4.9% / 0.70), hsl(222.2, 84%, 4.9% / 0.50), hsl(222.2, 84%, 4.9% / 0.30), transparent)'
-    : 'linear-gradient(to right, hsl(0, 0%, 100%), hsl(0, 0%, 100% / 0.95), hsl(0, 0%, 100% / 0.85), hsl(0, 0%, 100% / 0.70), hsl(0, 0%, 100% / 0.50), hsl(0, 0%, 100% / 0.30), transparent)';
+    ? 'linear-gradient(to right, hsl(222.2, 84%, 4.9%), hsl(222.2, 84%, 4.9% / 0.98), hsl(222.2, 84%, 4.9% / 0.94), hsl(222.2, 84%, 4.9% / 0.87), hsl(222.2, 84%, 4.9% / 0.77), hsl(222.2, 84%, 4.9% / 0.65), hsl(222.2, 84%, 4.9% / 0.50), hsl(222.2, 84%, 4.9% / 0.35), hsl(222.2, 84%, 4.9% / 0.20), hsl(222.2, 84%, 4.9% / 0.10), transparent)'
+    : 'linear-gradient(to right, hsl(0, 0%, 100%), hsl(0, 0%, 100% / 0.98), hsl(0, 0%, 100% / 0.94), hsl(0, 0%, 100% / 0.87), hsl(0, 0%, 100% / 0.77), hsl(0, 0%, 100% / 0.65), hsl(0, 0%, 100% / 0.50), hsl(0, 0%, 100% / 0.35), hsl(0, 0%, 100% / 0.20), hsl(0, 0%, 100% / 0.10), transparent)';
   
   const bgGradientLeft = isDark
-    ? 'linear-gradient(to left, hsl(222.2, 84%, 4.9%), hsl(222.2, 84%, 4.9% / 0.95), hsl(222.2, 84%, 4.9% / 0.85), hsl(222.2, 84%, 4.9% / 0.70), hsl(222.2, 84%, 4.9% / 0.50), hsl(222.2, 84%, 4.9% / 0.30), transparent)'
-    : 'linear-gradient(to left, hsl(0, 0%, 100%), hsl(0, 0%, 100% / 0.95), hsl(0, 0%, 100% / 0.85), hsl(0, 0%, 100% / 0.70), hsl(0, 0%, 100% / 0.50), hsl(0, 0%, 100% / 0.30), transparent)';
+    ? 'linear-gradient(to left, hsl(222.2, 84%, 4.9%), hsl(222.2, 84%, 4.9% / 0.98), hsl(222.2, 84%, 4.9% / 0.94), hsl(222.2, 84%, 4.9% / 0.87), hsl(222.2, 84%, 4.9% / 0.77), hsl(222.2, 84%, 4.9% / 0.65), hsl(222.2, 84%, 4.9% / 0.50), hsl(222.2, 84%, 4.9% / 0.35), hsl(222.2, 84%, 4.9% / 0.20), hsl(222.2, 84%, 4.9% / 0.10), transparent)'
+    : 'linear-gradient(to left, hsl(0, 0%, 100%), hsl(0, 0%, 100% / 0.98), hsl(0, 0%, 100% / 0.94), hsl(0, 0%, 100% / 0.87), hsl(0, 0%, 100% / 0.77), hsl(0, 0%, 100% / 0.65), hsl(0, 0%, 100% / 0.50), hsl(0, 0%, 100% / 0.35), hsl(0, 0%, 100% / 0.20), hsl(0, 0%, 100% / 0.10), transparent)';
 
   return (
     <div className="mb-12 w-full">
       <h3 className="text-xl font-mono mb-6 text-center text-foreground/80">
         {category}
       </h3>
-      <div className="relative w-screen flex items-center justify-center -ml-[50vw] left-1/2 overflow-hidden">
+      <div 
+        className="relative w-full max-w-3xl mx-auto flex items-center justify-center overflow-hidden"
+        style={{
+          maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+        }}
+      >
         <Carousel
           opts={{ 
             loop: true,
@@ -83,7 +90,7 @@ const SkillsCarousel = ({ category, skills, direction = 'right', speed = 1 }: Sk
             dragFree: false,
           }}
           plugins={[plugin]}
-          className="w-screen"
+          className="w-full"
         >
           <CarouselContent className="ml-0">
             {/* Render items multiple times to ensure seamless infinite loop */}
@@ -106,15 +113,15 @@ const SkillsCarousel = ({ category, skills, direction = 'right', speed = 1 }: Sk
             )}
           </CarouselContent>
         </Carousel>
-        {/* Gradient fade edges - dynamically matching background color that updates with theme */}
+        {/* Gradient fade edges - background color fade */}
         {mounted && (
           <>
             <div 
-              className="absolute inset-y-0 left-0 w-32 pointer-events-none z-10 transition-all duration-500 ease-in-out"
+              className="absolute inset-y-0 left-0 w-40 pointer-events-none z-10 transition-all duration-500 ease-in-out"
               style={{ background: bgGradient }}
             ></div>
             <div 
-              className="absolute inset-y-0 right-0 w-32 pointer-events-none z-10 transition-all duration-500 ease-in-out"
+              className="absolute inset-y-0 right-0 w-40 pointer-events-none z-10 transition-all duration-500 ease-in-out"
               style={{ background: bgGradientLeft }}
             ></div>
           </>
