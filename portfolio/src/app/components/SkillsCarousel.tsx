@@ -80,16 +80,17 @@ const SkillsCarousel = ({ category, skills, direction = 'right', speed = 1 }: Sk
           opts={{ 
             loop: true,
             align: "start",
+            dragFree: false,
           }}
           plugins={[plugin]}
           className="w-screen"
         >
           <CarouselContent className="ml-0">
-            {/* Render items multiple times to ensure smooth scrolling */}
-            {[...Array(3)].map((_, loopIndex) =>
-              skills.map((skill) => (
+            {/* Render items multiple times to ensure seamless infinite loop */}
+            {[...Array(5)].map((_, loopIndex) =>
+              skills.map((skill, skillIndex) => (
                 <CarouselItem
-                  key={`${skill.id}-${loopIndex}`}
+                  key={`${skill.id}-${loopIndex}-${skillIndex}`}
                   className="flex basis-auto justify-center pl-0"
                 >
                   <div className="flex shrink-0 flex-col items-center justify-center gap-2 min-w-[120px] pr-20">
