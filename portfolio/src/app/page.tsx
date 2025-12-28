@@ -1,9 +1,7 @@
 'use client'
 
-import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
 import { Github, Linkedin } from "lucide-react";
-import { Sun, Moon, FileText } from 'lucide-react'
+import { FileText } from 'lucide-react'
 import Skills from "./components/skills"
 import ThemeToggle from './components/themetoggle'
 import ProjectCard from './components/ProjectCard'

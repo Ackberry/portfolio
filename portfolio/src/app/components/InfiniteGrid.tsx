@@ -5,14 +5,15 @@ import {
   motion, 
   useMotionValue, 
   useMotionTemplate, 
-  useAnimationFrame 
+  useAnimationFrame,
+  type MotionValue
 } from "framer-motion";
 import { cn } from '@/lib/utils';
 
 /**
  * Helper component for the SVG grid pattern.
  */
-const GridPattern = ({ offsetX, offsetY, size }: { offsetX: any; offsetY: any; size: number }) => {
+const GridPattern = ({ offsetX, offsetY, size }: { offsetX: MotionValue<number>; offsetY: MotionValue<number>; size: number }) => {
   return (
     <svg className="w-full h-full">
       <defs>

@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Inter, Oxygen_Mono } from 'next/font/google';
+import { Oxygen_Mono } from 'next/font/google';
 import { ThemeProvider } from "next-themes";
 import type { ReactNode } from 'react';
 
 import "./globals.css";
 import "@fontsource/dm-mono/400.css";
-
-const inter = Inter({ subsets: ['latin'] });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
