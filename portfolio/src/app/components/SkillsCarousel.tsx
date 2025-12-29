@@ -137,6 +137,7 @@ export default function SkillsCarousels() {
     { id: 'js', name: 'JavaScript', icon: <SiJavascript className="text-yellow-400" />, category: 'Languages' },
     { id: 'ts', name: 'TypeScript', icon: <SiTypescript className="text-blue-500" />, category: 'Languages' },
     { id: 'python', name: 'Python', icon: <SiPython className="text-yellow-500" />, category: 'Languages' },
+    { id: 'c', name: 'C', icon: <SiCplusplus className="text-blue-600 dark:text-blue-400" />, category: 'Languages' },
     { id: 'cpp', name: 'C++', icon: <SiCplusplus className="text-black dark:text-white" />, category: 'Languages' },
   ];
 
