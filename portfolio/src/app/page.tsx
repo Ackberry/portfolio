@@ -1,74 +1,39 @@
 'use client'
 
-import { Github, Linkedin } from "lucide-react";
-import { FileText } from 'lucide-react'
+import { Github, Linkedin, FileText, Home as HomeIcon, Briefcase, FolderKanban, Code, User, SunMoon } from "lucide-react";
 import SkillsCarousels from "./components/SkillsCarousel"
-import ThemeToggle from './components/themetoggle'
 import ProjectCard from './components/ProjectCard'
 import ExperienceCard from './components/ExperienceCard'
 import InfiniteGrid from './components/InfiniteGrid'
+import { Highlighter } from './components/Highlighter'
+import { Dock, DockIcon } from './components/Dock'
+import { useTheme } from 'next-themes'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light')
+  }
+
   return (
     <div className="relative min-h-screen">
         <InfiniteGrid />
-        <header className="fixed top-0 left-0 w-full bg-lightbg/30 dark:bg-black/20 backdrop-blur-md z-50 shadow-sm">
-          <nav className="flex flex-wrap justify-between gap-6 sm:gap-12 p-4 font-medium text-sm sm:text-base text-black dark:text-white">
-          
-            {/*Left Spacing */}
-            <div className="flex-1">
-              <ThemeToggle/>
-            </div>
-            
-            {/*Mid Spacing */}
-            <div className="flex gap-6 sm:gap-12">
-                <a href="#home" className="hover:text-rose-600 dark:hover:text-green-200 transition-colors font-mono">Home</a>
-                <a href="#experience" className="hover:text-blue-600 dark:hover:text-amber-700 transition-colors font-mono">Experience</a>
-                <a href="#projects" className="hover:text-orange-600 dark:hover:text-indigo-700 transition-colors font-mono">Projects</a>
-                <a href="#skills" className="hover:text-red-600 dark:hover:text-slate-350 transition-colors font-mono">Skills</a>
-            </div>
-            
-            {/*Far right */}
-            <div className="flex gap-4 flex-1 justify-end">
-            <a
-            href="https://drive.google.com/file/d/1JlWgw0K2ogXIki7z_fLEYhldYxI4d1wj/view?usp=sharing"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="FileText"
-            className="hover:text-green-600 dark:hover:text-pink-400 transition"
-              >
-            <FileText size={20} />
-                </a>
-            
-              <a
-            href="https://github.com/ackberry"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            className="hover:text-pink-600 dark:hover:text-green-400 transition"
-              >
-            <Github size={20} />
-              </a>
-              <a
-            href="https://linkedin.com/in/deep-akbari"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="hover:text-green-600 dark:hover:text-pink-400 transition"
-              >
-            <Linkedin size={20} />
-                </a>
 
-            </div>
-            
-          </nav>
-          <div className="flex items-center gap-4">
-
-        </div>
-
-        </header>
-
-    <main className="font-sans relative z-10">
+    <main className="font-sans relative z-10 pb-24">
       <section
         id="home"
         className="min-h-screen flex flex-col justify-center items-center text-center bg-transparent text-black dark:text-white px-4 sm:px-8 relative"
@@ -98,7 +63,7 @@ export default function Home() {
       <div className="h-16 w-full bg-transparent" />
       
       <section id="experience" className="min-h-screen p-8 flex flex-col justify-center items-center bg-transparent text-black dark:text-white">
-        <h2 className="text 3x1 font-oxygen mb4"></h2>
+        <h2 className="text-4xl font-bold font-mono mb-12 text-center">Experience</h2>
           <div className='text-left w-full px-4 backdrop-blur-md flex flex-col gap-7'>
           <ExperienceCard
           company="CacheAi"
@@ -133,7 +98,7 @@ export default function Home() {
         />
           </div>
         {/*From here its club experience and all */}
-          <h2 className='text-bold flex-center font-mono mt-10 mb-2 text-xl'>Club Involvement</h2>
+          <h2 className='font-bold flex-center font-mono mt-10 mb-2 text-2xl'>Club Involvement</h2>
           <ExperienceCard
           company="Google Developer Group"
           timeline="April 2025 - Present"
@@ -163,7 +128,7 @@ export default function Home() {
       <div className="h-16 w-full bg-transparent" />
       
         <section id="projects" className="min-h-screen flex flex-col justify-center items-center text-center bg-transparent text-black dark:text-white px-4 sm:px-8">
-        <h2 className="text 3x1 font-oxygen mb4"></h2>
+        <h2 className="text-4xl font-bold font-mono mb-12 text-center w-full">Projects</h2>
           <div className="text-left w-full px-4 backdrop-blur-md flex flex-col gap-7">
             <ProjectCard
               title="Spotify + Letterboxd clone"
@@ -226,8 +191,81 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="h-16 w-full bg-transparent" />
+
+      <section id="about" className="min-h-screen py-8 px-4 sm:px-8 flex flex-col justify-center items-center bg-transparent text-black dark:text-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold font-mono mb-8">About Me</h2>
+          <div className="space-y-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+            <p className="font-mono">
+              19 yo, computer science sophomore, going to university of south florida (on a <Highlighter action="highlight">presidential scholarship</Highlighter> yay). i&apos;ve been getting more into programming recently and i do so by creating side projects to solve my daily problems :) here&apos;s a bit more about me - 
+            </p>
+          </div>
+        </div>
+      </section>
 
     </main>
+
+    {/* Dock Navigation */}
+    <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center pb-4 pointer-events-none">
+      <Dock className="pointer-events-auto">
+        <DockIcon onClick={() => scrollToSection('home')} title="home">
+          <HomeIcon size={24} className="text-foreground" />
+        </DockIcon>
+        <DockIcon onClick={() => scrollToSection('experience')} title="experience">
+          <Briefcase size={24} className="text-foreground" />
+        </DockIcon>
+        <DockIcon onClick={() => scrollToSection('projects')} title="projects">
+          <FolderKanban size={24} className="text-foreground" />
+        </DockIcon>
+        <DockIcon onClick={() => scrollToSection('skills')} title="skills">
+          <Code size={24} className="text-foreground" />
+        </DockIcon>
+        <DockIcon onClick={() => scrollToSection('about')} title="about">
+          <User size={24} className="text-foreground" />
+        </DockIcon>
+        <div className="h-10 w-[1px] bg-gray-400 dark:bg-gray-600 flex-shrink-0 mx-1" />
+        <DockIcon title="resume">
+          <a
+            href="https://drive.google.com/file/d/1JlWgw0K2ogXIki7z_fLEYhldYxI4d1wj/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Resume"
+            className="flex items-center justify-center"
+          >
+            <FileText size={24} className="text-foreground" />
+          </a>
+        </DockIcon>
+        <DockIcon title="github">
+          <a
+            href="https://github.com/ackberry"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="flex items-center justify-center"
+          >
+            <Github size={24} className="text-foreground" />
+          </a>
+        </DockIcon>
+        <DockIcon title="linkedIn">
+          <a
+            href="https://linkedin.com/in/deep-akbari"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="flex items-center justify-center"
+          >
+            <Linkedin size={24} className="text-foreground" />
+          </a>
+        </DockIcon>
+        <div className="h-10 w-[1px] bg-gray-400 dark:bg-gray-600 flex-shrink-0 mx-1" />
+        {mounted && (
+          <DockIcon onClick={toggleTheme} title="theme">
+            <SunMoon size={24} className="text-foreground" />
+          </DockIcon>
+        )}
+      </Dock>
+    </div>
     </div>
   )
 }

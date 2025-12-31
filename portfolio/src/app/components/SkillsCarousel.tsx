@@ -73,9 +73,9 @@ const SkillsCarousel = ({ category, skills, direction = 'right', speed = 1 }: Sk
 
   return (
     <div className="mb-12 w-full">
-      <h3 className="text-xl font-mono mb-6 text-center text-foreground/80">
-        {category}
-      </h3>
+          <h3 className="text-2xl font-bold font-mono mb-6 text-center text-foreground/80">
+            {category}
+          </h3>
       <div 
         className="relative w-full max-w-3xl mx-auto flex items-center justify-center overflow-hidden"
         style={{
@@ -170,7 +170,7 @@ export default function SkillsCarousels() {
 
   return (
     <section className="my-12 w-full">
-      <h2 className="text-3xl font-mono mb-12 text-center">skills i&apos;ve worked with so far..</h2>
+      <h2 className="text-4xl font-bold font-mono mb-12 text-center">skills i&apos;ve worked with so far..</h2>
       
       <div className="space-y-8 w-full">
         <SkillsCarousel category="Languages" skills={languages} direction="left" speed={1} />
