@@ -9,6 +9,8 @@ import { Highlighter } from './components/Highlighter'
 import { Dock, DockIcon } from './components/Dock'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
+import { AISummaryFooter } from 'ai-summary-footer'
+import 'ai-summary-footer/styles.css'
 
 export default function Home() {
   const { theme, setTheme } = useTheme()
@@ -28,6 +30,8 @@ export default function Home() {
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light')
   }
+
+      const resumeUrl = "https://drive.google.com/file/d/1JlWgw0K2ogXIki7z_fLEYhldYxI4d1wj/view?usp=drive_link"
 
   return (
     <div className="relative min-h-screen">
@@ -193,7 +197,7 @@ export default function Home() {
 
       <div className="h-16 w-full bg-transparent" />
 
-      <section id="about" className="min-h-screen py-8 px-4 sm:px-8 flex flex-col justify-center items-center bg-transparent text-black dark:text-white">
+      <section id="about" className="pt-8 pb-8 px-4 sm:px-8 flex flex-col items-center bg-transparent text-black dark:text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold font-mono mb-8">About Me</h2>
           <div className="space-y-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -201,6 +205,19 @@ export default function Home() {
               19 yo, computer science sophomore, going to university of south florida (on a <Highlighter action="highlight">presidential scholarship</Highlighter> yay). i&apos;ve been getting more into programming recently and i do so by creating side projects to solve my daily problems :) here&apos;s a bit more about me - 
             </p>
           </div>
+        </div>
+      </section>
+
+      <div className="h-20 w-full bg-transparent" />
+
+
+      <section id="ai-summary" className="pt-8 pb-8 px-4 sm:px-8 flex flex-col justify-center items-center bg-transparent text-black dark:text-white">
+        <div className="max-w-lg mx-auto w-full backdrop-blur-md rounded-2xl p-8 bg-transparent border border-white/20 dark:border-white/10">
+          <AISummaryFooter
+            companyName="Ackberry"
+            companyUrl="https://ackberry.club"
+            prompt="Tell me about {companyName} at {companyUrl}. What are their skills and projects?"
+          />
         </div>
       </section>
 
@@ -227,7 +244,7 @@ export default function Home() {
         <div className="h-10 w-[1px] bg-gray-400 dark:bg-gray-600 flex-shrink-0 mx-1" />
         <DockIcon title="resume">
           <a
-            href="https://drive.google.com/file/d/1JlWgw0K2ogXIki7z_fLEYhldYxI4d1wj/view?usp=sharing"
+            href="https://drive.google.com/file/d/1JlWgw0K2ogXIki7z_fLEYhldYxI4d1wj/view?usp=drive_link"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Resume"
