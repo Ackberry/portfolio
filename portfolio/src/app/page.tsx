@@ -8,7 +8,7 @@ import InfiniteGrid from './components/InfiniteGrid'
 import { Highlighter } from './components/Highlighter'
 import { Dock, DockIcon } from './components/Dock'
 import { useTheme } from 'next-themes'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useMemo } from 'react'
 import { AISummaryFooter } from 'ai-summary-footer'
 import 'ai-summary-footer/styles.css'
 import { gsap } from 'gsap'
@@ -17,24 +17,26 @@ export default function Home() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null)
+  const [clickedPhotoRect, setClickedPhotoRect] = useState<DOMRect | null>(null)
   const photoContainerRef = useRef<HTMLDivElement>(null)
   const modalBackdropRef = useRef<HTMLDivElement>(null)
   const modalImageRef = useRef<HTMLImageElement>(null)
+  const photoRefs = useRef<(HTMLDivElement | null)[]>([])
 
-  const photos = [
+  const photos = useMemo(() => [
     '/photos/1.jpeg',
     '/photos/2.jpeg',
     '/photos/3.jpeg',
     '/photos/4.jpeg'
-  ]
+  ], [])
 
   // Fixed overlap with spacing - cards fan out diagonally
-  const photoStyles = [
+  const photoStyles = useMemo(() => [
     { rotation: -6, x: -50, y: -50, zIndex: 1 },
     { rotation: 4, x: -15, y: -15, zIndex: 2 },
     { rotation: -5, x: 15, y: 15, zIndex: 3 },
     { rotation: 7, x: 50, y: 50, zIndex: 4 }
-  ]
+  ], [])
 
   useEffect(() => {
     setMounted(true)
@@ -62,54 +64,121 @@ export default function Home() {
         }
       )
     }
-  }, [mounted])
+  }, [mounted, photoStyles])
 
-  const handlePhotoClick = (photo: string) => {
+  const handlePhotoClick = (photo: string, index: number, event: React.MouseEvent<HTMLDivElement>) => {
+    const clickedElement = event.currentTarget
+    const rect = clickedElement.getBoundingClientRect()
+    setClickedPhotoRect(rect)
     setSelectedPhoto(photo)
   }
 
   const closePhotoModal = () => {
-    if (modalBackdropRef.current && modalImageRef.current) {
+    if (modalBackdropRef.current && modalImageRef.current && clickedPhotoRect) {
+      const photoIndex = photos.indexOf(selectedPhoto!)
+      const originalPhoto = photoRefs.current[photoIndex]
+      
+      if (originalPhoto) {
+        const rect = originalPhoto.getBoundingClientRect()
+        const finalRect = modalImageRef.current.getBoundingClientRect()
+        
+        // Calculate center positions
+        const startX = rect.left + rect.width / 2
+        const startY = rect.top + rect.height / 2
+        const endX = finalRect.left + finalRect.width / 2
+        const endY = finalRect.top + finalRect.height / 2
+        
+        // Calculate scale difference
+        const scaleX = rect.width / finalRect.width
+        const scaleY = rect.height / finalRect.height
+        
+        // Animate back to original position
+        gsap.to(modalImageRef.current, {
+          x: startX - endX,
+          y: startY - endY,
+          scaleX: scaleX,
+          scaleY: scaleY,
+          rotation: photoStyles[photoIndex].rotation,
+          duration: 0.4,
+          ease: "power2.inOut"
+        })
+      }
+      
       // Animate out
       gsap.to([modalBackdropRef.current, modalImageRef.current], {
         opacity: 0,
         duration: 0.3,
         ease: "power2.inOut",
         onComplete: () => {
+          if (modalImageRef.current) {
+            gsap.set(modalImageRef.current, { x: 0, y: 0, scaleX: 1, scaleY: 1, rotation: 0 })
+          }
           setSelectedPhoto(null)
+          setClickedPhotoRect(null)
         }
-      })
-      gsap.to(modalImageRef.current, {
-        scale: 0.8,
-        duration: 0.3,
-        ease: "power2.inOut"
       })
     } else {
       setSelectedPhoto(null)
+      setClickedPhotoRect(null)
     }
   }
 
   // Animate modal when photo is selected
   useEffect(() => {
-    if (selectedPhoto && modalBackdropRef.current && modalImageRef.current) {
-      // Set initial state
+    if (selectedPhoto && clickedPhotoRect && modalBackdropRef.current && modalImageRef.current) {
+      const photoIndex = photos.indexOf(selectedPhoto)
+      
+      // Get final position (center of screen)
+      const windowWidth = window.innerWidth
+      const windowHeight = window.innerHeight
+      const finalX = windowWidth / 2
+      const finalY = windowHeight / 2
+      
+      // Get initial position (clicked photo's center)
+      const startX = clickedPhotoRect.left + clickedPhotoRect.width / 2
+      const startY = clickedPhotoRect.top + clickedPhotoRect.height / 2
+      
+      // Calculate transform needed
+      const deltaX = finalX - startX
+      const deltaY = finalY - startY
+      
+      // Calculate scale difference
+      const finalRect = modalImageRef.current.getBoundingClientRect()
+      const scaleX = clickedPhotoRect.width / finalRect.width
+      const scaleY = clickedPhotoRect.height / finalRect.height
+      
+      // Set initial state - position at clicked photo location
       gsap.set(modalBackdropRef.current, { opacity: 0 })
-      gsap.set(modalImageRef.current, { opacity: 0, scale: 0.8 })
+      gsap.set(modalImageRef.current, {
+        opacity: 0,
+        x: -deltaX,
+        y: -deltaY,
+        scaleX: scaleX,
+        scaleY: scaleY,
+        rotation: photoStyles[photoIndex].rotation,
+        transformOrigin: "center center"
+      })
 
-      // Animate in
+      // Animate backdrop first
       gsap.to(modalBackdropRef.current, {
         opacity: 1,
-        duration: 0.4,
+        duration: 0.3,
         ease: "power2.out"
       })
+      
+      // Animate image from original position to center
       gsap.to(modalImageRef.current, {
         opacity: 1,
-        scale: 1,
-        duration: 0.5,
-        ease: "back.out(1.2)"
+        x: 0,
+        y: 0,
+        scaleX: 1,
+        scaleY: 1,
+        rotation: 0,
+        duration: 0.6,
+        ease: "power3.out"
       })
     }
-  }, [selectedPhoto])
+  }, [selectedPhoto, clickedPhotoRect, photos, photoStyles])
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id)
@@ -142,7 +211,10 @@ export default function Home() {
           {photos.map((src, index) => (
             <div
               key={src}
-              onClick={() => handlePhotoClick(src)}
+              ref={(el) => {
+                photoRefs.current[index] = el
+              }}
+              onClick={(e) => handlePhotoClick(src, index, e)}
               className="absolute cursor-pointer rounded-lg overflow-hidden shadow-2xl transition-transform hover:scale-110 hover:z-50"
               style={{
                 width: '200px',
@@ -163,7 +235,7 @@ export default function Home() {
         {/* Text Content - Right Side */}
         <div className="flex flex-col justify-center items-center text-center bg-transparent text-black dark:text-white">
           <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-            Hi, I'm <span className="text-blue-600 dark:text-blue-400">Deep Akbari.</span>
+            Hi, I&apos;m <span className="text-blue-600 dark:text-blue-400">Deep Akbari.</span>
           </h1>
 
           <h2 className="text-xl sm:text-2xl text-gray-700 dark:text-gray-300 mb-6">
@@ -171,7 +243,7 @@ export default function Home() {
           </h2>
 
           <p className="max-w-2xl text-md sm:text-lg text-gray-600 dark:text-gray-400 mb-8 font-mono">
-            I'm passionate about building cool projects with AI, or any new technology that interests
+            I&apos;m passionate about building cool projects with AI, or any new technology that interests
             me. Currently, I am working on <a className="text-blue-600">this website</a>
           </p>
 
@@ -365,7 +437,7 @@ export default function Home() {
         <div className="h-10 w-[1px] bg-gray-400 dark:bg-gray-600 flex-shrink-0 mx-1" />
         <DockIcon title="resume">
           <a
-            href="https://drive.google.com/file/d/1JlWgw0K2ogXIki7z_fLEYhldYxI4d1wj/view?usp=drive_link"
+            href={resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Resume"
