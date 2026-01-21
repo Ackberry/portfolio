@@ -8,17 +8,67 @@ import InfiniteGrid from './components/InfiniteGrid'
 import { Highlighter } from './components/Highlighter'
 import { Dock, DockIcon } from './components/Dock'
 import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { AISummaryFooter } from 'ai-summary-footer'
 import 'ai-summary-footer/styles.css'
+import { gsap } from 'gsap'
 
 export default function Home() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null)
+  const photoContainerRef = useRef<HTMLDivElement>(null)
+
+  const photos = [
+    '/photos/IMG_9192.jpeg',
+    '/photos/IMG_9224.jpeg',
+    '/photos/IMG_9319.jpeg',
+    '/photos/IMG_9409.jpeg'
+  ]
+
+  // Random rotations and offsets for overlapping effect
+  const photoStyles = [
+    { rotation: -8, x: 0, y: 0, zIndex: 1 },
+    { rotation: 5, x: 15, y: -10, zIndex: 2 },
+    { rotation: -12, x: -10, y: 20, zIndex: 3 },
+    { rotation: 10, x: 20, y: 10, zIndex: 4 }
+  ]
 
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  useEffect(() => {
+    if (photoContainerRef.current && mounted) {
+      const photoElements = photoContainerRef.current.children
+      gsap.fromTo(
+        photoElements,
+        {
+          opacity: 0,
+          scale: 0.5,
+          rotation: 0
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          rotation: (index) => photoStyles[index].rotation,
+          x: (index) => photoStyles[index].x,
+          y: (index) => photoStyles[index].y,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: "back.out(1.7)"
+        }
+      )
+    }
+  }, [mounted])
+
+  const handlePhotoClick = (photo: string) => {
+    setSelectedPhoto(photo)
+  }
+
+  const closePhotoModal = () => {
+    setSelectedPhoto(null)
+  }
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id)
@@ -31,7 +81,7 @@ export default function Home() {
     setTheme(theme === 'light' ? 'dark' : 'light')
   }
 
-      const resumeUrl = "https://drive.google.com/file/d/1JlWgw0K2ogXIki7z_fLEYhldYxI4d1wj/view?usp=drive_link"
+  const resumeUrl = "https://drive.google.com/file/d/1JlWgw0K2ogXIki7z_fLEYhldYxI4d1wj/view?usp=drive_link"
 
   return (
     <div className="relative min-h-screen">
@@ -40,27 +90,57 @@ export default function Home() {
     <main className="font-sans relative z-10 pb-24">
       <section
         id="home"
-        className="min-h-screen flex flex-col justify-center items-center text-center bg-transparent text-black dark:text-white px-4 sm:px-8 relative"
+        className="min-h-screen flex flex-row justify-center items-center px-4 sm:px-8 relative gap-12"
       >
-        <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-          Hi, I’m <span className="text-blue-600 dark:text-blue-400">Deep Akbari.</span>
-        </h1>
-
-        <h2 className="text-xl sm:text-2xl text-gray-700 dark:text-gray-300 mb-6">
-          Aspiring Software Engineer
-        </h2>
-
-        <p className="max-w-2xl text-md sm:text-lg text-gray-600 dark:text-gray-400 mb-8 font-mono">
-          I’m passionate about building cool projects with AI, or any new technology that interests
-          me. Currently, I am working on <a className="text-blue-600">this website</a>
-        </p>
-
-        <a
-          href="#projects"
-          className="inline-block px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow transition"
+        {/* Photos Section - Left Side - Overlapping Cards */}
+        <div 
+          ref={photoContainerRef}
+          className="hidden lg:flex relative items-center justify-center"
+          style={{ width: '280px', height: '280px' }}
         >
-          View My Work
-        </a>
+          {photos.map((src, index) => (
+            <div
+              key={src}
+              onClick={() => handlePhotoClick(src)}
+              className="absolute cursor-pointer rounded-lg overflow-hidden shadow-2xl transition-transform hover:scale-110 hover:z-50"
+              style={{
+                width: '200px',
+                height: '250px',
+                transform: `rotate(${photoStyles[index].rotation}deg) translate(${photoStyles[index].x}px, ${photoStyles[index].y}px)`,
+                zIndex: photoStyles[index].zIndex,
+              }}
+            >
+              <img
+                src={src}
+                alt={`Photo ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Text Content - Right Side */}
+        <div className="flex flex-col justify-center items-center text-center bg-transparent text-black dark:text-white">
+          <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+            Hi, I'm <span className="text-blue-600 dark:text-blue-400">Deep Akbari.</span>
+          </h1>
+
+          <h2 className="text-xl sm:text-2xl text-gray-700 dark:text-gray-300 mb-6">
+            Aspiring Software Engineer
+          </h2>
+
+          <p className="max-w-2xl text-md sm:text-lg text-gray-600 dark:text-gray-400 mb-8 font-mono">
+            I'm passionate about building cool projects with AI, or any new technology that interests
+            me. Currently, I am working on <a className="text-blue-600">this website</a>
+          </p>
+
+          <a
+            href="#projects"
+            className="inline-block px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow transition"
+          >
+            View My Work
+          </a>
+        </div>
       </section>
 
 
@@ -283,6 +363,30 @@ export default function Home() {
         )}
       </Dock>
     </div>
+
+    {/* Photo Modal */}
+    {selectedPhoto && (
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+        onClick={closePhotoModal}
+      >
+        <div className="relative max-w-5xl max-h-[90vh] p-4">
+          <button
+            onClick={closePhotoModal}
+            className="absolute top-4 right-4 text-white hover:text-gray-300 text-4xl font-bold z-10"
+            aria-label="Close"
+          >
+            ×
+          </button>
+          <img
+            src={selectedPhoto}
+            alt="Full size photo"
+            className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      </div>
+    )}
     </div>
   )
 }
