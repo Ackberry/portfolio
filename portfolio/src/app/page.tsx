@@ -18,20 +18,22 @@ export default function Home() {
   const [mounted, setMounted] = useState(false)
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null)
   const photoContainerRef = useRef<HTMLDivElement>(null)
+  const modalBackdropRef = useRef<HTMLDivElement>(null)
+  const modalImageRef = useRef<HTMLImageElement>(null)
 
   const photos = [
-    '/photos/IMG_9192.jpeg',
-    '/photos/IMG_9224.jpeg',
-    '/photos/IMG_9319.jpeg',
-    '/photos/IMG_9409.jpeg'
+    '/photos/1.jpeg',
+    '/photos/2.jpeg',
+    '/photos/3.jpeg',
+    '/photos/4.jpeg'
   ]
 
-  // Random rotations and offsets for overlapping effect
+  // Fixed overlap with spacing - cards fan out diagonally
   const photoStyles = [
-    { rotation: -8, x: 0, y: 0, zIndex: 1 },
-    { rotation: 5, x: 15, y: -10, zIndex: 2 },
-    { rotation: -12, x: -10, y: 20, zIndex: 3 },
-    { rotation: 10, x: 20, y: 10, zIndex: 4 }
+    { rotation: -6, x: -50, y: -50, zIndex: 1 },
+    { rotation: 4, x: -15, y: -15, zIndex: 2 },
+    { rotation: -5, x: 15, y: 15, zIndex: 3 },
+    { rotation: 7, x: 50, y: 50, zIndex: 4 }
   ]
 
   useEffect(() => {
@@ -67,8 +69,47 @@ export default function Home() {
   }
 
   const closePhotoModal = () => {
-    setSelectedPhoto(null)
+    if (modalBackdropRef.current && modalImageRef.current) {
+      // Animate out
+      gsap.to([modalBackdropRef.current, modalImageRef.current], {
+        opacity: 0,
+        duration: 0.3,
+        ease: "power2.inOut",
+        onComplete: () => {
+          setSelectedPhoto(null)
+        }
+      })
+      gsap.to(modalImageRef.current, {
+        scale: 0.8,
+        duration: 0.3,
+        ease: "power2.inOut"
+      })
+    } else {
+      setSelectedPhoto(null)
+    }
   }
+
+  // Animate modal when photo is selected
+  useEffect(() => {
+    if (selectedPhoto && modalBackdropRef.current && modalImageRef.current) {
+      // Set initial state
+      gsap.set(modalBackdropRef.current, { opacity: 0 })
+      gsap.set(modalImageRef.current, { opacity: 0, scale: 0.8 })
+
+      // Animate in
+      gsap.to(modalBackdropRef.current, {
+        opacity: 1,
+        duration: 0.4,
+        ease: "power2.out"
+      })
+      gsap.to(modalImageRef.current, {
+        opacity: 1,
+        scale: 1,
+        duration: 0.5,
+        ease: "back.out(1.2)"
+      })
+    }
+  }, [selectedPhoto])
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id)
@@ -96,7 +137,7 @@ export default function Home() {
         <div 
           ref={photoContainerRef}
           className="hidden lg:flex relative items-center justify-center"
-          style={{ width: '280px', height: '280px' }}
+          style={{ width: '420px', height: '420px' }}
         >
           {photos.map((src, index) => (
             <div
@@ -367,18 +408,20 @@ export default function Home() {
     {/* Photo Modal */}
     {selectedPhoto && (
       <div
+        ref={modalBackdropRef}
         className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
         onClick={closePhotoModal}
       >
         <div className="relative max-w-5xl max-h-[90vh] p-4">
           <button
             onClick={closePhotoModal}
-            className="absolute top-4 right-4 text-white hover:text-gray-300 text-4xl font-bold z-10"
+            className="absolute top-4 right-4 text-white hover:text-gray-300 text-4xl font-bold z-10 transition-opacity hover:opacity-70"
             aria-label="Close"
           >
             ×
           </button>
           <img
+            ref={modalImageRef}
             src={selectedPhoto}
             alt="Full size photo"
             className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
