@@ -31,7 +31,7 @@ export default function Home() {
             {/*Far right */}
             <div className="flex gap-4 flex-1 justify-end">
             <a
-            href="https://drive.google.com/file/d/1JlWgw0K2ogXIki7z_fLEYhldYxI4d1wj/view?usp=sharing"
+            href="https://drive.google.com/file/d/1myTNZMkTIK7YK6Fl2GvnBf6CPp9oas4z/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="FileText"
