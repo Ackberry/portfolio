@@ -1,17 +1,201 @@
 'use client'
 
-import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
-import { Github, Linkedin } from "lucide-react";
-import { Sun, Moon, FileText } from 'lucide-react'
-import Skills from "./components/skills"
-import ThemeToggle from './components/themetoggle'
+import { Github, Linkedin, FileText, Home as HomeIcon, Briefcase, FolderKanban, Code, User, SunMoon } from "lucide-react";
+import SkillsCarousels from "./components/SkillsCarousel"
 import ProjectCard from './components/ProjectCard'
 import ExperienceCard from './components/ExperienceCard'
+import InfiniteGrid from './components/InfiniteGrid'
+import { Highlighter } from './components/Highlighter'
+import { Dock, DockIcon } from './components/Dock'
+import { useTheme } from 'next-themes'
+import { useEffect, useState, useRef, useMemo } from 'react'
+import { AISummaryFooter } from 'ai-summary-footer'
+import 'ai-summary-footer/styles.css'
+import { gsap } from 'gsap'
 
 export default function Home() {
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null)
+  const [clickedPhotoRect, setClickedPhotoRect] = useState<DOMRect | null>(null)
+  const photoContainerRef = useRef<HTMLDivElement>(null)
+  const modalBackdropRef = useRef<HTMLDivElement>(null)
+  const modalImageRef = useRef<HTMLImageElement>(null)
+  const photoRefs = useRef<(HTMLDivElement | null)[]>([])
+
+  const photos = useMemo(() => [
+    '/photos/1.jpeg',
+    '/photos/2.jpeg',
+    '/photos/3.jpeg',
+    '/photos/4.jpeg'
+  ], [])
+
+  // Fixed overlap with spacing - cards fan out diagonally
+  const photoStyles = useMemo(() => [
+    { rotation: -6, x: -50, y: -50, zIndex: 1 },
+    { rotation: 4, x: -15, y: -15, zIndex: 2 },
+    { rotation: -5, x: 15, y: 15, zIndex: 3 },
+    { rotation: 7, x: 50, y: 50, zIndex: 4 }
+  ], [])
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (photoContainerRef.current && mounted) {
+      const photoElements = photoContainerRef.current.children
+      gsap.fromTo(
+        photoElements,
+        {
+          opacity: 0,
+          scale: 0.5,
+          rotation: 0
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          rotation: (index) => photoStyles[index].rotation,
+          x: (index) => photoStyles[index].x,
+          y: (index) => photoStyles[index].y,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: "back.out(1.7)"
+        }
+      )
+    }
+  }, [mounted, photoStyles])
+
+  const handlePhotoClick = (photo: string, index: number, event: React.MouseEvent<HTMLDivElement>) => {
+    const clickedElement = event.currentTarget
+    const rect = clickedElement.getBoundingClientRect()
+    setClickedPhotoRect(rect)
+    setSelectedPhoto(photo)
+  }
+
+  const closePhotoModal = () => {
+    if (modalBackdropRef.current && modalImageRef.current && clickedPhotoRect) {
+      const photoIndex = photos.indexOf(selectedPhoto!)
+      const originalPhoto = photoRefs.current[photoIndex]
+      
+      if (originalPhoto) {
+        const rect = originalPhoto.getBoundingClientRect()
+        const finalRect = modalImageRef.current.getBoundingClientRect()
+        
+        // Calculate center positions
+        const startX = rect.left + rect.width / 2
+        const startY = rect.top + rect.height / 2
+        const endX = finalRect.left + finalRect.width / 2
+        const endY = finalRect.top + finalRect.height / 2
+        
+        // Calculate scale difference
+        const scaleX = rect.width / finalRect.width
+        const scaleY = rect.height / finalRect.height
+        
+        // Animate back to original position
+        gsap.to(modalImageRef.current, {
+          x: startX - endX,
+          y: startY - endY,
+          scaleX: scaleX,
+          scaleY: scaleY,
+          rotation: photoStyles[photoIndex].rotation,
+          duration: 0.4,
+          ease: "power2.inOut"
+        })
+      }
+      
+      // Animate out
+      gsap.to([modalBackdropRef.current, modalImageRef.current], {
+        opacity: 0,
+        duration: 0.3,
+        ease: "power2.inOut",
+        onComplete: () => {
+          if (modalImageRef.current) {
+            gsap.set(modalImageRef.current, { x: 0, y: 0, scaleX: 1, scaleY: 1, rotation: 0 })
+          }
+          setSelectedPhoto(null)
+          setClickedPhotoRect(null)
+        }
+      })
+    } else {
+      setSelectedPhoto(null)
+      setClickedPhotoRect(null)
+    }
+  }
+
+  // Animate modal when photo is selected
+  useEffect(() => {
+    if (selectedPhoto && clickedPhotoRect && modalBackdropRef.current && modalImageRef.current) {
+      const photoIndex = photos.indexOf(selectedPhoto)
+      
+      // Get final position (center of screen)
+      const windowWidth = window.innerWidth
+      const windowHeight = window.innerHeight
+      const finalX = windowWidth / 2
+      const finalY = windowHeight / 2
+      
+      // Get initial position (clicked photo's center)
+      const startX = clickedPhotoRect.left + clickedPhotoRect.width / 2
+      const startY = clickedPhotoRect.top + clickedPhotoRect.height / 2
+      
+      // Calculate transform needed
+      const deltaX = finalX - startX
+      const deltaY = finalY - startY
+      
+      // Calculate scale difference
+      const finalRect = modalImageRef.current.getBoundingClientRect()
+      const scaleX = clickedPhotoRect.width / finalRect.width
+      const scaleY = clickedPhotoRect.height / finalRect.height
+      
+      // Set initial state - position at clicked photo location
+      gsap.set(modalBackdropRef.current, { opacity: 0 })
+      gsap.set(modalImageRef.current, {
+        opacity: 0,
+        x: -deltaX,
+        y: -deltaY,
+        scaleX: scaleX,
+        scaleY: scaleY,
+        rotation: photoStyles[photoIndex].rotation,
+        transformOrigin: "center center"
+      })
+
+      // Animate backdrop first
+      gsap.to(modalBackdropRef.current, {
+        opacity: 1,
+        duration: 0.3,
+        ease: "power2.out"
+      })
+      
+      // Animate image from original position to center
+      gsap.to(modalImageRef.current, {
+        opacity: 1,
+        x: 0,
+        y: 0,
+        scaleX: 1,
+        scaleY: 1,
+        rotation: 0,
+        duration: 0.6,
+        ease: "power3.out"
+      })
+    }
+  }, [selectedPhoto, clickedPhotoRect, photos, photoStyles])
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light')
+  }
+
+  const resumeUrl = "https://drive.google.com/file/d/17wCBTWvhbFf48EGL6qAMcwvdgDcLgCJa/view?usp=sharing"
+
   return (
-    <div>
+    <div className="relative min-h-screen">
+        <InfiniteGrid />
         <header className="fixed top-0 left-0 w-full bg-lightbg/30 dark:bg-black/20 backdrop-blur-md  z-50 shadow-sm">
           <nav className="flex flex-wrap justify-between gap-6 sm:gap-12 p-4 font-medium text-sm sm:text-base text-black dark:text-white">
           
@@ -59,46 +243,70 @@ export default function Home() {
             <Linkedin size={20} />
                 </a>
 
-            </div>
-            
-          </nav>
-          <div className="flex items-center gap-4">
-
-        </div>
-
-        </header>
-
-    <main className="font-sans">
+    <main className="font-sans relative z-10 pb-24">
       <section
         id="home"
-        className="min-h-screen flex flex-col justify-center items-center text-center bg-white dark:bg-black text-black dark:text-white px-4 sm:px-8"
+        className="min-h-screen flex flex-row justify-center items-center px-4 sm:px-8 relative gap-12"
       >
-        <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-          Hi, I’m <span className="text-blue-600 dark:text-blue-400">Deep Akbari.</span>
-        </h1>
-
-        <h2 className="text-xl sm:text-2xl text-gray-700 dark:text-gray-300 mb-6">
-          Aspiring Software Engineer
-        </h2>
-
-        <p className="max-w-2xl text-md sm:text-lg text-gray-600 dark:text-gray-400 mb-8 font-mono">
-          I’m passionate about building cool projects with AI, or any new technology that interests
-          me. Currently, I am working on <a className="text-blue-600">Yelp Hackathon and a MCP</a>
-        </p>
-
-        <a
-          href="#projects"
-          className="inline-block px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow transition"
+        {/* Photos Section - Left Side - Overlapping Cards */}
+        <div 
+          ref={photoContainerRef}
+          className="hidden lg:flex relative items-center justify-center"
+          style={{ width: '420px', height: '420px' }}
         >
-          View My Work
-        </a>
+          {photos.map((src, index) => (
+            <div
+              key={src}
+              ref={(el) => {
+                photoRefs.current[index] = el
+              }}
+              onClick={(e) => handlePhotoClick(src, index, e)}
+              className="absolute cursor-pointer rounded-lg overflow-hidden shadow-2xl transition-transform hover:scale-110 hover:z-50"
+              style={{
+                width: '200px',
+                height: '250px',
+                transform: `rotate(${photoStyles[index].rotation}deg) translate(${photoStyles[index].x}px, ${photoStyles[index].y}px)`,
+                zIndex: photoStyles[index].zIndex,
+              }}
+            >
+              <img
+                src={src}
+                alt={`Photo ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Text Content - Right Side */}
+        <div className="flex flex-col justify-center items-center text-center bg-transparent text-black dark:text-white">
+          <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+            Hi, I&apos;m <span className="text-blue-600 dark:text-blue-400">Deep Akbari.</span>
+          </h1>
+
+          <h2 className="text-xl sm:text-2xl text-gray-700 dark:text-gray-300 mb-6">
+            Aspiring Software Engineer
+          </h2>
+
+          <p className="max-w-2xl text-md sm:text-lg text-gray-600 dark:text-gray-400 mb-8 font-mono">
+            I&apos;m passionate about building cool projects with AI, or any new technology that interests
+            me. Currently, I am working on <a className="text-blue-600">this website</a>
+          </p>
+
+          <a
+            href="#projects"
+            className="inline-block px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow transition"
+          >
+            View My Work
+          </a>
+        </div>
       </section>
 
 
-      <div className="h-16 w-full bg-gradient-to-b from-white to-gray-100 dark:from-black dark:to-gray-900" />
+      <div className="h-16 w-full bg-transparent" />
       
-      <section id="experience" className="min-h-screen p-8 flex flex-col justify-center items-center bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
-        <h2 className="text 3x1 font-oxygen mb4"></h2>
+      <section id="experience" className="min-h-screen p-8 flex flex-col justify-center items-center bg-transparent text-black dark:text-white">
+        <h2 className="text-4xl font-bold font-mono mb-12 text-center">Experience</h2>
           <div className='text-left w-full px-4 backdrop-blur-md flex flex-col gap-7'>
           <ExperienceCard
           company="CacheAi"
@@ -133,7 +341,7 @@ export default function Home() {
         />
           </div>
         {/*From here its club experience and all */}
-          <h2 className='text-bold flex-center font-mono mt-10 mb-2 text-xl'>Club Involvement</h2>
+          <h2 className='font-bold flex-center font-mono mt-10 mb-2 text-2xl'>Club Involvement</h2>
           <ExperienceCard
           company="Google Developer Group"
           timeline="April 2025 - Present"
@@ -160,10 +368,10 @@ export default function Home() {
 
       </section>
 
-      <div className="h-16 w-full bg-gradient-to-b from-gray-100 to-white dark:from-gray-900 dark:to-black" />
+      <div className="h-16 w-full bg-transparent" />
       
-        <section id="projects" className="min-h-screen flex flex-col justify-center items-center text-center bg-white dark:bg-black text-black dark:text-white px-4 sm:px-8">
-        <h2 className="text 3x1 font-oxygen mb4"></h2>
+        <section id="projects" className="min-h-screen flex flex-col justify-center items-center text-center bg-transparent text-black dark:text-white px-4 sm:px-8">
+        <h2 className="text-4xl font-bold font-mono mb-12 text-center w-full">Projects</h2>
           <div className="text-left w-full px-4 backdrop-blur-md flex flex-col gap-7">
             <ProjectCard
               title="Spotify + Letterboxd clone"
@@ -216,18 +424,130 @@ export default function Home() {
         </section>
 
       
-       <div className="h-16 w-full bg-gradient-to-b from-white to-gray-100 dark:from-black dark:to-gray-900" />
+       <div className="h-16 w-full bg-transparent" />
 
 
-        <section id="skills" className="min-h-screen p-8 flex flex-col justify-center items-center bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
+        <section id="skills" className="min-h-screen py-8 px-0 flex flex-col justify-center items-center bg-transparent text-black dark:text-white">
         
-        <div className="max-w-xl text-center">
-        <Skills/> { /*To change the text, go to skills.tsx */}
+        <div className="w-full">
+          <SkillsCarousels />
         </div>
       </section>
 
+      <div className="h-16 w-full bg-transparent" />
+
+      <section id="about" className="pt-8 pb-8 px-4 sm:px-8 flex flex-col items-center bg-transparent text-black dark:text-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold font-mono mb-8">About Me</h2>
+          <div className="space-y-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+            <p className="font-mono">
+              19 yo, computer science sophomore, going to university of south florida (on a <Highlighter action="highlight">presidential scholarship</Highlighter> yay). i&apos;ve been getting more into programming recently and i do so by creating side projects to solve my daily problems :) here&apos;s a bit more about me - 
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="h-20 w-full bg-transparent" />
+
+
+      <section id="ai-summary" className="pt-8 pb-8 px-4 sm:px-8 flex flex-col justify-center items-center bg-transparent text-black dark:text-white">
+        <div className="max-w-lg mx-auto w-full backdrop-blur-md rounded-2xl p-8 bg-transparent border border-white/20 dark:border-white/10">
+          <AISummaryFooter
+            companyName="Ackberry"
+            companyUrl="https://ackberry.club"
+            prompt="Tell me about {companyName} at {companyUrl}. What are their skills and projects?"
+          />
+        </div>
+      </section>
 
     </main>
+
+    {/* Dock Navigation */}
+    <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center pb-4 pointer-events-none">
+      <Dock className="pointer-events-auto">
+        <DockIcon onClick={() => scrollToSection('home')} title="home">
+          <HomeIcon size={24} className="text-foreground" />
+        </DockIcon>
+        <DockIcon onClick={() => scrollToSection('experience')} title="experience">
+          <Briefcase size={24} className="text-foreground" />
+        </DockIcon>
+        <DockIcon onClick={() => scrollToSection('projects')} title="projects">
+          <FolderKanban size={24} className="text-foreground" />
+        </DockIcon>
+        <DockIcon onClick={() => scrollToSection('skills')} title="skills">
+          <Code size={24} className="text-foreground" />
+        </DockIcon>
+        <DockIcon onClick={() => scrollToSection('about')} title="about">
+          <User size={24} className="text-foreground" />
+        </DockIcon>
+        <div className="h-10 w-[1px] bg-gray-400 dark:bg-gray-600 flex-shrink-0 mx-1" />
+        <DockIcon title="resume">
+          <a
+            href={resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Resume"
+            className="flex items-center justify-center"
+          >
+            <FileText size={24} className="text-foreground" />
+          </a>
+        </DockIcon>
+        <DockIcon title="github">
+          <a
+            href="https://github.com/ackberry"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="flex items-center justify-center"
+          >
+            <Github size={24} className="text-foreground" />
+          </a>
+        </DockIcon>
+        <DockIcon title="linkedIn">
+          <a
+            href="https://linkedin.com/in/deep-akbari"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="flex items-center justify-center"
+          >
+            <Linkedin size={24} className="text-foreground" />
+          </a>
+        </DockIcon>
+        <div className="h-10 w-[1px] bg-gray-400 dark:bg-gray-600 flex-shrink-0 mx-1" />
+        {mounted && (
+          <DockIcon onClick={toggleTheme} title="theme">
+            <SunMoon size={24} className="text-foreground" />
+          </DockIcon>
+        )}
+      </Dock>
+    </div>
+
+    {/* Photo Modal */}
+    {selectedPhoto && (
+      <div
+        ref={modalBackdropRef}
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+        onClick={closePhotoModal}
+      >
+        <div className="relative max-w-5xl max-h-[90vh] p-4">
+          <button
+            onClick={closePhotoModal}
+            className="absolute top-4 right-4 text-white hover:text-gray-300 text-4xl font-bold z-10 transition-opacity hover:opacity-70"
+            aria-label="Close"
+          >
+            ×
+          </button>
+          <img
+            ref={modalImageRef}
+            src={selectedPhoto}
+            alt="Full size photo"
+            className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      </div>
+    )}
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Building2, MapPin } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 
 // --- FONT USAGE NOTE ---
 // This component uses 'font-mono', 'font-oxygen', and 'font-oxygen-mono'.
