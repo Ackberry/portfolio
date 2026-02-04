@@ -4,7 +4,7 @@ import React, { useEffect, useState, useRef } from "react"
 import { motion } from "framer-motion"
 import { usePathname, useRouter } from "next/navigation"
 import Link from "next/link"
-import { Github, Linkedin, FileText, Home as HomeIcon, Briefcase, FolderKanban, Code } from "lucide-react"
+import { Github, Linkedin, FileText, Home as HomeIcon, Briefcase, FolderKanban, Code, Terminal } from "lucide-react"
 import { Dock, DockIcon } from "./Dock"
 import ThemeToggle from "./themetoggle"
 
@@ -19,6 +19,7 @@ const navItems = [
   { icon: Briefcase, path: '/experience', title: 'experience' },
   { icon: FolderKanban, path: '/projects', title: 'projects' },
   { icon: Code, path: '/skills', title: 'skills' },
+  { icon: Terminal, path: 'https://terminal-portfolio-seven-green.vercel.app/', title: 'terminal', external: true },
 ]
 
 export default function AnimatedDock({ isLandingPage = false }: AnimatedDockProps) {
@@ -105,6 +106,27 @@ export default function AnimatedDock({ isLandingPage = false }: AnimatedDockProp
             const isActive = pathname === item.path
             
             // Use Link for instant navigation between pages, custom handler only for landing page
+            if (item.external) {
+              return (
+                <a
+                  key={item.title}
+                  href={item.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <DockIcon
+                    title={item.title}
+                    className={isActive ? 'bg-blue-500/20 dark:bg-blue-400/20 rounded-full' : ''}
+                  >
+                    <item.icon 
+                      size={isCenter ? 26 : 24} 
+                      className={isActive ? 'text-blue-600 dark:text-blue-400' : 'text-foreground'} 
+                    />
+                  </DockIcon>
+                </a>
+              )
+            }
+
             if (isOnLandingPage) {
               return (
                 <a 
