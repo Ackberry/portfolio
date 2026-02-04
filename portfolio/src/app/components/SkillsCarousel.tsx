@@ -20,8 +20,18 @@ import {
   SiPostgresql,
   SiCplusplus,
   SiVite,
-  SiScikitlearn
+  SiScikitlearn,
+  SiRust,
+  SiRadixui,
+  SiLangchain,
+  SiMongodb,
+  SiDigitalocean,
+  SiHeroku,
+  SiElevenlabs,
+  SiOpenai,
+  SiGithubactions
 } from 'react-icons/si';
+import { TbVectorTriangle } from 'react-icons/tb';
 import { VscAzure } from "react-icons/vsc";
 import { RiFirebaseFill, RiSupabaseFill, RiGeminiFill } from "react-icons/ri";
 import { FaNodeJs, FaLinode, FaLinux } from "react-icons/fa";
@@ -137,6 +147,7 @@ export default function SkillsCarousels() {
     { id: 'js', name: 'JavaScript', icon: <SiJavascript className="text-yellow-400" />, category: 'Languages' },
     { id: 'ts', name: 'TypeScript', icon: <SiTypescript className="text-blue-500" />, category: 'Languages' },
     { id: 'python', name: 'Python', icon: <SiPython className="text-yellow-500" />, category: 'Languages' },
+    { id: 'rust', name: 'Rust', icon: <SiRust className="text-orange-600" />, category: 'Languages' },
     { id: 'c', name: 'C', icon: <SiCplusplus className="text-blue-600 dark:text-blue-400" />, category: 'Languages' },
     { id: 'cpp', name: 'C++', icon: <SiCplusplus className="text-black dark:text-white" />, category: 'Languages' },
   ];
@@ -145,12 +156,14 @@ export default function SkillsCarousels() {
     { id: 'react', name: 'React', icon: <SiReact className="text-cyan-400" />, category: 'Frameworks' },
     { id: 'nextjs', name: 'Next.js', icon: <SiNextdotjs className="text-black dark:text-white" />, category: 'Frameworks' },
     { id: 'nodejs', name: 'Node.js', icon: <FaNodeJs className="text-black dark:text-white" />, category: 'Frameworks' },
+    { id: 'radix', name: 'Radix UI', icon: <SiRadixui className="text-black dark:text-white" />, category: 'Frameworks' },
     { id: 'tailwind', name: 'Tailwind', icon: <SiTailwindcss className="text-sky-400" />, category: 'Frameworks' },
     { id: 'vite', name: 'Vite', icon: <SiVite className="text-[#06B6D4]" />, category: 'Frameworks' },
   ];
 
   const databases: Skill[] = [
     { id: 'postgres', name: 'PostgreSQL', icon: <SiPostgresql className="text-indigo-700" />, category: 'Databases' },
+    { id: 'mongodb', name: 'MongoDB', icon: <SiMongodb className="text-[#47A248]" />, category: 'Databases' },
     { id: 'firebase', name: 'Firebase', icon: <RiFirebaseFill className="text-[#FF7F24]" />, category: 'Databases' },
     { id: 'supabase', name: 'Supabase', icon: <RiSupabaseFill className="text-[#2CC27B]" />, category: 'Databases' },
   ];
@@ -158,6 +171,9 @@ export default function SkillsCarousels() {
   const cloudDevOps: Skill[] = [
     { id: 'azure', name: 'Azure', icon: <VscAzure className="text-blue-700" />, category: 'Cloud & DevOps' },
     { id: 'gcp', name: 'Google Cloud', icon: <SiGooglecloud className="text-blue-400" />, category: 'Cloud & DevOps' },
+    { id: 'digitalocean', name: 'DigitalOcean', icon: <SiDigitalocean className="text-[#0080FF]" />, category: 'Cloud & DevOps' },
+    { id: 'heroku', name: 'Heroku', icon: <SiHeroku className="text-[#430098]" />, category: 'Cloud & DevOps' },
+    { id: 'githubactions', name: 'GitHub Actions', icon: <SiGithubactions className="text-[#2088FF]" />, category: 'Cloud & DevOps' },
     { id: 'linode', name: 'Linode', icon: <FaLinode className="text-green-500" />, category: 'Cloud & DevOps' },
     { id: 'linux', name: 'Linux', icon: <FaLinux className="text-black dark:text-white" />, category: 'Cloud & DevOps' },
   ];
@@ -165,6 +181,10 @@ export default function SkillsCarousels() {
   const tools: Skill[] = [
     { id: 'git', name: 'Git', icon: <SiGit className="text-orange-500" />, category: 'Tools' },
     { id: 'gemini', name: 'Gemini API', icon: <RiGeminiFill className="text-[#5E7DD3]" />, category: 'Tools' },
+    { id: 'langchain-tool', name: 'LangChain', icon: <SiLangchain className="text-[#1C3C3C]" />, category: 'Tools' },
+    { id: 'langgraph-tool', name: 'LangGraph', icon: <TbVectorTriangle className="text-[#1C3C3C]" />, category: 'Tools' },
+    { id: 'elevenlabs-tool', name: 'ElevenLabs', icon: <SiElevenlabs className="text-black dark:text-white" />, category: 'Tools' },
+    { id: 'openrouter-tool', name: 'OpenRouter', icon: <SiOpenai className="text-[#10A37F]" />, category: 'Tools' },
     { id: 'sklearn', name: 'Scikit-learn', icon: <SiScikitlearn className="text-[#D9B300]" />, category: 'Tools' },
   ];
 

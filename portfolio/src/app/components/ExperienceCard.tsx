@@ -22,7 +22,7 @@ export default function ExperienceCard({
   descriptionPoints,
 }: ExperienceCardProps) {
   return (
-    <div className="bg-white/10 dark:bg-white/5 backdrop-blur-md rounded-2xl p-6 w-full h-full shadow-md hover:shadow-lg transition-all border border-white/10 group">
+    <div className="bg-white/10 dark:bg-white/5 backdrop-blur-xl rounded-2xl p-6 w-full h-full shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.18)] transition-all border border-white/20 group">
       {/* Row 1: Company and Timeline */}
       <div className="flex justify-between items-baseline mb-1">
         <h3 className="text-lg md:text-xl font-bold text-gray-800 dark:text-gray-200 font-mono flex items-center gap-3">

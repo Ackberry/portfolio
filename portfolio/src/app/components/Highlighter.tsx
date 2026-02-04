@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import type React from "react"
-import { useInView } from "motion/react"
+import { useInView } from "framer-motion"
 import { annotate } from "rough-notation"
 import { type RoughAnnotation } from "rough-notation/lib/model"
 import { useTheme } from "next-themes"
