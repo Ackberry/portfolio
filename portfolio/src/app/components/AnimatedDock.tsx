@@ -12,7 +12,7 @@ interface AnimatedDockProps {
   isLandingPage?: boolean
 }
 
-const resumeUrl = "https://drive.google.com/file/d/17wCBTWvhbFf48EGL6qAMcwvdgDcLgCJa/view?usp=sharing"
+const resumeUrl = "https://drive.google.com/file/d/1B8W7M6QcpfIFPVpVWO92ojCiJbxLStSL/view?usp=sharing"
 
 const navItems = [
   { icon: HomeIcon, path: '/home', title: 'home' },
