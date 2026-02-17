@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { usePathname } from 'next/navigation'
-import InfiniteGrid from './InfiniteGrid'
+import { FlickeringGrid } from './FlickeringGrid'
 import { motion } from 'framer-motion'
 import { useNavigationDirection } from './NavigationContext'
 
@@ -22,7 +22,13 @@ export default function PageLayout({ children, title }: PageLayoutProps) {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
-      <InfiniteGrid />
+      <FlickeringGrid
+        className="absolute inset-0 z-0 pointer-events-none"
+        squareSize={4}
+        gridGap={6}
+        flickerChance={0.2}
+        maxOpacity={0.2}
+      />
       
       <motion.main 
         key={pathname}

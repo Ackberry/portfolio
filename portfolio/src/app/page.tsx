@@ -1,13 +1,18 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import InfiniteGrid from './components/InfiniteGrid'
+import { FlickeringGrid } from './components/FlickeringGrid'
 
 export default function LandingPage() {
   return (
     <div className="relative min-h-screen overflow-hidden">
-      <InfiniteGrid />
-      
+      <FlickeringGrid
+        className="absolute inset-0 z-0 pointer-events-none"
+        squareSize={4}
+        gridGap={6}
+        flickerChance={0.2}
+        maxOpacity={0.2}
+      />
       {/* Centered welcome text */}
       <motion.div 
         className="fixed inset-0 flex flex-col items-center justify-center z-10 pointer-events-none"

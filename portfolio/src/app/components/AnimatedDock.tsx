@@ -6,11 +6,6 @@ import { usePathname, useRouter } from "next/navigation"
 import Link from "next/link"
 import { Github, Linkedin, FileText, Home as HomeIcon, Briefcase, FolderKanban, Code, Terminal } from "lucide-react"
 import { Dock, DockIcon } from "./Dock"
-import ThemeToggle from "./themetoggle"
-
-interface AnimatedDockProps {
-  isLandingPage?: boolean
-}
 
 const resumeUrl = "https://drive.google.com/file/d/1B8W7M6QcpfIFPVpVWO92ojCiJbxLStSL/view?usp=sharing"
 
@@ -22,7 +17,7 @@ const navItems = [
   { icon: Terminal, path: 'https://terminal-portfolio-seven-green.vercel.app/', title: 'terminal', external: true },
 ]
 
-export default function AnimatedDock({ isLandingPage = false }: AnimatedDockProps) {
+export default function AnimatedDock() {
   const pathname = usePathname()
   const router = useRouter()
   const [mounted, setMounted] = useState(false)
@@ -194,10 +189,6 @@ export default function AnimatedDock({ isLandingPage = false }: AnimatedDockProp
             >
               <Linkedin size={isCenter ? 26 : 24} className="text-foreground" />
             </a>
-          </DockIcon>
-          <div className={`${isCenter ? 'h-12' : 'h-10'} w-[1px] bg-gray-400 dark:bg-gray-600 flex-shrink-0 mx-1`} />
-          <DockIcon title="theme">
-            <ThemeToggle />
           </DockIcon>
         </Dock>
       </motion.div>

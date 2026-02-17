@@ -45,10 +45,11 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${oxygenMono.variable} ${robotoFlex.variable}`}
+      className={`dark ${geistSans.variable} ${geistMono.variable} ${oxygenMono.variable} ${robotoFlex.variable}`}
+      style={{ colorScheme: "dark" }}
     >
-      <body className="antialiased bg-white text-black dark:bg-black dark:text-white transition-colors duration-300">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <body className="antialiased bg-black text-white transition-colors duration-300">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} forcedTheme="dark">
           <ClientLayout>
             {children}
           </ClientLayout>
