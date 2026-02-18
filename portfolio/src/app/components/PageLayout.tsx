@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { usePathname } from 'next/navigation'
+import { FlickeringGrid } from './FlickeringGrid'
 import { motion } from 'framer-motion'
 import { useNavigationDirection } from './NavigationContext'
 
@@ -20,7 +21,14 @@ export default function PageLayout({ children, title }: PageLayoutProps) {
   const initialX = direction === 'right' ? 40 : direction === 'left' ? -40 : 0
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-[#1f2329]">
+    <div className="relative min-h-screen overflow-x-hidden">
+      <FlickeringGrid
+        className="absolute inset-0 z-0 pointer-events-none"
+        squareSize={4}
+        gridGap={6}
+        flickerChance={0.2}
+        maxOpacity={0.2}
+      />
       
       <motion.main 
         key={pathname}
