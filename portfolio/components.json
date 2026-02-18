@@ -10,10 +10,12 @@
     "cssVariables": true,
     "prefix": ""
   },
+  "iconLibrary": "lucide",
   "aliases": {
     "components": "@/app/components",
-    "utils": "@/lib/utils",
-    "@/components/ui": "@/app/components/ui"
+    "utils": "@/lib/utils"
+  },
+  "registries": {
+    "@magicui": "https://magicui.design/r/{name}"
   }
 }
-
