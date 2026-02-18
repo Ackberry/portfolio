@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState, useEffect, useRef } from 'r
 import { usePathname } from 'next/navigation'
 
 // Define page order for determining direction
-const pageOrder = ['/', '/home', '/experience', '/projects', '/skills']
+const pageOrder = ['/', '/home', '/projects', '/skills']
 
 type Direction = 'left' | 'right' | 'none'
 

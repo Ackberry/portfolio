@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import PageLayout from '../components/PageLayout'
 
@@ -27,6 +28,32 @@ const EXPERIENCES = [
     role: 'ML Researcher & Software Developer',
     description:
       "At USF's RARE Lab, I worked on a low-cost LLM-powered social robot that was later accepted to the ACM HRI 2026 Companion. I built a conversational robotics system on a Raspberry Pi running Linux, integrating Vosk for speech-to-text, Gemini for reasoning, and Piper for text-to-speech. I also helped fine-tune Gemini 2.5 Flash and LLaMA2 for multimodal assistive tasks, which improved task success rates by 35%. It was hands-on research - wiring hardware, optimizing latency on constrained devices, and making LLMs actually usable in a real-world robotics setup.",
+  },
+]
+
+const PROJECTS = [
+  {
+    name: '🏆 Talkio (Swamphacks 2026 Winner)',
+    subtitle: 'AI-powered sales conversation intelligence platform',
+    github: 'https://github.com/Talkio2026/swamp-hacks',
+    image: '/talkio.jpeg',
+    highlights: [
+      'Won Best Use of DigitalOcean at UF for building an AI-powered sales conversation intelligence platform.',
+      'Built an LLM-driven transcript analysis pipeline with MongoDB semantic search across client conversations.',
+      'Created a multi-agent AI system with Gemini and ElevenLabs, hosted GPT-OSS-120B model on DigitalOcean.',
+    ],
+    tech: ['React', 'Radix', 'Node', 'MongoDB', 'Openrouter'],
+  },
+  {
+    name: 'Haraesume',
+    subtitle: 'Go, Langchain, AuroraDB, Auth0',
+    github: 'https://github.com/ackberry/haraesume',
+    image: '/haraesume.png',
+    highlights: [
+      'Created resume optimisng platform in Go to generate ATS-ready resumes and CVs with inner validation.',
+      'Designed AI agent system using LangChain and PostgreSQL + pgvector for optimizing resumes and retrieval.',
+    ],
+    tech: ['Go', 'Langchain', 'AuroraDB', 'Auth0'],
   },
 ]
 
@@ -63,6 +90,49 @@ export default function HomePage() {
                     presidential scholarship yay). i&apos;ve been getting more into programming
                     recently and i do so by creating side projects to solve my daily problems :)
                   </p>
+                </section>
+
+                <section className="space-y-4">
+                  <h2 className="font-mono text-xl font-bold text-white">projects</h2>
+                  <div className="grid gap-4 md:grid-cols-2">
+                    {PROJECTS.map((project) => (
+                      <div
+                        key={project.name}
+                        className="h-full rounded-md border border-white/10 px-3 py-2"
+                      >
+                        <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
+                          <p className="font-mono text-sm text-white">{project.name}</p>
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex shrink-0 items-center gap-1 text-blue-300 hover:text-blue-200"
+                          >
+                            <span className="font-mono text-[11px]">github</span>
+                            <span className="font-mono text-[11px]">↗</span>
+                          </a>
+                        </div>
+                        <p className="text-xs text-gray-400">{project.subtitle}</p>
+                        <div className="pt-3">
+                          <Image
+                            src={project.image}
+                            alt={project.name}
+                            width={980}
+                            height={560}
+                            className="h-auto w-full rounded-md border border-white/10 object-cover"
+                          />
+                        </div>
+                        <ul className="ml-4 list-disc space-y-1 pt-3 text-xs leading-relaxed text-gray-300">
+                          {project.highlights.map((highlight) => (
+                            <li key={highlight}>{highlight}</li>
+                          ))}
+                        </ul>
+                        <p className="pt-3 font-mono text-xs text-gray-400">
+                          {project.tech.join(' · ')}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </section>
               </div>
             </article>

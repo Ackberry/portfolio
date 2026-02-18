@@ -3,12 +3,11 @@
 import React, { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
-import { Home as HomeIcon, Briefcase, FolderKanban, Code, Terminal } from "lucide-react"
+import { Home as HomeIcon, FolderKanban, Code, Terminal } from "lucide-react"
 import { Dock, DockIcon } from "./Dock"
 
 const navItems = [
   { icon: HomeIcon, path: '/', title: 'home' },
-  { icon: Briefcase, path: '/experience', title: 'experience' },
   { icon: FolderKanban, path: '/projects', title: 'projects' },
   { icon: Code, path: '/skills', title: 'skills' },
   { icon: Terminal, path: 'https://terminal-portfolio-seven-green.vercel.app/', title: 'terminal', external: true },
