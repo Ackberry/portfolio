@@ -31,6 +31,25 @@ const EXPERIENCES = [
   },
 ]
 
+const LEADERSHIP = [
+  {
+    organization: 'Google Developer Group',
+    timeline: 'Apr 2025 - Dec 2025',
+    role: 'Technical Lead, Tampa, FL',
+    descriptionPoints: [
+      'Built backend for a hackathon website using JavaScript and Firebase, enabling check-ins and registrations.',
+      'Led data scraping and Git workshops for the Data Science and Cybersecurity team.',
+    ],
+  },
+  {
+    organization: 'HackUSF',
+    timeline: "march '25 - april '25",
+    role: 'Hackathon Organizer',
+    description:
+      'Coordinated logistics for a 300+ participant hackathon across venue operations, transport, and technical sessions. Managed a volunteer team and aligned sponsor, mentor, and university stakeholders to ensure smooth execution end-to-end.',
+  },
+]
+
 const PROJECTS = [
   {
     name: '🏆 Talkio (Swamphacks 2026 Winner)',
@@ -299,6 +318,34 @@ export default function HomePage() {
                     </div>
                   ))}
                 </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="mt-10 space-y-4 lg:mt-12 lg:px-16 xl:px-20">
+            <h2 className="font-mono text-xl font-bold text-white">leadership</h2>
+            <div className="space-y-4">
+              {LEADERSHIP.map((item) => (
+                <details key={item.organization} className="group rounded-md border border-white/10 px-3 py-2">
+                  <summary className="cursor-pointer list-none">
+                    <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
+                      <p className="font-mono text-sm text-white">{item.organization}</p>
+                      <p className="shrink-0 whitespace-nowrap font-mono text-[13px] tracking-wide text-gray-400">
+                        {item.timeline}
+                      </p>
+                    </div>
+                    <p className="text-xs text-gray-400">{item.role}</p>
+                  </summary>
+                  {item.descriptionPoints ? (
+                    <ul className="ml-4 list-disc space-y-1 pt-3 text-xs leading-relaxed text-gray-300">
+                      {item.descriptionPoints.map((point) => (
+                        <li key={point}>{point}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="pt-3 text-xs leading-relaxed text-gray-300">{item.description}</p>
+                  )}
+                </details>
               ))}
             </div>
           </section>

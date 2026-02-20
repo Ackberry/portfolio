@@ -14,7 +14,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
     <NavigationProvider>
       <div className="fixed right-4 top-4 z-50 flex items-center gap-2 rounded-lg border border-white/10 bg-[#10151d]/85 p-2 backdrop-blur-md">
         <a
-          href="https://drive.google.com/file/d/1B8W7M6QcpfIFPVpVWO92ojCiJbxLStSL/view?usp=sharing"
+          href="https://drive.google.com/file/d/1vLOzzkUB3n7dGiUWVQCaS5sG_S5kKcMt/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Resume"
