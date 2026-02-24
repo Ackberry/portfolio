@@ -52,7 +52,19 @@ const LEADERSHIP = [
 
 const PROJECTS = [
   {
-    name: '🏆 Talkio (Swamphacks 2026 Winner)',
+    name: '🏆 Alleaf (Hacklytics 2026 at GaTech Winner',
+    subtitle: 'A Wearable + AI Platform for Real-Time Mental Health Support',
+    github: 'https://github.com/Gustavo-Galvao-e-Silva/Alleaf',
+    image: '/alleaf.png',
+    highlights: [
+      "Won best overall hack (4x Macbook M4) at Georgia Tech's Hacklytics for building a haptic wearable that triggers bilateral stimulations.",
+      "Implemented an end-to-end ML pipeline analyzing heart rate variability (RR intervals) to establish personalized baselines, detect acute stress events, and automatically trigger bilateral stimulation via custom hardware.",
+      "Built a scalable AI memory and personalization layer using vector databases for long-term context retrieval, integrated with ElevenLabs voice synthesis and backend orchestration to enable natural, continuous, and adaptive therapy sessions."
+    ],
+    tech: ['Javascript', 'Python', 'Firestore', 'Actian VectorDB', 'Elevenlabs' ]
+  },
+  {
+    name: '🏆 Talkio (Swamphacks 2026 at UF Winner)',
     subtitle: 'AI-powered sales conversation intelligence platform',
     github: 'https://github.com/Talkio2026/swamp-hacks',
     image: '/talkio.jpeg',
