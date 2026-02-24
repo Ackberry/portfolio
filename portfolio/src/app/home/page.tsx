@@ -77,7 +77,7 @@ const PROJECTS = [
   },
   {
     name: 'Haraesume',
-    subtitle: 'Go, Langchain, AuroraDB, Auth0',
+    subtitle: 'Drop resume(.tex) and job desc, get a clean, tailored resume + CV',
     github: 'https://github.com/ackberry/haraesume',
     image: '/haraesume.png',
     highlights: [
