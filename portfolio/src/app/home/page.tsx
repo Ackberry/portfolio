@@ -176,6 +176,7 @@ const INTRO_PHOTOS = [
   { src: '/imgs/2.jpg', alt: 'Deep portrait 2' },
   { src: '/imgs/3.jpg', alt: 'Deep portrait 3' },
   { src: '/imgs/4.jpg', alt: 'Deep portrait 4' },
+  { src: '/imgs/5.jpeg', alt: 'Deep portrait 5' },
 ]
 
 export default function HomePage() {
