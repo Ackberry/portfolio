@@ -180,96 +180,88 @@ export default function HomePage() {
     <PageLayout>
       <section className={cn('w-full px-4 sm:px-6 lg:px-12')}>
         <div className="py-8 lg:py-12">
-          <div className="relative lg:min-h-[420px]">
-            <article className="max-w-3xl lg:ml-16 xl:ml-20">
-              <div className="space-y-8 py-6 sm:py-8">
-                <section className="space-y-4">
-                  <h1 className="text-3xl font-bold text-white sm:text-4xl">
-                    Deep Akbari
-                  </h1>
-                  <p className="text-base font-mono text-gray-300 sm:text-lg">
-                    Software Engineer
-                  </p>
-                </section>
-
-                <section className="space-y-4">
-                  <h2 className="text-xl font-semibold text-blue-300">Introduction</h2>
-                  <p className="max-w-3xl text-sm leading-relaxed text-gray-300 sm:text-base">
-                    Hi, I&apos;m Deep Akbari, an aspiring software engineer. I&apos;m
-                    passionate about building cool projects with AI, or any new technology that
-                    interests me. Currently, I am working on a reddit query api.
-                  </p>
-                </section>
-
-                <section className="space-y-4">
-                  <h2 className="text-xl font-semibold text-blue-300">About Me</h2>
-                  <p className="max-w-3xl text-sm leading-relaxed text-gray-300 sm:text-base">
-                    19 yo, computer science sophomore, going to university of south florida (on a
-                    presidential scholarship yay). i&apos;ve been getting more into programming
-                    recently and i do so by creating side projects to solve my daily problems :)
-                  </p>
-                </section>
-
-              </div>
-            </article>
-
-            <aside className="mt-8 space-y-4 lg:absolute lg:right-0 lg:top-[5.9rem] lg:mt-0 lg:w-[620px]">
-              <h2 className="font-mono text-xl font-bold text-white">experience</h2>
-              <div className="space-y-4">
-                {EXPERIENCES.map((experience) => (
-                  <details
-                    key={experience.company}
-                    className="group rounded-md border border-white/10 px-3 py-2"
-                  >
-                    <summary className="cursor-pointer list-none">
-                      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
-                        <div className="flex min-w-0 items-center gap-2 whitespace-nowrap">
-                          <p className="font-mono text-sm text-white">{experience.company}</p>
-                          <a
-                            href={experience.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex shrink-0 items-center gap-1 text-blue-300 hover:text-blue-200"
-                          >
-                            <span className="font-mono text-[11px]">open link</span>
-                            <span className="font-mono text-[11px]">↗</span>
-                          </a>
-                        </div>
-                        <p className="shrink-0 whitespace-nowrap font-mono text-[13px] tracking-wide text-gray-400">
-                          {experience.timeline}
-                        </p>
-                      </div>
-                      <p className="text-xs text-gray-400">{experience.role}</p>
-                    </summary>
-                    <p className="pt-3 text-xs leading-relaxed text-gray-300">
-                      {experience.description}
-                    </p>
-                  </details>
-                ))}
-              </div>
-            </aside>
-          </div>
+          <article className="max-w-3xl py-6 text-left sm:py-8">
+            <div className="space-y-8">
+              <section className="space-y-4">
+                <p className="max-w-3xl font-serif text-[40px] font-bold text-[#1A1A1A]">
+                  I&apos;m Deep
+                </p>
+                <p className="max-w-3xl font-serif text-[40px] font-normal text-left leading-tight text-[#1A1A1A]">
+                  A sophomore at the University of South Florida studying Computer Science. You&apos;ll find everything you need below, but hear me out <br />
+                  <br />
+                  I&apos;ve recently started loving programming more, and instead of MrBeast or Twitch, I now enjoy watching works on AI and Engineering while eating (current interest: drones and hardware)<br />
+                  <br />
+                 On a scale of 1-10, I love my family 10, my friends 10. But my dog? 11 (0 -&gt; 1 reference) She is the best thing in the world and will always be. I still am baffled to how far we&apos;ve come, and how much more I got to go. That makes me happy (and sad)
+                  <br />
+                  <br />
+                  Apart from work and study, I enjoy billiards, football (American, Go Bills!), running and gym. 
+                  <br />
+                  <br />
+                  If I had absurd money, I would start a company to create robots for cooking (i don&apos;t like cooking :) Post retirement I am going to open a dog shelter where people can bring dogs (or cats maybe) but nobody can adopt them (unless they pass Palantir HRT Jane Street Interview w/ 27 rounds)
+                 <br />
+                 <br />
+                 There&apos;s a lot I want to say, do, and learn — and the list only gets longer the more I grow. **
+                </p>
+              </section>
+            </div>
+          </article>
 
           <section className="mt-10 space-y-4 lg:mt-12 lg:px-16 xl:px-20">
-            <h2 className="font-mono text-xl font-bold text-white">projects</h2>
+            <h2 className="font-mono text-xl font-bold text-[#1A1A1A]">experience</h2>
+            <div className="space-y-4">
+              {EXPERIENCES.map((experience) => (
+                <details
+                  key={experience.company}
+                  className="group rounded-md border border-[#D6CFC4] bg-[#EDE7DC] px-3 py-2"
+                >
+                  <summary className="cursor-pointer list-none">
+                    <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
+                      <div className="flex min-w-0 items-center gap-2 whitespace-nowrap">
+                        <p className="font-mono text-sm text-[#1A1A1A]">{experience.company}</p>
+                        <a
+                          href={experience.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex shrink-0 items-center gap-1 text-[#6B6560] underline underline-offset-2 hover:text-[#1A1A1A]"
+                        >
+                          <span className="font-mono text-[11px]">open link</span>
+                          <span className="font-mono text-[11px]">↗</span>
+                        </a>
+                      </div>
+                      <p className="shrink-0 whitespace-nowrap font-mono text-[13px] tracking-wide text-[#6B6560]">
+                        {experience.timeline}
+                      </p>
+                    </div>
+                    <p className="text-xs text-[#6B6560]">{experience.role}</p>
+                  </summary>
+                  <p className="pt-3 text-xs leading-relaxed text-[#1A1A1A]">
+                    {experience.description}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </section>
+
+          <section className="mt-10 space-y-4 lg:mt-12 lg:px-16 xl:px-20">
+            <h2 className="font-mono text-xl font-bold text-[#1A1A1A]">projects</h2>
             <div className="space-y-4 md:hidden">
               {PROJECTS.map((project) => (
-                <div key={project.name} className="w-full rounded-md border border-white/10 px-3 py-2">
+                <div key={project.name} className="w-full rounded-md border border-[#D6CFC4] bg-[#EDE7DC] px-3 py-2">
                   <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
-                    <p className="font-mono text-sm text-white">{project.name}</p>
+                    <p className="font-mono text-sm text-[#1A1A1A]">{project.name}</p>
                     {project.github && (
                       <a
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex shrink-0 items-center gap-1 text-blue-300 hover:text-blue-200"
+                        className="inline-flex shrink-0 items-center gap-1 text-[#6B6560] underline underline-offset-2 hover:text-[#1A1A1A]"
                       >
                         <span className="font-mono text-[11px]">github</span>
                         <span className="font-mono text-[11px]">↗</span>
                       </a>
                     )}
                   </div>
-                  <p className="text-xs text-gray-400">{project.subtitle}</p>
+                  <p className="text-xs text-[#6B6560]">{project.subtitle}</p>
                   {project.image && (
                     <div className="pt-3">
                       <Image
@@ -277,16 +269,16 @@ export default function HomePage() {
                         alt={project.name}
                         width={980}
                         height={560}
-                        className="h-auto w-full rounded-md border border-white/10 object-cover"
+                        className="h-auto w-full rounded-md border border-[#D6CFC4] object-cover"
                       />
                     </div>
                   )}
-                  <ul className="ml-4 list-disc space-y-1 pt-3 text-xs leading-relaxed text-gray-300">
+                  <ul className="ml-4 list-disc space-y-1 pt-3 text-xs leading-relaxed text-[#1A1A1A]">
                     {project.highlights.map((highlight) => (
                       <li key={highlight}>{highlight}</li>
                     ))}
                   </ul>
-                  <p className="pt-3 font-mono text-xs text-gray-400">{project.tech.join(' · ')}</p>
+                  <p className="pt-3 font-mono text-xs text-[#6B6560]">{project.tech.join(' · ')}</p>
                 </div>
               ))}
             </div>
@@ -294,22 +286,22 @@ export default function HomePage() {
               {projectColumns.map((columnProjects, columnIndex) => (
                 <div key={columnIndex} className="space-y-4">
                   {columnProjects.map((project) => (
-                    <div key={project.name} className="w-full rounded-md border border-white/10 px-3 py-2">
+                    <div key={project.name} className="w-full rounded-md border border-[#D6CFC4] bg-[#EDE7DC] px-3 py-2">
                       <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
-                        <p className="font-mono text-sm text-white">{project.name}</p>
+                        <p className="font-mono text-sm text-[#1A1A1A]">{project.name}</p>
                         {project.github && (
                           <a
                             href={project.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex shrink-0 items-center gap-1 text-blue-300 hover:text-blue-200"
+                            className="inline-flex shrink-0 items-center gap-1 text-[#6B6560] underline underline-offset-2 hover:text-[#1A1A1A]"
                           >
                             <span className="font-mono text-[11px]">github</span>
                             <span className="font-mono text-[11px]">↗</span>
                           </a>
                         )}
                       </div>
-                      <p className="text-xs text-gray-400">{project.subtitle}</p>
+                      <p className="text-xs text-[#6B6560]">{project.subtitle}</p>
                       {project.image && (
                         <div className="pt-3">
                           <Image
@@ -317,16 +309,16 @@ export default function HomePage() {
                             alt={project.name}
                             width={980}
                             height={560}
-                            className="h-auto w-full rounded-md border border-white/10 object-cover"
+                            className="h-auto w-full rounded-md border border-[#D6CFC4] object-cover"
                           />
                         </div>
                       )}
-                      <ul className="ml-4 list-disc space-y-1 pt-3 text-xs leading-relaxed text-gray-300">
+                      <ul className="ml-4 list-disc space-y-1 pt-3 text-xs leading-relaxed text-[#1A1A1A]">
                         {project.highlights.map((highlight) => (
                           <li key={highlight}>{highlight}</li>
                         ))}
                       </ul>
-                      <p className="pt-3 font-mono text-xs text-gray-400">{project.tech.join(' · ')}</p>
+                      <p className="pt-3 font-mono text-xs text-[#6B6560]">{project.tech.join(' · ')}</p>
                     </div>
                   ))}
                 </div>
@@ -335,27 +327,27 @@ export default function HomePage() {
           </section>
 
           <section className="mt-10 space-y-4 lg:mt-12 lg:px-16 xl:px-20">
-            <h2 className="font-mono text-xl font-bold text-white">leadership</h2>
+            <h2 className="font-mono text-xl font-bold text-[#1A1A1A]">leadership</h2>
             <div className="space-y-4">
               {LEADERSHIP.map((item) => (
-                <details key={item.organization} className="group rounded-md border border-white/10 px-3 py-2">
+                <details key={item.organization} className="group rounded-md border border-[#D6CFC4] bg-[#EDE7DC] px-3 py-2">
                   <summary className="cursor-pointer list-none">
                     <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
-                      <p className="font-mono text-sm text-white">{item.organization}</p>
-                      <p className="shrink-0 whitespace-nowrap font-mono text-[13px] tracking-wide text-gray-400">
+                      <p className="font-mono text-sm text-[#1A1A1A]">{item.organization}</p>
+                      <p className="shrink-0 whitespace-nowrap font-mono text-[13px] tracking-wide text-[#6B6560]">
                         {item.timeline}
                       </p>
                     </div>
-                    <p className="text-xs text-gray-400">{item.role}</p>
+                    <p className="text-xs text-[#6B6560]">{item.role}</p>
                   </summary>
                   {item.descriptionPoints ? (
-                    <ul className="ml-4 list-disc space-y-1 pt-3 text-xs leading-relaxed text-gray-300">
+                    <ul className="ml-4 list-disc space-y-1 pt-3 text-xs leading-relaxed text-[#1A1A1A]">
                       {item.descriptionPoints.map((point) => (
                         <li key={point}>{point}</li>
                       ))}
                     </ul>
                   ) : (
-                    <p className="pt-3 text-xs leading-relaxed text-gray-300">{item.description}</p>
+                    <p className="pt-3 text-xs leading-relaxed text-[#1A1A1A]">{item.description}</p>
                   )}
                 </details>
               ))}

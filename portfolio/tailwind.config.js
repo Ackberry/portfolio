@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class',
   content: [
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -50,10 +49,11 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        lightbg: '#FFF2E0',
-        buttonlight: '#A2AADB',
-        accent1: '#898AC4',
-        accent2: '#A2AADB',
+        cream: '#F2EDE4',
+        parchment: '#EDE7DC',
+        charcoal: '#1A1A1A',
+        'warm-muted': '#6B6560',
+        'warm-border': '#D6CFC4',
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -64,6 +64,7 @@ module.exports = {
         mono: ['"DM Mono"', 'monospace'],
         oxygen: ['var(--font-oxygen-mono)', 'monospace'],
         'roboto-flex': ['var(--font-roboto-flex)', 'sans-serif'],
+        serif: ['var(--font-eb-garamond)', 'Georgia', 'serif'],
       },
       keyframes: {
         blink: {

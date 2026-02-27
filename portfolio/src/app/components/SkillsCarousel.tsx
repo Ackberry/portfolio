@@ -1,7 +1,6 @@
 'use client'
 
-import { useMemo, useEffect, useState } from "react";
-import { useTheme } from "next-themes";
+import { useMemo } from "react";
 import AutoScroll from "embla-carousel-auto-scroll";
 import {
   Carousel,
@@ -51,13 +50,6 @@ interface SkillsCarouselProps {
 }
 
 const SkillsCarousel = ({ category, skills, direction = 'right', speed = 1 }: SkillsCarouselProps) => {
-  const { theme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  
   const plugin = useMemo(
     () =>
       AutoScroll({
@@ -69,17 +61,9 @@ const SkillsCarousel = ({ category, skills, direction = 'right', speed = 1 }: Sk
       }),
     [direction, speed]
   );
-  
-  // Get the actual background color based on theme
-  const isDark = mounted && (resolvedTheme === 'dark' || (resolvedTheme === 'system' && theme === 'dark'));
-  // Softer gradient with more gradual fade - less sharp edges
-  const bgGradient = isDark 
-    ? 'linear-gradient(to right, hsl(222.2, 84%, 4.9%), hsl(222.2, 84%, 4.9% / 0.98), hsl(222.2, 84%, 4.9% / 0.94), hsl(222.2, 84%, 4.9% / 0.87), hsl(222.2, 84%, 4.9% / 0.77), hsl(222.2, 84%, 4.9% / 0.65), hsl(222.2, 84%, 4.9% / 0.50), hsl(222.2, 84%, 4.9% / 0.35), hsl(222.2, 84%, 4.9% / 0.20), hsl(222.2, 84%, 4.9% / 0.10), transparent)'
-    : 'linear-gradient(to right, hsl(0, 0%, 100%), hsl(0, 0%, 100% / 0.98), hsl(0, 0%, 100% / 0.94), hsl(0, 0%, 100% / 0.87), hsl(0, 0%, 100% / 0.77), hsl(0, 0%, 100% / 0.65), hsl(0, 0%, 100% / 0.50), hsl(0, 0%, 100% / 0.35), hsl(0, 0%, 100% / 0.20), hsl(0, 0%, 100% / 0.10), transparent)';
-  
-  const bgGradientLeft = isDark
-    ? 'linear-gradient(to left, hsl(222.2, 84%, 4.9%), hsl(222.2, 84%, 4.9% / 0.98), hsl(222.2, 84%, 4.9% / 0.94), hsl(222.2, 84%, 4.9% / 0.87), hsl(222.2, 84%, 4.9% / 0.77), hsl(222.2, 84%, 4.9% / 0.65), hsl(222.2, 84%, 4.9% / 0.50), hsl(222.2, 84%, 4.9% / 0.35), hsl(222.2, 84%, 4.9% / 0.20), hsl(222.2, 84%, 4.9% / 0.10), transparent)'
-    : 'linear-gradient(to left, hsl(0, 0%, 100%), hsl(0, 0%, 100% / 0.98), hsl(0, 0%, 100% / 0.94), hsl(0, 0%, 100% / 0.87), hsl(0, 0%, 100% / 0.77), hsl(0, 0%, 100% / 0.65), hsl(0, 0%, 100% / 0.50), hsl(0, 0%, 100% / 0.35), hsl(0, 0%, 100% / 0.20), hsl(0, 0%, 100% / 0.10), transparent)';
+
+  const bgGradient = 'linear-gradient(to right, rgba(242,237,228,1), rgba(242,237,228,0.98), rgba(242,237,228,0.94), rgba(242,237,228,0.87), rgba(242,237,228,0.77), rgba(242,237,228,0.65), rgba(242,237,228,0.50), rgba(242,237,228,0.35), rgba(242,237,228,0.20), rgba(242,237,228,0.10), transparent)';
+  const bgGradientLeft = 'linear-gradient(to left, rgba(242,237,228,1), rgba(242,237,228,0.98), rgba(242,237,228,0.94), rgba(242,237,228,0.87), rgba(242,237,228,0.77), rgba(242,237,228,0.65), rgba(242,237,228,0.50), rgba(242,237,228,0.35), rgba(242,237,228,0.20), rgba(242,237,228,0.10), transparent)';
 
   return (
     <div className="mb-12 w-full">
@@ -124,18 +108,14 @@ const SkillsCarousel = ({ category, skills, direction = 'right', speed = 1 }: Sk
           </CarouselContent>
         </Carousel>
         {/* Gradient fade edges - background color fade */}
-        {mounted && (
-          <>
-            <div 
-              className="absolute inset-y-0 left-0 w-40 pointer-events-none z-10 transition-all duration-500 ease-in-out"
-              style={{ background: bgGradient }}
-            ></div>
-            <div 
-              className="absolute inset-y-0 right-0 w-40 pointer-events-none z-10 transition-all duration-500 ease-in-out"
-              style={{ background: bgGradientLeft }}
-            ></div>
-          </>
-        )}
+        <div
+          className="absolute inset-y-0 left-0 w-40 pointer-events-none z-10"
+          style={{ background: bgGradient }}
+        ></div>
+        <div
+          className="absolute inset-y-0 right-0 w-40 pointer-events-none z-10"
+          style={{ background: bgGradientLeft }}
+        ></div>
       </div>
     </div>
   );
@@ -148,15 +128,15 @@ export default function SkillsCarousels() {
     { id: 'ts', name: 'TypeScript', icon: <SiTypescript className="text-blue-500" />, category: 'Languages' },
     { id: 'python', name: 'Python', icon: <SiPython className="text-yellow-500" />, category: 'Languages' },
     { id: 'rust', name: 'Rust', icon: <SiRust className="text-orange-600" />, category: 'Languages' },
-    { id: 'c', name: 'C', icon: <SiCplusplus className="text-blue-600 dark:text-blue-400" />, category: 'Languages' },
-    { id: 'cpp', name: 'C++', icon: <SiCplusplus className="text-black dark:text-white" />, category: 'Languages' },
+    { id: 'c', name: 'C', icon: <SiCplusplus className="text-blue-600" />, category: 'Languages' },
+    { id: 'cpp', name: 'C++', icon: <SiCplusplus className="text-[#1A1A1A]" />, category: 'Languages' },
   ];
 
   const frameworks: Skill[] = [
     { id: 'react', name: 'React', icon: <SiReact className="text-cyan-400" />, category: 'Frameworks' },
-    { id: 'nextjs', name: 'Next.js', icon: <SiNextdotjs className="text-black dark:text-white" />, category: 'Frameworks' },
-    { id: 'nodejs', name: 'Node.js', icon: <FaNodeJs className="text-black dark:text-white" />, category: 'Frameworks' },
-    { id: 'radix', name: 'Radix UI', icon: <SiRadixui className="text-black dark:text-white" />, category: 'Frameworks' },
+    { id: 'nextjs', name: 'Next.js', icon: <SiNextdotjs className="text-[#1A1A1A]" />, category: 'Frameworks' },
+    { id: 'nodejs', name: 'Node.js', icon: <FaNodeJs className="text-[#1A1A1A]" />, category: 'Frameworks' },
+    { id: 'radix', name: 'Radix UI', icon: <SiRadixui className="text-[#1A1A1A]" />, category: 'Frameworks' },
     { id: 'tailwind', name: 'Tailwind', icon: <SiTailwindcss className="text-sky-400" />, category: 'Frameworks' },
     { id: 'vite', name: 'Vite', icon: <SiVite className="text-[#06B6D4]" />, category: 'Frameworks' },
   ];
@@ -175,7 +155,7 @@ export default function SkillsCarousels() {
     { id: 'heroku', name: 'Heroku', icon: <SiHeroku className="text-[#430098]" />, category: 'Cloud & DevOps' },
     { id: 'githubactions', name: 'GitHub Actions', icon: <SiGithubactions className="text-[#2088FF]" />, category: 'Cloud & DevOps' },
     { id: 'linode', name: 'Linode', icon: <FaLinode className="text-green-500" />, category: 'Cloud & DevOps' },
-    { id: 'linux', name: 'Linux', icon: <FaLinux className="text-black dark:text-white" />, category: 'Cloud & DevOps' },
+    { id: 'linux', name: 'Linux', icon: <FaLinux className="text-[#1A1A1A]" />, category: 'Cloud & DevOps' },
   ];
 
   const tools: Skill[] = [
@@ -183,7 +163,7 @@ export default function SkillsCarousels() {
     { id: 'gemini', name: 'Gemini API', icon: <RiGeminiFill className="text-[#5E7DD3]" />, category: 'Tools' },
     { id: 'langchain-tool', name: 'LangChain', icon: <SiLangchain className="text-[#1C3C3C]" />, category: 'Tools' },
     { id: 'langgraph-tool', name: 'LangGraph', icon: <TbVectorTriangle className="text-[#1C3C3C]" />, category: 'Tools' },
-    { id: 'elevenlabs-tool', name: 'ElevenLabs', icon: <SiElevenlabs className="text-black dark:text-white" />, category: 'Tools' },
+    { id: 'elevenlabs-tool', name: 'ElevenLabs', icon: <SiElevenlabs className="text-[#1A1A1A]" />, category: 'Tools' },
     { id: 'openrouter-tool', name: 'OpenRouter', icon: <SiOpenai className="text-[#10A37F]" />, category: 'Tools' },
     { id: 'sklearn', name: 'Scikit-learn', icon: <SiScikitlearn className="text-[#D9B300]" />, category: 'Tools' },
   ];

@@ -29,7 +29,7 @@ const DEFAULT_DISTANCE = 140
 const DEFAULT_DISABLEMAGNIFICATION = false
 
 const dockVariants = cva(
-  "supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 mx-auto mt-8 flex h-[58px] w-max items-center justify-center gap-2 rounded-2xl border p-2 backdrop-blur-md"
+  "mx-auto mt-8 flex h-[58px] w-max items-center justify-center gap-2 rounded-2xl border border-[#D6CFC4] bg-[#EDE7DC] p-2 shadow-sm"
 )
 
 const Dock = React.forwardRef<HTMLDivElement, DockProps>(
@@ -154,7 +154,7 @@ const DockIcon = ({
         <div>{children}</div>
       </motion.div>
       {title && (
-        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-900 dark:bg-gray-100 dark:text-gray-900 rounded pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50">
+        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-[#F2EDE4] bg-[#1A1A1A] rounded pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50">
           {title}
         </div>
       )}

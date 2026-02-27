@@ -1,14 +1,13 @@
 'use client'
 
 import PageLayout from '../components/PageLayout'
-import SkillsCarousels from '../components/SkillsCarousel'
 
 export default function SkillsPage() {
   return (
     <PageLayout title="Skills">
-      <div className="w-full">
-        <SkillsCarousels />
-      </div>
+      <section className="w-full px-4 pb-8 text-center sm:px-6 lg:px-12">
+        <p className="font-serif text-lg text-[#1A1A1A]">Skills carousel removed.</p>
+      </section>
     </PageLayout>
   )
 }
