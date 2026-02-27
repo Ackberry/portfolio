@@ -203,7 +203,7 @@ export default function HomePage() {
                     </a>
                   </div>
                   <p className="max-w-3xl font-serif text-[22px] font-normal text-left leading-[1.28] text-[#1A1A1A] sm:text-[28px] lg:text-[40px]">
-                    A sophomore at the University of South Florida studying Computer Science. You&apos;ll find everything you need below, but hear me out <br />
+                    A sophomore at the University of South Florida studying Computer Science. You&apos;ll find everything you need at the bottom, but hear me out <br />
                     <br />
                     I&apos;ve recently started loving programming more, and instead of MrBeast or Twitch, I now enjoy watching works on AI and Engineering while eating (current interest: drones and hardware)<br />
                     <br />
