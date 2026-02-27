@@ -171,6 +171,13 @@ const PROJECTS = [
   },
 ]
 
+const INTRO_PHOTOS = [
+  { src: '/imgs/1.jpeg', alt: 'Deep portrait 1' },
+  { src: '/imgs/2.jpg', alt: 'Deep portrait 2' },
+  { src: '/imgs/3.jpg', alt: 'Deep portrait 3' },
+  { src: '/imgs/4.jpg', alt: 'Deep portrait 4' },
+]
+
 export default function HomePage() {
   const projectColumns = [0, 1, 2].map((columnIndex) =>
     PROJECTS.filter((project, projectIndex) => (project.column ?? projectIndex % 3) === columnIndex)
@@ -180,55 +187,85 @@ export default function HomePage() {
     <PageLayout>
       <section className={cn('w-full px-4 sm:px-6 lg:px-12')}>
         <div className="py-8 lg:py-12">
-          <article className="max-w-3xl py-6 text-left sm:py-8">
-            <div className="space-y-8">
-              <section className="space-y-4">
-                <p className="max-w-3xl font-serif text-[40px] font-bold text-[#1A1A1A]">
-                  I&apos;m Deep
-                </p>
-                <p className="max-w-3xl font-serif text-[40px] font-normal text-left leading-tight text-[#1A1A1A]">
-                  A sophomore at the University of South Florida studying Computer Science. You&apos;ll find everything you need below, but hear me out <br />
-                  <br />
-                  I&apos;ve recently started loving programming more, and instead of MrBeast or Twitch, I now enjoy watching works on AI and Engineering while eating (current interest: drones and hardware)<br />
-                  <br />
-                 On a scale of 1-10, I love my family 10, my friends 10. But my dog? 11 (0 -&gt; 1 reference) She is the best thing in the world and will always be. I still am baffled to how far we&apos;ve come, and how much more I got to go. That makes me happy (and sad)
-                  <br />
-                  <br />
-                  Apart from work and study, I enjoy billiards, football (American, Go Bills!), running and gym. 
-                  <br />
-                  <br />
-                  If I had absurd money, I would start a company to create robots for cooking (i don&apos;t like cooking :) Post retirement I am going to open a dog shelter where people can bring dogs (or cats maybe) but nobody can adopt them (unless they pass Palantir HRT Jane Street Interview w/ 27 rounds)
-                 <br />
-                 <br />
-                 There&apos;s a lot I want to say, do, and learn — and the list only gets longer the more I grow. **
-                </p>
-              </section>
-            </div>
-          </article>
+          <div className="lg:flex lg:items-start lg:gap-8">
+            <article className="max-w-3xl py-6 text-left sm:py-8 lg:flex-1">
+              <div className="space-y-8">
+                <section className="space-y-4">
+                  <div className="flex flex-wrap items-end gap-2">
+                    <p className="max-w-3xl font-serif text-[22px] font-bold leading-tight text-[#1A1A1A] sm:text-[28px] lg:text-[40px]">
+                      I&apos;m Deep
+                    </p>
+                    <a
+                      href="mailto:ackberrie@gmail.com"
+                      className="pb-1 font-mono text-[10px] underline underline-offset-2 text-[#1A1A1A]"
+                    >
+                      email
+                    </a>
+                  </div>
+                  <p className="max-w-3xl font-serif text-[22px] font-normal text-left leading-[1.28] text-[#1A1A1A] sm:text-[28px] lg:text-[40px]">
+                    A sophomore at the University of South Florida studying Computer Science. You&apos;ll find everything you need below, but hear me out <br />
+                    <br />
+                    I&apos;ve recently started loving programming more, and instead of MrBeast or Twitch, I now enjoy watching works on AI and Engineering while eating (current interest: drones and hardware)<br />
+                    <br />
+                   On a scale of 1-10, I love my family 10, my friends 10. But my dog? 11 (0 -&gt; 1 reference) She is the best thing in the world and will always be. I still am baffled to how far we&apos;ve come, and how much more I got to go. That makes me happy (and sad)
+                    <br />
+                    <br />
+                    Apart from work and study, I enjoy billiards, football (American, Go Bills!), running and gym. 
+                    <br />
+                    <br />
+                    If I had absurd money, I would start a company to create robots for cooking (i don&apos;t like cooking :) Post retirement I am going to open a dog shelter where people can bring dogs (or cats maybe) but nobody can adopt them (unless they pass Palantir HRT Jane Street Interview w/ 27 rounds)
+                   <br />
+                   <br />
+                   There&apos;s a lot I want to say, do, and learn — and the list only gets longer the more I grow. **
+                  </p>
+                </section>
+              </div>
+            </article>
 
-          <section className="mt-10 space-y-4 lg:mt-12 lg:px-16 xl:px-20">
-            <h2 className="font-mono text-xl font-bold text-[#1A1A1A]">experience</h2>
-            <div className="space-y-4">
+            <aside className="hidden w-[220px] shrink-0 flex-col gap-4 pt-8 lg:flex xl:w-[260px]">
+              {INTRO_PHOTOS.map((photo, index) => (
+                <div
+                  key={photo.src}
+                  className={cn(
+                    'overflow-hidden rounded-md transition-transform duration-300 hover:rotate-0',
+                    index % 2 === 0 ? '-rotate-2' : 'rotate-2'
+                  )}
+                >
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    width={520}
+                    height={680}
+                    className="h-auto w-full rounded object-cover"
+                  />
+                </div>
+              ))}
+            </aside>
+          </div>
+
+          <section className="mt-10 max-w-3xl space-y-4 text-left font-red-hat lg:mt-12">
+            <h2 className="text-left font-red-hat text-xl font-bold text-[#1A1A1A]">Experience</h2>
+            <div className="space-y-4 text-left">
               {EXPERIENCES.map((experience) => (
                 <details
                   key={experience.company}
                   className="group rounded-md border border-[#D6CFC4] bg-[#EDE7DC] px-3 py-2"
                 >
                   <summary className="cursor-pointer list-none">
-                    <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
-                      <div className="flex min-w-0 items-center gap-2 whitespace-nowrap">
-                        <p className="font-mono text-sm text-[#1A1A1A]">{experience.company}</p>
+                    <div className="grid grid-cols-1 gap-2 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start sm:gap-3">
+                      <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
+                        <p className="break-words font-red-hat text-sm text-[#1A1A1A]">{experience.company}</p>
                         <a
                           href={experience.link}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex shrink-0 items-center gap-1 text-[#6B6560] underline underline-offset-2 hover:text-[#1A1A1A]"
                         >
-                          <span className="font-mono text-[11px]">open link</span>
-                          <span className="font-mono text-[11px]">↗</span>
+                          <span className="font-red-hat text-[11px]">open link</span>
+                          <span className="font-red-hat text-[11px]">↗</span>
                         </a>
                       </div>
-                      <p className="shrink-0 whitespace-nowrap font-mono text-[13px] tracking-wide text-[#6B6560]">
+                      <p className="justify-self-start font-red-hat text-[12px] tracking-wide text-[#6B6560] sm:shrink-0 sm:justify-self-end sm:whitespace-nowrap sm:text-[13px]">
                         {experience.timeline}
                       </p>
                     </div>
@@ -242,22 +279,22 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section className="mt-10 space-y-4 lg:mt-12 lg:px-16 xl:px-20">
-            <h2 className="font-mono text-xl font-bold text-[#1A1A1A]">projects</h2>
+          <section className="mt-10 space-y-4 font-red-hat lg:mt-12">
+            <h2 className="max-w-3xl text-left font-red-hat text-xl font-bold text-[#1A1A1A]">Projects</h2>
             <div className="space-y-4 md:hidden">
               {PROJECTS.map((project) => (
                 <div key={project.name} className="w-full rounded-md border border-[#D6CFC4] bg-[#EDE7DC] px-3 py-2">
-                  <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
-                    <p className="font-mono text-sm text-[#1A1A1A]">{project.name}</p>
+                  <div className="grid grid-cols-1 items-start gap-2 sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-3">
+                    <p className="break-words font-red-hat text-sm text-[#1A1A1A]">{project.name}</p>
                     {project.github && (
                       <a
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex shrink-0 items-center gap-1 text-[#6B6560] underline underline-offset-2 hover:text-[#1A1A1A]"
+                        className="inline-flex shrink-0 items-center gap-1 text-[#6B6560] underline underline-offset-2 hover:text-[#1A1A1A] sm:justify-self-end"
                       >
-                        <span className="font-mono text-[11px]">github</span>
-                        <span className="font-mono text-[11px]">↗</span>
+                        <span className="font-red-hat text-[11px]">github</span>
+                        <span className="font-red-hat text-[11px]">↗</span>
                       </a>
                     )}
                   </div>
@@ -278,17 +315,17 @@ export default function HomePage() {
                       <li key={highlight}>{highlight}</li>
                     ))}
                   </ul>
-                  <p className="pt-3 font-mono text-xs text-[#6B6560]">{project.tech.join(' · ')}</p>
+                  <p className="pt-3 font-red-hat text-xs text-[#6B6560]">{project.tech.join(' · ')}</p>
                 </div>
               ))}
             </div>
-            <div className="hidden gap-4 md:grid md:grid-cols-3">
+            <div className="hidden gap-4 md:grid md:grid-cols-2 xl:grid-cols-3">
               {projectColumns.map((columnProjects, columnIndex) => (
                 <div key={columnIndex} className="space-y-4">
                   {columnProjects.map((project) => (
                     <div key={project.name} className="w-full rounded-md border border-[#D6CFC4] bg-[#EDE7DC] px-3 py-2">
                       <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
-                        <p className="font-mono text-sm text-[#1A1A1A]">{project.name}</p>
+                        <p className="font-red-hat text-sm text-[#1A1A1A]">{project.name}</p>
                         {project.github && (
                           <a
                             href={project.github}
@@ -296,8 +333,8 @@ export default function HomePage() {
                             rel="noopener noreferrer"
                             className="inline-flex shrink-0 items-center gap-1 text-[#6B6560] underline underline-offset-2 hover:text-[#1A1A1A]"
                           >
-                            <span className="font-mono text-[11px]">github</span>
-                            <span className="font-mono text-[11px]">↗</span>
+                            <span className="font-red-hat text-[11px]">github</span>
+                            <span className="font-red-hat text-[11px]">↗</span>
                           </a>
                         )}
                       </div>
@@ -318,7 +355,7 @@ export default function HomePage() {
                           <li key={highlight}>{highlight}</li>
                         ))}
                       </ul>
-                      <p className="pt-3 font-mono text-xs text-[#6B6560]">{project.tech.join(' · ')}</p>
+                      <p className="pt-3 font-red-hat text-xs text-[#6B6560]">{project.tech.join(' · ')}</p>
                     </div>
                   ))}
                 </div>
@@ -326,15 +363,15 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section className="mt-10 space-y-4 lg:mt-12 lg:px-16 xl:px-20">
-            <h2 className="font-mono text-xl font-bold text-[#1A1A1A]">leadership</h2>
-            <div className="space-y-4">
+          <section className="mt-10 max-w-3xl space-y-4 text-left font-red-hat lg:mt-12">
+            <h2 className="text-left font-red-hat text-xl font-bold text-[#1A1A1A]">Leadership</h2>
+            <div className="space-y-4 text-left">
               {LEADERSHIP.map((item) => (
                 <details key={item.organization} className="group rounded-md border border-[#D6CFC4] bg-[#EDE7DC] px-3 py-2">
                   <summary className="cursor-pointer list-none">
-                    <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
-                      <p className="font-mono text-sm text-[#1A1A1A]">{item.organization}</p>
-                      <p className="shrink-0 whitespace-nowrap font-mono text-[13px] tracking-wide text-[#6B6560]">
+                    <div className="grid grid-cols-1 gap-2 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start sm:gap-3">
+                      <p className="break-words font-red-hat text-sm text-[#1A1A1A]">{item.organization}</p>
+                      <p className="justify-self-start font-red-hat text-[12px] tracking-wide text-[#6B6560] sm:shrink-0 sm:justify-self-end sm:whitespace-nowrap sm:text-[13px]">
                         {item.timeline}
                       </p>
                     </div>

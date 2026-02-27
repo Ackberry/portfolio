@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { EB_Garamond, Roboto_Flex } from "next/font/google";
-import { Oxygen_Mono } from 'next/font/google';
+import { EB_Garamond, Oxygen_Mono, Red_Hat_Text, Roboto_Flex } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import type { ReactNode } from 'react';
 import ClientLayout from './components/ClientLayout';
@@ -29,6 +28,12 @@ const robotoFlex = Roboto_Flex({
   display: 'swap',
 });
 
+const redHatText = Red_Hat_Text({
+  subsets: ['latin'],
+  variable: '--font-red-hat-text',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
   title: "portfolio",
   description: "created by deep ackberry",
@@ -43,7 +48,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${ebGaramond.variable} ${oxygenMono.variable} ${robotoFlex.variable}`}
+      className={`${ebGaramond.variable} ${oxygenMono.variable} ${robotoFlex.variable} ${redHatText.variable}`}
     >
       <body className="antialiased bg-[#F2EDE4] text-[#1A1A1A]">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>

@@ -64,6 +64,7 @@ module.exports = {
         mono: ['"DM Mono"', 'monospace'],
         oxygen: ['var(--font-oxygen-mono)', 'monospace'],
         'roboto-flex': ['var(--font-roboto-flex)', 'sans-serif'],
+        'red-hat': ['var(--font-red-hat-text)', 'sans-serif'],
         serif: ['var(--font-eb-garamond)', 'Georgia', 'serif'],
       },
       keyframes: {
