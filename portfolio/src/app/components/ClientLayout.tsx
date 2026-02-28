@@ -22,7 +22,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
     <NavigationProvider>
       <div className="fixed right-4 top-4 z-50 flex items-center gap-2 rounded-lg border border-[#D6CFC4] bg-[#EDE7DC] p-2 shadow-sm">
         <a
-          href="https://drive.google.com/file/d/1vLOzzkUB3n7dGiUWVQCaS5sG_S5kKcMt/view?usp=sharing"
+          href="https://drive.google.com/file/d/1oqWrhMuIgwfkj_gdNkGXkvu6fd_CWqyu/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Resume"
