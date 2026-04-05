@@ -11,7 +11,7 @@ const EXPERIENCES = [
     timeline: 'current',
     role: 'AI Engineer Intern',
     description:
-      "Currently, I've been working on building a full-stack internal platform that helps consultants and clients generate custom federal contracting packages and quotes. I set up auth and UM using Redis, built an admin panel, and integrated everything with HubSpot through automated workflows (n8n) so that selected line items turn directly into draft quotes. I also developed a campaign builder interface, drag-and-drop phase selection, and an internal Kanban-style sales system, and managed to ship the core product in under 30 hours. A big focus was security and automation - hashing passwords, hiding credentials, and making sure submissions flow cleanly into CRM tools without manual work.",
+      "I am working on creating a voice intelligence agent to train and onboard new advisors quickly. I also created a client management API + DB to help advisors manage their clients give rights. I've also built a full-stack internal platform that helps consultants and clients generate custom federal contracting packages and quotes. I set up auth and UM using Redis, built an admin panel, and integrated everything with HubSpot through automated workflows (n8n) so that selected line items turn directly into draft quotes. I also developed a campaign builder interface, drag-and-drop phase selection, and an internal Kanban-style sales system, and managed to ship the core product in under 30 hours. A big focus was security and automation - hashing passwords, hiding credentials, and making sure submissions flow cleanly into CRM tools without manual work.",
   },
   {
     company: 'CacheAi',
@@ -188,48 +188,22 @@ export default function HomePage() {
     <PageLayout>
       <section className={cn('w-full px-4 sm:px-6 lg:px-12')}>
         <div className="py-8 lg:py-12">
-          <div className="lg:flex lg:items-start lg:gap-8">
-            <article className="max-w-3xl py-6 text-left sm:py-8 lg:flex-1">
-              <div className="space-y-8">
-                <section className="space-y-4">
-                  <div className="flex flex-wrap items-end gap-2">
-                    <p className="max-w-3xl font-serif text-[22px] font-bold leading-tight text-[#1A1A1A] sm:text-[28px] lg:text-[40px]">
-                      I&apos;m Deep
-                    </p>
-                    <a
-                      href="mailto:ackberrie@gmail.com"
-                      className="pb-1 font-mono text-[10px] underline underline-offset-2 text-[#1A1A1A]"
-                    >
-                      email
-                    </a>
-                  </div>
-                  <p className="max-w-3xl font-serif text-[22px] font-normal text-left leading-[1.28] text-[#1A1A1A] sm:text-[28px] lg:text-[40px]">
-                    A sophomore at the University of South Florida studying Computer Science. You&apos;ll find everything you need at the bottom, but hear me out <br />
-                    <br />
-                    I&apos;ve recently started loving programming more, and instead of MrBeast or Twitch, I now enjoy watching works on AI and Engineering while eating (current interest: drones and hardware)<br />
-                    <br />
-                   On a scale of 1-10, I love my family 10, my friends 10. But my dog? 11 (0 -&gt; 1 reference) She is the best thing in the world and will always be. I still am baffled to how far we&apos;ve come, and how much more I got to go. That makes me happy (and sad)
-                    <br />
-                    <br />
-                    Apart from work and study, I enjoy billiards, football (American, Go Bills!), running and gym. 
-                    <br />
-                    <br />
-                    If I had absurd money, I would start a company to create robots for cooking (i don&apos;t like cooking :) Post retirement I am going to open a dog shelter where people can bring dogs (or cats maybe) but nobody can adopt them (unless they pass Palantir HRT Jane Street Interview w/ 27 rounds)
-                   <br />
-                   <br />
-                   There&apos;s a lot I want to say, do, and learn — and the list only gets longer the more I grow. **
-                  </p>
-                </section>
-              </div>
-            </article>
-
-            <aside className="hidden w-[220px] shrink-0 flex-col gap-4 pt-8 lg:flex xl:w-[260px]">
-              {INTRO_PHOTOS.map((photo, index) => (
+          {/* Photo gallery */}
+          <div className="mx-auto mb-10 flex max-w-4xl items-end justify-center gap-3 px-4 sm:gap-4 lg:mb-14 lg:gap-5">
+            {INTRO_PHOTOS.map((photo, index) => {
+              const styles = [
+                'h-[120px] w-[90px] sm:h-[160px] sm:w-[120px] lg:h-[220px] lg:w-[170px] -rotate-6 translate-y-2',
+                'h-[130px] w-[100px] sm:h-[180px] sm:w-[135px] lg:h-[250px] lg:w-[190px] rotate-3 -translate-y-1',
+                'h-[140px] w-[105px] sm:h-[190px] sm:w-[145px] lg:h-[270px] lg:w-[205px] -rotate-1 -translate-y-3',
+                'h-[130px] w-[100px] sm:h-[180px] sm:w-[135px] lg:h-[250px] lg:w-[190px] rotate-4 translate-y-1',
+                'h-[120px] w-[90px] sm:h-[160px] sm:w-[120px] lg:h-[220px] lg:w-[170px] -rotate-5 translate-y-3',
+              ]
+              return (
                 <div
                   key={photo.src}
                   className={cn(
-                    'overflow-hidden rounded-md transition-transform duration-300 hover:rotate-0',
-                    index % 2 === 0 ? '-rotate-2' : 'rotate-2'
+                    'overflow-hidden rounded-md shadow-md transition-transform duration-300 hover:rotate-0 hover:scale-105',
+                    styles[index]
                   )}
                 >
                   <Image
@@ -237,25 +211,60 @@ export default function HomePage() {
                     alt={photo.alt}
                     width={520}
                     height={680}
-                    className="h-auto w-full rounded object-cover"
+                    className="h-full w-full rounded object-cover"
                   />
                 </div>
-              ))}
-            </aside>
+              )
+            })}
           </div>
 
-          <section className="mt-10 max-w-3xl space-y-4 text-left font-red-hat lg:mt-12">
-            <h2 className="text-left font-red-hat text-xl font-bold text-[#1A1A1A]">Experience</h2>
-            <div className="space-y-4 text-left">
+          {/* Centered intro text */}
+          <article className="mx-auto max-w-3xl py-6 text-center sm:py-8">
+            <div className="space-y-8">
+              <section className="space-y-4">
+                <div className="flex flex-wrap items-end justify-center gap-2">
+                  <p className="font-serif text-[22px] font-bold leading-tight text-[#1A1A1A] sm:text-[28px] lg:text-[40px]">
+                    I&apos;m Deep
+                  </p>
+                  <a
+                    href="mailto:ackberrie@gmail.com"
+                    className="pb-1 font-mono text-[10px] underline underline-offset-2 text-[#1A1A1A]"
+                  >
+                    email
+                  </a>
+                </div>
+                <p className="mx-auto max-w-2xl font-serif text-[22px] font-normal leading-[1.28] text-[#1A1A1A] sm:text-[28px] lg:text-[40px]">
+                  A sophomore at the University of South Florida studying Computer Science. You&apos;ll find everything you need at the bottom, but hear me out <br />
+                  <br />
+                  I&apos;ve recently started loving programming more, and instead of MrBeast or Twitch, I now enjoy watching works on AI and Engineering while eating (current interest: geopolicics)<br />
+                  <br />
+                 On a scale of 1-10, I love my family 10, my friends 10. But my dog? 11 (0 -&gt; 1 reference) She is the best thing in the world and will always be. I still am baffled to how far we&apos;ve come, and how much more I got to go. That makes me happy (and sad)
+                  <br />
+                  <br />
+                  Apart from work and study, I enjoy billiards, football (American, Go Bills!), running and gym.
+                  <br />
+                  <br />
+                  If I had absurd money, I would start a company to create robots for cooking (i don&apos;t like cooking :) Post retirement I am going to open a dog shelter where people can bring dogs (or cats maybe) but nobody can adopt them (unless they pass Palantir HRT Jane Street Interview w/ 27 rounds)
+                 <br />
+                 <br />
+                 There&apos;s a lot I want to say, do, and learn — and the list only gets longer the more I grow. **
+                </p>
+              </section>
+            </div>
+          </article>
+
+          <section className="mx-auto mt-10 max-w-4xl space-y-5 font-red-hat lg:mt-14">
+            <h2 className="text-center font-red-hat text-xl font-bold text-[#1A1A1A]">Experience</h2>
+            <div className="space-y-4">
               {EXPERIENCES.map((experience) => (
                 <details
                   key={experience.company}
-                  className="group rounded-md border border-[#D6CFC4] bg-[#EDE7DC] px-3 py-2"
+                  className="group rounded-lg border border-[#D6CFC4] bg-[#EDE7DC] px-5 py-4 transition-shadow duration-200 hover:shadow-md"
                 >
                   <summary className="cursor-pointer list-none">
-                    <div className="grid grid-cols-1 gap-2 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start sm:gap-3">
+                    <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
                       <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
-                        <p className="break-words font-red-hat text-sm text-[#1A1A1A]">{experience.company}</p>
+                        <p className="break-words font-red-hat text-[15px] font-semibold text-[#1A1A1A]">{experience.company}</p>
                         <a
                           href={experience.link}
                           target="_blank"
@@ -266,13 +275,13 @@ export default function HomePage() {
                           <span className="font-red-hat text-[11px]">↗</span>
                         </a>
                       </div>
-                      <p className="justify-self-start font-red-hat text-[12px] tracking-wide text-[#6B6560] sm:shrink-0 sm:justify-self-end sm:whitespace-nowrap sm:text-[13px]">
+                      <p className="shrink-0 font-red-hat text-[12px] tracking-wide text-[#6B6560] sm:text-[13px]">
                         {experience.timeline}
                       </p>
                     </div>
-                    <p className="text-xs text-[#6B6560]">{experience.role}</p>
+                    <p className="mt-1 text-[13px] text-[#6B6560]">{experience.role}</p>
                   </summary>
-                  <p className="pt-3 text-xs leading-relaxed text-[#1A1A1A]">
+                  <p className="mt-3 border-t border-[#D6CFC4] pt-3 text-[13px] leading-relaxed text-[#1A1A1A]">
                     {experience.description}
                   </p>
                 </details>
@@ -280,8 +289,8 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section className="mt-10 space-y-4 font-red-hat lg:mt-12">
-            <h2 className="max-w-3xl text-left font-red-hat text-xl font-bold text-[#1A1A1A]">Projects</h2>
+          <section className="mx-auto mt-10 max-w-7xl space-y-5 font-red-hat lg:mt-14">
+            <h2 className="text-center font-red-hat text-xl font-bold text-[#1A1A1A]">Projects</h2>
             <div className="space-y-4 md:hidden">
               {PROJECTS.map((project) => (
                 <div key={project.name} className="w-full rounded-md border border-[#D6CFC4] bg-[#EDE7DC] px-3 py-2">
@@ -364,28 +373,28 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section className="mt-10 max-w-3xl space-y-4 text-left font-red-hat lg:mt-12">
-            <h2 className="text-left font-red-hat text-xl font-bold text-[#1A1A1A]">Leadership</h2>
-            <div className="space-y-4 text-left">
+          <section className="mx-auto mt-10 max-w-4xl space-y-5 font-red-hat lg:mt-14">
+            <h2 className="text-center font-red-hat text-xl font-bold text-[#1A1A1A]">Leadership</h2>
+            <div className="space-y-4">
               {LEADERSHIP.map((item) => (
-                <details key={item.organization} className="group rounded-md border border-[#D6CFC4] bg-[#EDE7DC] px-3 py-2">
+                <details key={item.organization} className="group rounded-lg border border-[#D6CFC4] bg-[#EDE7DC] px-5 py-4 transition-shadow duration-200 hover:shadow-md">
                   <summary className="cursor-pointer list-none">
-                    <div className="grid grid-cols-1 gap-2 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start sm:gap-3">
-                      <p className="break-words font-red-hat text-sm text-[#1A1A1A]">{item.organization}</p>
-                      <p className="justify-self-start font-red-hat text-[12px] tracking-wide text-[#6B6560] sm:shrink-0 sm:justify-self-end sm:whitespace-nowrap sm:text-[13px]">
+                    <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
+                      <p className="break-words font-red-hat text-[15px] font-semibold text-[#1A1A1A]">{item.organization}</p>
+                      <p className="shrink-0 font-red-hat text-[12px] tracking-wide text-[#6B6560] sm:text-[13px]">
                         {item.timeline}
                       </p>
                     </div>
-                    <p className="text-xs text-[#6B6560]">{item.role}</p>
+                    <p className="mt-1 text-[13px] text-[#6B6560]">{item.role}</p>
                   </summary>
                   {item.descriptionPoints ? (
-                    <ul className="ml-4 list-disc space-y-1 pt-3 text-xs leading-relaxed text-[#1A1A1A]">
+                    <ul className="ml-4 list-disc space-y-1 mt-3 border-t border-[#D6CFC4] pt-3 text-[13px] leading-relaxed text-[#1A1A1A]">
                       {item.descriptionPoints.map((point) => (
                         <li key={point}>{point}</li>
                       ))}
                     </ul>
                   ) : (
-                    <p className="pt-3 text-xs leading-relaxed text-[#1A1A1A]">{item.description}</p>
+                    <p className="mt-3 border-t border-[#D6CFC4] pt-3 text-[13px] leading-relaxed text-[#1A1A1A]">{item.description}</p>
                   )}
                 </details>
               ))}
