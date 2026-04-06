@@ -236,7 +236,7 @@ export default function HomePage() {
                 <p className="mx-auto max-w-2xl font-serif text-[22px] font-normal leading-[1.28] text-[#1A1A1A] sm:text-[28px] lg:text-[40px]">
                   A sophomore at the University of South Florida studying Computer Science. You&apos;ll find everything you need at the bottom, but hear me out <br />
                   <br />
-                  I&apos;ve recently started loving programming more, and instead of MrBeast or Twitch, I now enjoy watching works on AI and Engineering while eating (current interest: geopolicics)<br />
+                  I&apos;ve recently started loving programming more, and instead of MrBeast or Twitch, I now enjoy watching works on AI and Engineering while eating (current interest: geopolitics)<br />
                   <br />
                  On a scale of 1-10, I love my family 10, my friends 10. But my dog? 11 (0 -&gt; 1 reference) She is the best thing in the world and will always be. I still am baffled to how far we&apos;ve come, and how much more I got to go. That makes me happy (and sad)
                   <br />
