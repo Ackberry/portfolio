@@ -64,6 +64,19 @@ const PROJECTS = [
     tech: ['Javascript', 'Python', 'Firestore', 'Actian VectorDB', 'Elevenlabs' ]
   },
   {
+    name: '🏆 Aegis (Space Coast Hackathon 2026 Winner)',
+    subtitle: 'Real-time space weather intelligence for radiation-resilient edge compute',
+    github: 'https://github.com/Ackberry/Aegis',
+    image: '/aegis.png',
+    highlights: [
+      'Won Best Overall in the Hardware Track for building a system that turns live space weather and device telemetry into actionable radiation risk for edge compute.',
+      'Trained a LightGBM forecast model on years of GOES-18 + ACE/DSCOVR history across 120+ time steps, ingesting NOAA L1 feeds (solar wind, magnetometer, differential protons, X-rays) for minute-resolved multi-horizon predictions (2h, 6h, 12h).',
+      'Built a Next.js 15 fleet dashboard polling an ESP32 gateway for live Geiger counts and per-chip NVS wear data, persisting snapshots into Postgres on every forecast cycle across 3+ demo nodes with sub-second risk tier updates.',
+      'Engineered a transparent risk layer mapping environment + wear into severity tiers and recommended mitigations, backed by a Flask forecast service and optional Databricks model serving.',
+    ],
+    tech: ['Next.js', 'Python', 'Flask', 'LightGBM', 'Databricks', 'PostgreSQL', 'ESP32', 'tRPC'],
+  },
+  {
     name: '🏆 Talkio (Swamphacks 2026 at UF Winner)',
     subtitle: 'AI-powered sales conversation intelligence platform',
     github: 'https://github.com/Talkio2026/swamp-hacks',
@@ -173,8 +186,8 @@ const PROJECTS = [
 
 const INTRO_PHOTOS = [
   { src: '/imgs/1.jpeg', alt: 'Deep portrait 1' },
-  { src: '/imgs/2.jpg', alt: 'Deep portrait 2' },
   { src: '/imgs/3.jpg', alt: 'Deep portrait 3' },
+  { src: '/imgs/6.png', alt: 'Aegis SCI Hackathon 2026 Winner' },
   { src: '/imgs/4.jpg', alt: 'Deep portrait 4' },
   { src: '/imgs/5.jpeg', alt: 'Deep portrait 5' },
 ]
@@ -192,11 +205,11 @@ export default function HomePage() {
           <div className="mx-auto mb-10 flex max-w-4xl items-end justify-center gap-3 px-4 sm:gap-4 lg:mb-14 lg:gap-5">
             {INTRO_PHOTOS.map((photo, index) => {
               const styles = [
-                'h-[120px] w-[90px] sm:h-[160px] sm:w-[120px] lg:h-[220px] lg:w-[170px] -rotate-6 translate-y-2',
-                'h-[130px] w-[100px] sm:h-[180px] sm:w-[135px] lg:h-[250px] lg:w-[190px] rotate-3 -translate-y-1',
-                'h-[140px] w-[105px] sm:h-[190px] sm:w-[145px] lg:h-[270px] lg:w-[205px] -rotate-1 -translate-y-3',
-                'h-[130px] w-[100px] sm:h-[180px] sm:w-[135px] lg:h-[250px] lg:w-[190px] rotate-4 translate-y-1',
-                'h-[120px] w-[90px] sm:h-[160px] sm:w-[120px] lg:h-[220px] lg:w-[170px] -rotate-5 translate-y-3',
+                'h-[100px] w-[130px] sm:h-[140px] sm:w-[180px] lg:h-[190px] lg:w-[245px] -rotate-6 translate-y-2',
+                'h-[110px] w-[145px] sm:h-[155px] sm:w-[200px] lg:h-[210px] lg:w-[270px] rotate-3 -translate-y-1',
+                'h-[120px] w-[155px] sm:h-[165px] sm:w-[215px] lg:h-[230px] lg:w-[295px] -rotate-1 -translate-y-3',
+                'h-[110px] w-[145px] sm:h-[155px] sm:w-[200px] lg:h-[210px] lg:w-[270px] rotate-4 translate-y-1',
+                'h-[100px] w-[130px] sm:h-[140px] sm:w-[180px] lg:h-[190px] lg:w-[245px] -rotate-5 translate-y-3',
               ]
               return (
                 <div
@@ -209,8 +222,8 @@ export default function HomePage() {
                   <Image
                     src={photo.src}
                     alt={photo.alt}
-                    width={520}
-                    height={680}
+                    width={680}
+                    height={520}
                     className="h-full w-full rounded object-cover"
                   />
                 </div>
