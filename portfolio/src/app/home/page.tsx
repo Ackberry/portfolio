@@ -174,7 +174,7 @@ const PROJECTS = [
     name: 'Crypto News Bot',
     subtitle: 'A telegram bot that delivers real time crypto prices and news',
     github: 'https://github.com/ackberry/co1ncraze',
-    column: 1,
+    column: 2,
     highlights: [
       'Developed an automatic bot using Python, Coinmarketcap and Telegram API to deliver information about the current Crypto market to its users.',
       'Features modular design, with separate handlers for commands like /start, /news, and /price, making it easy to maintain and improve.',
