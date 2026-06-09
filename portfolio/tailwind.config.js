@@ -62,9 +62,9 @@ module.exports = {
       },
       fontFamily: {
         mono: ['"DM Mono"', 'monospace'],
-        oxygen: ['var(--font-oxygen-mono)', 'monospace'],
-        'roboto-flex': ['var(--font-roboto-flex)', 'sans-serif'],
-        'red-hat': ['var(--font-red-hat-text)', 'sans-serif'],
+        oxygen: ['var(--font-jetbrains-mono)', 'monospace'],
+        'roboto-flex': ['var(--font-bricolage)', 'sans-serif'],
+        'red-hat': ['var(--font-bricolage)', 'sans-serif'],
         serif: ['var(--font-eb-garamond)', 'Georgia', 'serif'],
       },
       keyframes: {

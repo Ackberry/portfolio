@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { EB_Garamond, Oxygen_Mono, Red_Hat_Text, Roboto_Flex } from "next/font/google";
+import { Bricolage_Grotesque, Caveat, EB_Garamond, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import type { ReactNode } from 'react';
 import ClientLayout from './components/ClientLayout';
@@ -15,28 +15,30 @@ const ebGaramond = EB_Garamond({
   display: 'swap',
 });
 
-const oxygenMono = Oxygen_Mono({
+const jetBrainsMono = JetBrains_Mono({
   subsets: ['latin'],
-  weight: '400',
-  variable: '--font-oxygen-mono',
+  weight: ['400', '500', '600'],
+  variable: '--font-jetbrains-mono',
   display: 'swap',
 });
 
-const robotoFlex = Roboto_Flex({
+const bricolageGrotesque = Bricolage_Grotesque({
   subsets: ['latin'],
-  variable: '--font-roboto-flex',
+  weight: ['400', '600', '700', '800'],
+  variable: '--font-bricolage',
   display: 'swap',
 });
 
-const redHatText = Red_Hat_Text({
+const caveat = Caveat({
   subsets: ['latin'],
-  variable: '--font-red-hat-text',
+  weight: ['500', '600', '700'],
+  variable: '--font-caveat',
   display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: "portfolio",
-  description: "created by deep ackberry",
+  title: "Deep Akbari - builder, AI engineer, dog person",
+  description: "Deep Akbari - CS at USF, AI/ML engineer, hackathon winner, and builder of useful things.",
 };
 
 export default function RootLayout({
@@ -48,9 +50,9 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${ebGaramond.variable} ${oxygenMono.variable} ${robotoFlex.variable} ${redHatText.variable}`}
+      className={`${ebGaramond.variable} ${jetBrainsMono.variable} ${bricolageGrotesque.variable} ${caveat.variable}`}
     >
-      <body className="antialiased bg-[#F2EDE4] text-[#1A1A1A]">
+      <body className="antialiased">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <ClientLayout>
             {children}
