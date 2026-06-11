@@ -53,16 +53,17 @@ const ABOUT = [
     lead: true,
     text: (
       <>
-        I&apos;m a sophomore at the <strong>University of South Florida</strong> studying Computer Science.
-        You&apos;ll find everything you need below - but hear me out first.
+        I&apos;m a Junior at the <strong>University of South Florida</strong> studying Computer Science.
+        
       </>
     ),
   },
   {
     text: (
       <>
-        I&apos;ve recently started loving programming more, and instead of MrBeast or Twitch, I now watch
-        deep-dives on AI and engineering while I eat. Current rabbit hole:{' '}
+        I want to start writing and sharing my thoughts. Apart from comp sci, I've started journaling, which 
+        gives a lot of clarity and perspectives of what i see everyday. i'll probably start a substack soon.
+        not only that i regularly come across random stuff that somehow is cool. Current rabbit hole:{' '}
         <a
           className="hl"
           href="https://youtu.be/3MU_6BPKmBg?si=vWfIDXbECljOZ5Gi"
@@ -76,35 +77,18 @@ const ABOUT = [
     ),
   },
   {
-    text: (
-      <>
-        On a scale of 1-10, I love my family 10 and my friends 10. But my dog? <span className="hl">An 11</span> -
-        a clean 0 to 1 reference. She&apos;s the best thing in the world and always will be. I&apos;m still baffled by how
-        far we&apos;ve come, and how much further I&apos;ve got to go. That makes me happy and a little sad.
-      </>
-    ),
-  },
-  {
-    text: <>Off the keyboard, I&apos;m into billiards, football - <strong>Go Bills</strong> - running, and the gym.</>,
-  },
-  {
-    text: (
-      <>
-        If I had absurd money, I&apos;d start a company building robots that cook, because I don&apos;t like cooking. Post
-        retirement, I&apos;m opening a dog shelter where people can bring dogs, but nobody can adopt them unless they
-        survive a Palantir / HRT / Jane Street interview with 27 rounds.
-      </>
-    ),
-  },
-  {
     text: <>There&apos;s a lot I want to say, do, and learn - and the list only gets longer the more I grow.</>,
   },
+  { text: <hr style={{ width: '200px', border: 0, borderTop: '1px solid #19150f' }} /> },
+{
+  text: <><a className="hl">update june 10</a>: i had a lot of crap on my portfolio. cleaned it out</>
+}
 ]
 
 const ASIDE = [
   { k: 'based in', v: 'Tampa, Florida' },
   { k: 'studying', v: 'Computer Science', small: 'USF, class of 2028' },
-  { k: 'right now', v: 'AI Engineer Intern', small: 'FEDCON' },
+  { k: 'currently at', v: 'AI Engineer Intern', small: 'FEDCON' },
 ]
 
 const STATS = [
@@ -479,9 +463,9 @@ export default function HomePage() {
         <div className="portfolio-wrap">
           <h1 className="portfolio-hero-name">Hi, I&apos;m<br /><span>Deep<b>.</b></span></h1>
           <p className="portfolio-hero-sub">
-            I&apos;m a sophomore at USF who can&apos;t stop making things. A few of them have won hackathons; most just
-            taught me something. When I&apos;m away from the keyboard you&apos;ll find me in the gym, over a pool table,
-            yelling at the <em>Bills</em>, or hanging out with the best dog alive.
+            im currently an incoming junior at usf. i am also interning as an ai engineer at fedcon. apart from work 
+            and school, i love making random projects to learn new technologies and solve my problems. i also love running, 
+            the nfl, gym, billiards, and something else i can't remember rn
           </p>
           <div className="portfolio-hero-actions">
             <a className="portfolio-chip solid" href="#work"><ChevronDown aria-hidden="true" />see what I&apos;ve made</a>
@@ -500,13 +484,12 @@ export default function HomePage() {
 
       <section className="portfolio-band" id="about">
         <div className="portfolio-wrap">
-          <SectionHead num="01" title="the deal" note={<>a little about the person<br />behind the commits</>} />
+          <SectionHead num="01" title="hi lol" note={<>a little about the person<br />behind the commits</>} />
           <div className="portfolio-about-grid">
             <div className="portfolio-about-body">
               {ABOUT.map((paragraph, index) => <p key={index} className={paragraph.lead ? 'lead' : undefined}>{paragraph.text}</p>)}
             </div>
             <aside className="portfolio-idcard">
-              <div className="portfolio-id-title">the basics</div>
               {ASIDE.map((row) => (
                 <div className="portfolio-id-row" key={row.k}>
                   <div>{row.k}</div>
