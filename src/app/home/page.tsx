@@ -61,8 +61,8 @@ const ABOUT = [
   {
     text: (
       <>
-        I want to start writing and sharing my thoughts. Apart from comp sci, I've started journaling, which 
-        gives a lot of clarity and perspectives of what i see everyday. i'll probably start a substack soon.
+        I want to start writing and sharing my thoughts. Apart from comp sci, I&apos;ve started journaling, which
+        gives a lot of clarity and perspectives of what i see everyday. i&apos;ll probably start a substack soon.
         not only that i regularly come across random stuff that somehow is cool. Current rabbit hole:{' '}
         <a
           className="hl"
@@ -465,7 +465,7 @@ export default function HomePage() {
           <p className="portfolio-hero-sub">
             im currently an incoming junior at usf. i am also interning as an ai engineer at fedcon. apart from work 
             and school, i love making random projects to learn new technologies and solve my problems. i also love running, 
-            the nfl, gym, billiards, and something else i can't remember rn
+            the nfl, gym, billiards, and something else i can&apos;t remember rn
           </p>
           <div className="portfolio-hero-actions">
             <a className="portfolio-chip solid" href="#work"><ChevronDown aria-hidden="true" />see what I&apos;ve made</a>
