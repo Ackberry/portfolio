@@ -1,6 +1,6 @@
 'use client'
-/* eslint-disable react/no-unknown-property */
-import { useRef, useState, useEffect, forwardRef } from 'react';
+/* eslint-disable react/no-unknown-property, @typescript-eslint/no-explicit-any */
+import { useRef, useEffect, forwardRef } from 'react';
 import { Canvas, useFrame, useThree, ThreeEvent } from '@react-three/fiber';
 import { EffectComposer, wrapEffect } from '@react-three/postprocessing';
 import { Effect } from 'postprocessing';
@@ -258,6 +258,19 @@ function DitheredWaves({
     const dpr = gl.getPixelRatio();
     mouseRef.current.set((e.clientX - rect.left) * dpr, (e.clientY - rect.top) * dpr);
   };
+
+  // Track the cursor at the window level so the effect reacts even when
+  // page content sits on top of the (pointer-events: none) background canvas.
+  useEffect(() => {
+    if (!enableMouseInteraction) return;
+    const onMove = (e: PointerEvent) => {
+      const rect = gl.domElement.getBoundingClientRect();
+      const dpr = gl.getPixelRatio();
+      mouseRef.current.set((e.clientX - rect.left) * dpr, (e.clientY - rect.top) * dpr);
+    };
+    window.addEventListener('pointermove', onMove);
+    return () => window.removeEventListener('pointermove', onMove);
+  }, [enableMouseInteraction, gl]);
 
   return (
     <>

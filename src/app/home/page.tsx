@@ -1,18 +1,8 @@
 'use client'
 
-import Image from 'next/image'
 import type { ReactNode } from 'react'
-import { useCallback, useMemo, useState } from 'react'
-import {
-  ArrowUpRight,
-  ChevronDown,
-  FileText,
-  Github,
-  Linkedin,
-  Mail,
-  Plus,
-  Trophy,
-} from 'lucide-react'
+import { useMemo, useState } from 'react'
+import { ArrowUpRight, FileText, Github, Linkedin, Mail } from 'lucide-react'
 import { SiGithub, SiLinkedin } from 'react-icons/si'
 import Dither from '../components/Dither'
 
@@ -21,94 +11,33 @@ const GITHUB_URL = 'https://github.com/ackberry'
 const LINKEDIN_URL = 'https://linkedin.com/in/deep-akbari'
 const EMAIL = 'ackberrie@gmail.com'
 
-const PHOTOS = [
-  { src: '/imgs/6.png', cap: <>aegis - <b>1st overall</b></>, w: 214, h: 158, x: 1, y: 8, rot: -5, z: 4 },
-  { src: '/imgs/4.jpg', cap: <>the goat <b>- 11/10</b></>, w: 224, h: 156, x: 39, y: 38, rot: -2, z: 6 },
-  { src: '/imgs/1.jpeg', cap: <>the florida crew</>, w: 198, h: 130, x: 77, y: 12, rot: -3, z: 3 },
-  { src: '/imgs/5.jpeg', cap: <>alleaf - <b>1st overall</b></>, w: 202, h: 134, x: 20, y: 156, rot: 4, z: 5 },
-  { src: '/imgs/3.jpg', cap: <>hard rock - go bills</>, w: 168, h: 200, x: 62, y: 118, rot: 5, z: 2 },
-]
-
-const MARQUEE = [
-  'Python',
-  'Next.js',
-  'LLMs',
-  'RAG',
-  'PyTorch',
-  'TypeScript',
-  'Go',
-  'ESP32',
-  'Postgres',
-  'LangChain',
-  'MCP',
-  'Flask',
-  'React',
-  'Robotics',
-  'Hackathons',
-  'Vector DBs',
-  'n8n',
-  'OAuth',
-]
-
 const ABOUT = [
-  {
-    lead: true,
-    text: (
-      <>
-        I&apos;m a Junior at the <strong>University of South Florida</strong> studying Computer Science.
-        
-      </>
-    ),
-  },
-  {
-    text: (
-      <>
-        I want to start writing and sharing my thoughts. Apart from comp sci, I&apos;ve started journaling, which
-        gives a lot of clarity and perspectives of what i see everyday. i&apos;ll probably start a substack soon.
-        not only that i regularly come across random stuff that somehow is cool. Current rabbit hole:{' '}
-        <a
-          className="hl"
-          href="https://youtu.be/3MU_6BPKmBg?si=vWfIDXbECljOZ5Gi"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          mozart 2x and chinese bible
-        </a>
-        .
-      </>
-    ),
-  },
-  {
-    text: <>There&apos;s a lot I want to say, do, and learn - and the list only gets longer the more I grow.</>,
-  },
-  { text: <hr style={{ width: '200px', border: 0, borderTop: '1px solid #19150f' }} /> },
-{
-  text: <><a className="hl">update june 10</a>: i had a lot of crap on my portfolio. cleaned it out</>
-}
+  <>I&apos;m a junior at the <strong>University of South Florida</strong> studying Computer Science.</>,
+  <>Apart from comp sci, I&apos;ve started journaling, which gives a lot of clarity and perspective on what I see every day. I&apos;ll probably start a substack soon.</>,
+  <>There&apos;s a lot I want to say, do, and learn &mdash; and the list only gets longer the more I grow.</>,
 ]
 
 const ASIDE = [
   { k: 'based in', v: 'Tampa, Florida' },
   { k: 'studying', v: 'Computer Science', small: 'USF, class of 2028' },
-  { k: 'currently at', v: 'AI Engineer Intern', small: 'FEDCON' },
+  { k: 'currently', v: 'AI Engineer Intern', small: 'FEDCON' },
 ]
 
 const STATS = [
-  { kind: 'feature', n: '3x', lab: 'hackathon wins' },
-  { kind: 'stat', n: '11', lab: 'projects shipped' },
-  { kind: 'stat', n: '1', lab: 'paper - ACM HRI 2026' },
-  { kind: 'dog', n: '11/10', lab: 'the dog.', sub: 'objectively underrated' },
+  { n: '3x', lab: 'hackathon wins' },
+  { n: '11', lab: 'projects shipped' },
+  { n: '1', lab: 'paper - ACM HRI 2026' },
 ]
 
 const EXPERIENCES = [
   {
     company: 'FEDCON',
     link: 'https://federalgovernment.info',
-    timeline: 'current',
+    timeline: 'now',
     current: true,
     role: 'AI Engineer Intern',
     description:
-      'I am building a voice intelligence agent to train and onboard new advisors fast, plus a client-management API and DB so advisors can manage clients and access. I shipped a full-stack internal platform that generates custom federal-contracting packages and quotes, with Redis-backed auth, an admin panel, and HubSpot integration through n8n workflows. I also built a campaign builder, drag-and-drop phase selection, and an internal Kanban sales system, shipping the core product in under 30 hours.',
+      'Building a voice intelligence agent to train and onboard new advisors fast, plus a client-management API and DB. Shipped a full-stack internal platform that generates custom federal-contracting packages and quotes, with Redis-backed auth, an admin panel, and HubSpot integration through n8n workflows. Also built a campaign builder, drag-and-drop phase selection, and an internal Kanban sales system, shipping the core product in under 30 hours.',
   },
   {
     company: 'CacheAI',
@@ -116,7 +45,7 @@ const EXPERIENCES = [
     timeline: "Jul '25 - Sep '25",
     role: 'Software Engineer Intern',
     description:
-      'Built an LLM-based ranking and scoring system for a job-board platform. Deployed a Gemini API scoring pipeline to automatically rank 200+ users, and a Python pipeline that cleaned and processed data from 2,000+ U.S. engineering schools. Designed a weighted 60/40 scoring framework and validated it against real profiles so the rankings reflected candidate quality.',
+      'Built an LLM-based ranking and scoring system for a job-board platform. Deployed a Gemini API scoring pipeline to automatically rank 200+ users, and a Python pipeline that cleaned and processed data from 2,000+ U.S. engineering schools. Designed a weighted 60/40 scoring framework and validated it against real profiles.',
   },
   {
     company: 'RARE Lab',
@@ -144,7 +73,7 @@ const LEADERSHIP = [
     role: 'Hackathon Organizer',
     points: [
       'Coordinated logistics for a 300+ participant hackathon across venue ops, transport, and technical sessions.',
-      'Managed a volunteer team and aligned sponsor, mentor, and university stakeholders for smooth end-to-end execution.',
+      'Managed a volunteer team and aligned sponsor, mentor, and university stakeholders for end-to-end execution.',
     ],
   },
 ]
@@ -156,10 +85,9 @@ const PROJECTS = [
     cats: ['ai', 'hardware'],
     what: 'A wearable + AI platform for real-time mental-health support.',
     github: 'https://github.com/Gustavo-Galvao-e-Silva/Alleaf',
-    image: '/alleaf.png',
     highlights: [
       "Won best overall hack at Georgia Tech's Hacklytics for a haptic wearable that triggers bilateral stimulation.",
-      'Implemented an end-to-end ML pipeline analyzing heart-rate variability to set personalized baselines, detect acute stress, and trigger custom hardware.',
+      'Built an end-to-end ML pipeline analyzing heart-rate variability to set personalized baselines, detect acute stress, and trigger custom hardware.',
       'Built a scalable AI memory and personalization layer with vector databases, ElevenLabs voice synthesis, and backend orchestration.',
     ],
     tech: ['Javascript', 'Python', 'Firestore', 'Actian VectorDB', 'ElevenLabs'],
@@ -170,7 +98,6 @@ const PROJECTS = [
     cats: ['ai', 'fullstack', 'hardware'],
     what: 'Real-time space-weather intelligence for radiation-resilient edge compute.',
     github: 'https://github.com/Ackberry/Aegis',
-    image: '/aegis.png',
     highlights: [
       'Won Best Overall in the Hardware Track for turning live space weather and device telemetry into actionable radiation risk for edge compute.',
       'Trained a LightGBM forecaster on GOES-18 and ACE/DSCOVR history across 120+ time steps for minute-resolved multi-horizon predictions.',
@@ -184,7 +111,6 @@ const PROJECTS = [
     cats: ['ai', 'fullstack'],
     what: 'AI-powered sales conversation-intelligence platform.',
     github: 'https://github.com/Talkio2026/swamp-hacks',
-    image: '/talkio.jpeg',
     highlights: [
       'Won Best Use of DigitalOcean at UF for an AI sales conversation-intelligence platform.',
       'Built an LLM-driven transcript-analysis pipeline with MongoDB semantic search across client conversations.',
@@ -197,7 +123,6 @@ const PROJECTS = [
     cats: ['ai', 'tools'],
     what: 'Drop a resume (.tex) plus a job description, get a clean, tailored resume and CV.',
     github: 'https://github.com/ackberry/haraesume',
-    image: '/haraesume.png',
     highlights: [
       'Built a resume-optimizing platform in Go that generates ATS-ready resumes and CVs with built-in validation.',
       'Designed an AI agent system with LangChain and PostgreSQL + pgvector for optimization and retrieval.',
@@ -209,7 +134,6 @@ const PROJECTS = [
     cats: ['ai', 'tools'],
     what: 'An MCP server that lets LLM agents control Spotify through natural language.',
     github: 'https://github.com/ackberry/spotify_mcp',
-    image: '/spotifymcp.png',
     highlights: [
       'Built an MCP server exposing 5+ Spotify capabilities as structured tools for LLM agents via the Spotify Web API.',
       'Implemented OAuth 2.0 and token-refresh flows for secure, user-authorized access to real-time Spotify data.',
@@ -221,7 +145,6 @@ const PROJECTS = [
     cats: ['ai', 'fullstack'],
     what: 'A full-stack RAG chatbot that answers questions from r/usf Reddit data.',
     github: 'https://github.com/ackberry/askabull',
-    image: '/askabull.png',
     highlights: [
       "A bot that uses r/usf's Reddit data to answer your questions.",
       'Deployed an AI chatbot processing 1,000+ Reddit posts daily with ChromaDB embeddings and faster responses.',
@@ -256,7 +179,7 @@ const PROJECTS = [
   {
     name: 'Apocalorie',
     cats: ['fullstack', 'ai'],
-    what: 'A smart calorie tracker from HackUSF 2025 that estimates intake by location and food availability.',
+    what: 'A smart calorie tracker that estimates intake by location and food availability.',
     highlights: [
       'Built a post-apocalyptic hackathon project for estimating calorie intake based on location and food availability.',
       'Processed 450,000+ FDA food entries and condensed the dataset to 3,000 key survival foods.',
@@ -279,51 +202,41 @@ const PROJECTS = [
   {
     name: 'This Website',
     cats: ['fullstack'],
-    what: 'A warm portfolio to showcase whatever I am building.',
+    what: 'A minimal pixel portfolio to showcase whatever I am building.',
     github: 'https://github.com/ackberry/portfolio',
     highlights: [
       'Built a portfolio to showcase work, experience, and personality in one place.',
       'React and Tailwind on the frontend.',
-      'Next.js under the hood.',
+      'Next.js under the hood, with a cursor-reactive dithered background.',
     ],
     tech: ['React', 'Tailwind', 'Next.js'],
   },
 ]
 
 const FILTERS = [
-  { id: 'all', label: 'All' },
-  { id: 'win', label: 'Winners', win: true },
-  { id: 'ai', label: 'AI / ML' },
-  { id: 'fullstack', label: 'Full-stack' },
-  { id: 'tools', label: 'Tools' },
-  { id: 'hardware', label: 'Hardware' },
+  { id: 'all', label: 'all' },
+  { id: 'win', label: 'winners', win: true },
+  { id: 'ai', label: 'ai / ml' },
+  { id: 'fullstack', label: 'full-stack' },
+  { id: 'tools', label: 'tools' },
+  { id: 'hardware', label: 'hardware' },
 ]
 
 type Project = (typeof PROJECTS)[number]
-type DragState = { index: number; startX: number; startY: number; originX: number; originY: number } | null
-
-function SectionHead({ num, title, note }: { num: string; title: string; note: ReactNode }) {
-  return (
-    <div className="portfolio-sec-head">
-      <h2 className="portfolio-sec-title"><span>{num}</span>{title}</h2>
-      <p className="portfolio-sec-note">{note}</p>
-    </div>
-  )
-}
 
 function TopBar() {
   return (
-    <header className="portfolio-topbar">
-      <div className="portfolio-wrap portfolio-topbar-inner">
-        <a className="portfolio-brand" href="#top" aria-label="Home">deep<b>.</b></a>
-        <nav className="portfolio-nav-actions" aria-label="Primary navigation">
-          <a className="portfolio-icon-btn" href={GITHUB_URL} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <header className="px-nav">
+      <div className="px-wrap px-nav-inner">
+        <a className="px-brand" href="#top" aria-label="Home">deep<b>_</b></a>
+        <nav className="px-nav-actions" aria-label="Primary navigation">
+          <a className="px-icon" href={GITHUB_URL} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
             <SiGithub aria-hidden="true" />
           </a>
-          <a className="portfolio-icon-btn" href={RESUME_URL} target="_blank" rel="noopener noreferrer" aria-label="Resume">
+          <a className="px-icon" href={RESUME_URL} target="_blank" rel="noopener noreferrer" aria-label="Resume">
             <FileText aria-hidden="true" />
           </a>
-          <a className="portfolio-icon-btn" href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <a className="px-icon" href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
             <SiLinkedin aria-hidden="true" />
           </a>
         </nav>
@@ -332,110 +245,40 @@ function TopBar() {
   )
 }
 
-function PhotoDesk() {
-  const [positions, setPositions] = useState(() => PHOTOS.map((photo) => ({ x: photo.x, y: photo.y })))
-  const [drag, setDrag] = useState<DragState>(null)
-  const [topZ, setTopZ] = useState(10)
-
-  const onPointerMove = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
-    if (!drag) return
-    const desk = event.currentTarget
-    const width = desk.clientWidth || 1
-    const nextX = ((drag.originX / 100) * width + event.clientX - drag.startX) / width * 100
-    const nextY = Math.max(-20, drag.originY + event.clientY - drag.startY)
-    setPositions((current) => current.map((position, index) => (index === drag.index ? { x: nextX, y: nextY } : position)))
-  }, [drag])
-
+function SectionHead({ num, title, note }: { num: string; title: string; note: ReactNode }) {
   return (
-    <div
-      className="portfolio-desk"
-      onPointerMove={onPointerMove}
-      onPointerUp={() => setDrag(null)}
-      onPointerCancel={() => setDrag(null)}
-    >
-      <span className="portfolio-desk-hint">drag me around</span>
-      {PHOTOS.map((photo, index) => (
-        <div
-          key={photo.src}
-          className="portfolio-pola"
-          style={{
-            width: photo.w,
-            left: `${positions[index].x}%`,
-            top: positions[index].y,
-            transform: `rotate(${photo.rot}deg)`,
-            zIndex: drag?.index === index ? topZ : photo.z,
-          }}
-          onPointerDown={(event) => {
-            if (window.matchMedia('(max-width: 720px)').matches) return
-            const target = event.currentTarget
-            target.setPointerCapture(event.pointerId)
-            setTopZ((z) => z + 1)
-            setDrag({
-              index,
-              startX: event.clientX,
-              startY: event.clientY,
-              originX: positions[index].x,
-              originY: positions[index].y,
-            })
-          }}
-        >
-          <Image src={photo.src} alt="" width={photo.w * 2} height={photo.h * 2} draggable={false} style={{ height: photo.h }} />
-          <div className="portfolio-pola-cap">{photo.cap}</div>
-        </div>
-      ))}
+    <div className="px-sec-head">
+      <h2 className="px-sec-title"><span>{num}</span>{title}</h2>
+      <p className="px-sec-note">{note}</p>
     </div>
   )
 }
 
-function ProjectCard({ project, index, total }: { project: Project; index: number; total: number }) {
+function ProjectCard({ project }: { project: Project }) {
   const [open, setOpen] = useState(false)
-  const fallbackColors = ['portfolio-ph-dark', 'portfolio-ph-ember', 'portfolio-ph-green', 'portfolio-ph-paper']
-
   return (
-    <article className={`portfolio-pcard ${project.award ? 'portfolio-win' : ''} ${open ? 'open' : ''}`}>
-      <div className="portfolio-pc-media">
-        {project.image ? (
-          <Image src={project.image} alt={project.name} width={980} height={552} />
-        ) : (
-          <div className={`portfolio-pc-ph ${fallbackColors[index % fallbackColors.length]}`}>
-            <span>no screenshot - peek the code</span>
-            <strong>{project.name.charAt(0)}</strong>
-          </div>
-        )}
-        {project.award && (
-          <span className="portfolio-win-badge">
-            <Trophy aria-hidden="true" />
-            {project.award}
-          </span>
-        )}
-      </div>
-      <button className="portfolio-pc-top" type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open}>
-        <span className="portfolio-pc-idx">{String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}</span>
-        <h3>{project.name}</h3>
-        <p>{project.what}</p>
-      </button>
-      <div className="portfolio-pc-tags">
-        {project.tech.map((tech) => <span key={tech}>{tech}</span>)}
-      </div>
-      <div className="portfolio-pc-detail">
-        <div>
-          <ul>
-            {project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
-          </ul>
+    <article className={`px-card ${open ? 'open' : ''}`}>
+      <button className="px-card-head" type="button" onClick={() => setOpen((v) => !v)} aria-expanded={open}>
+        <div className="px-card-title">
+          <h3>{project.name}</h3>
+          {project.award && <span className="px-badge">★ {project.award}</span>}
         </div>
-      </div>
-      <div className="portfolio-pc-foot">
-        <button className="portfolio-pc-toggle" type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open}>
-          <span><Plus aria-hidden="true" /></span>
-          {open ? 'less' : 'the story'}
-        </button>
+        <p>{project.what}</p>
+        <span className="px-card-toggle">{open ? '[ - ]' : '[ + ]'}</span>
+      </button>
+      {open && (
+        <ul className="px-card-body">
+          {project.highlights.map((h) => <li key={h}>{h}</li>)}
+        </ul>
+      )}
+      <div className="px-card-foot">
+        <div className="px-tags">
+          {project.tech.map((t) => <span key={t}>{t}</span>)}
+        </div>
         {project.github ? (
-          <a href={project.github} target="_blank" rel="noopener noreferrer">
-            <Github aria-hidden="true" />
-            code
-          </a>
+          <a href={project.github} target="_blank" rel="noopener noreferrer">code <ArrowUpRight aria-hidden="true" /></a>
         ) : (
-          <span>hackathon build</span>
+          <span className="px-muted">hackathon build</span>
         )}
       </div>
     </article>
@@ -446,51 +289,51 @@ export default function HomePage() {
   const [filter, setFilter] = useState('all')
   const filteredProjects = useMemo(() => {
     if (filter === 'all') return PROJECTS
-    if (filter === 'win') return PROJECTS.filter((project) => project.award)
-    return PROJECTS.filter((project) => project.cats.includes(filter))
+    if (filter === 'win') return PROJECTS.filter((p) => p.award)
+    return PROJECTS.filter((p) => p.cats.includes(filter))
   }, [filter])
 
   return (
-    <main className="portfolio-site" id="top">
-      <div className="portfolio-bg" aria-hidden="true">
-        <Dither enableMouseInteraction={false} waveColor={[0.45, 0.45, 0.45]} />
+    <main className="px-site" id="top">
+      <div className="px-bg" aria-hidden="true">
+        <Dither enableMouseInteraction waveColor={[0.4, 0.4, 0.4]} mouseRadius={0.8} colorNum={4} pixelSize={2} />
       </div>
+
       <TopBar />
 
-      <section className="portfolio-hero">
-        <div className="portfolio-wrap">
-          <h1 className="portfolio-hero-name">Hi, I&apos;m<br /><span>Deep<b>.</b></span></h1>
-          <p className="portfolio-hero-sub">
-            im currently an incoming junior at usf. i am also interning as an ai engineer at fedcon. apart from work 
-            and school, i love making random projects to learn new technologies and solve my problems. i also love running, 
-            the nfl, gym, billiards, and something else i can&apos;t remember rn
+      <section className="px-hero">
+        <div className="px-wrap">
+          <p className="px-hero-kicker">{'// hello world'}</p>
+          <h1 className="px-hero-name">DEEP<br />AKBARI<b>_</b></h1>
+          <p className="px-hero-sub">
+            incoming junior at usf and an ai engineer intern at fedcon. apart from work and school, i love
+            making random projects to learn new tech and solve my own problems. i also love running, the nfl,
+            gym, and billiards.
           </p>
-          <div className="portfolio-hero-actions">
-            <a className="portfolio-chip solid" href="#work"><ChevronDown aria-hidden="true" />see what I&apos;ve made</a>
-            <a className="portfolio-chip" href={`mailto:${EMAIL}`}><Mail aria-hidden="true" />say hello</a>
-            <a className="portfolio-chip" href={GITHUB_URL} target="_blank" rel="noopener noreferrer"><Github aria-hidden="true" />github</a>
+          <div className="px-hero-actions">
+            <a className="px-chip solid" href="#work">see the work</a>
+            <a className="px-chip" href={`mailto:${EMAIL}`}><Mail aria-hidden="true" />say hi</a>
+            <a className="px-chip" href={GITHUB_URL} target="_blank" rel="noopener noreferrer"><Github aria-hidden="true" />github</a>
           </div>
-          <PhotoDesk />
+          <ul className="px-stats">
+            {STATS.map((s) => (
+              <li key={s.lab}><strong>{s.n}</strong> {s.lab}</li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      <div className="portfolio-marquee" aria-hidden="true">
-        <div>
-          {[...MARQUEE, ...MARQUEE].map((item, index) => <span key={`${item}-${index}`}>{item}</span>)}
-        </div>
-      </div>
-
-      <section className="portfolio-band" id="about">
-        <div className="portfolio-wrap">
-          <SectionHead num="01" title="hi lol" note={<>a little about the person<br />behind the commits</>} />
-          <div className="portfolio-about-grid">
-            <div className="portfolio-about-body">
-              {ABOUT.map((paragraph, index) => <p key={index} className={paragraph.lead ? 'lead' : undefined}>{paragraph.text}</p>)}
+      <section className="px-band" id="about">
+        <div className="px-wrap">
+          <SectionHead num="01" title="about" note={<>the person behind the commits</>} />
+          <div className="px-about">
+            <div className="px-about-body">
+              {ABOUT.map((p, i) => <p key={i}>{p}</p>)}
             </div>
-            <aside className="portfolio-idcard">
+            <aside className="px-id">
               {ASIDE.map((row) => (
-                <div className="portfolio-id-row" key={row.k}>
-                  <div>{row.k}</div>
+                <div className="px-id-row" key={row.k}>
+                  <span>{row.k}</span>
                   <p>{row.v}{row.small && <small>{row.small}</small>}</p>
                 </div>
               ))}
@@ -499,90 +342,69 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="portfolio-stats" id="wins">
-        <div className="portfolio-wrap">
-          <div className="portfolio-tally">
-            {STATS.map((stat) => (
-              <div className={`portfolio-tally-${stat.kind}`} key={stat.lab}>
-                <strong>{stat.n}</strong>
-                <p><b>{stat.lab}</b>{stat.sub}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="portfolio-band alt" id="work">
-        <div className="portfolio-wrap">
-          <SectionHead num="02" title="the work" note={<>filter it - tap a card<br />to crack it open</>} />
-          <div className="portfolio-filters" aria-label="Project filters">
+      <section className="px-band" id="work">
+        <div className="px-wrap">
+          <SectionHead num="02" title="work" note={<>tap a card to crack it open</>} />
+          <div className="px-filters">
             {FILTERS.map((item) => {
               const count = item.id === 'all'
                 ? PROJECTS.length
                 : item.win
-                  ? PROJECTS.filter((project) => project.award).length
-                  : PROJECTS.filter((project) => project.cats.includes(item.id)).length
+                  ? PROJECTS.filter((p) => p.award).length
+                  : PROJECTS.filter((p) => p.cats.includes(item.id)).length
               return (
                 <button
                   key={item.id}
-                  className={`${filter === item.id ? 'active' : ''} ${item.win && filter === item.id ? 'win' : ''}`}
+                  className={filter === item.id ? 'active' : ''}
                   type="button"
                   onClick={() => setFilter(item.id)}
                 >
-                  {item.win && <Trophy aria-hidden="true" />}
-                  {item.label} <span>{count}</span>
+                  {item.label} [{count}]
                 </button>
               )
             })}
           </div>
-          <p className="portfolio-work-meta">{'//'} showing {filteredProjects.length} of {PROJECTS.length} projects</p>
-          <div className="portfolio-grid">
-            {filteredProjects.map((project) => (
-              <ProjectCard project={project} index={PROJECTS.indexOf(project)} total={PROJECTS.length} key={project.name} />
+          <p className="px-meta">{'>'} showing {filteredProjects.length} of {PROJECTS.length} projects</p>
+          <div className="px-grid">
+            {filteredProjects.map((project) => <ProjectCard project={project} key={project.name} />)}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-band" id="experience">
+        <div className="px-wrap">
+          <SectionHead num="03" title="experience" note={<>where I&apos;ve been putting in the reps</>} />
+          <div className="px-timeline">
+            {EXPERIENCES.map((exp) => (
+              <details className={exp.current ? 'current' : undefined} open={exp.current} key={exp.company}>
+                <summary>
+                  <div className="px-tl-top">
+                    <h3>{exp.company}</h3>
+                    <span>{exp.timeline}</span>
+                  </div>
+                  <p className="px-tl-role">{exp.role}</p>
+                </summary>
+                <div className="px-tl-body">
+                  <p>{exp.description}</p>
+                  <a href={exp.link} target="_blank" rel="noopener noreferrer">visit <ArrowUpRight aria-hidden="true" /></a>
+                </div>
+              </details>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="portfolio-band" id="experience">
-        <div className="portfolio-wrap">
-          <SectionHead num="03" title="the path" note={<>where I&apos;ve been<br />putting in the reps</>} />
-          <div className="portfolio-reading">
-            <div className="portfolio-timeline">
-              {EXPERIENCES.map((experience, index) => (
-                <details className={experience.current ? 'current' : undefined} open={index === 0} key={experience.company}>
-                  <summary>
-                    <span />
-                    <div>
-                      <div className="portfolio-tl-top">
-                        <h3>{experience.company}</h3>
-                        <p>{experience.current ? 'now' : experience.timeline}</p>
-                      </div>
-                      <p className="portfolio-tl-role">{experience.role}</p>
-                    </div>
-                  </summary>
-                  <div className="portfolio-tl-body">
-                    <p>{experience.description}</p>
-                    <a href={experience.link} target="_blank" rel="noopener noreferrer">visit <ArrowUpRight aria-hidden="true" /></a>
-                  </div>
-                </details>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="portfolio-band leadership" id="leadership">
-        <div className="portfolio-wrap">
-          <SectionHead num="04" title="off the keyboard" note={<>leading rooms,<br />not just repos</>} />
-          <div className="portfolio-lead-grid">
+      <section className="px-band" id="leadership">
+        <div className="px-wrap">
+          <SectionHead num="04" title="off the keyboard" note={<>leading rooms, not just repos</>} />
+          <div className="px-lead">
             {LEADERSHIP.map((item) => (
               <article key={item.organization}>
-                <div>
+                <div className="px-tl-top">
                   <h3>{item.organization}</h3>
-                  <p>{item.timeline}</p>
+                  <span>{item.timeline}</span>
                 </div>
-                <p>{item.role}</p>
+                <p className="px-tl-role">{item.role}</p>
                 <ul>
                   {item.points.map((point) => <li key={point}>{point}</li>)}
                 </ul>
@@ -592,21 +414,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      <footer className="portfolio-footer" id="contact">
-        <div className="portfolio-wrap">
-          <div className="portfolio-eyebrow"><span />still baffled by how far we&apos;ve come</div>
-          <h2>Let&apos;s build<br />something<b>.</b></h2>
-          <a className="portfolio-foot-mail" href={`mailto:${EMAIL}`}>
-            {EMAIL}
-            <ArrowUpRight aria-hidden="true" />
-          </a>
-          <div className="portfolio-foot-socials">
+      <footer className="px-footer" id="contact">
+        <div className="px-wrap">
+          <p className="px-hero-kicker">{'// say hello'}</p>
+          <h2 className="px-foot-h">LET&apos;S BUILD<br />SOMETHING<b>_</b></h2>
+          <a className="px-foot-mail" href={`mailto:${EMAIL}`}>{EMAIL} <ArrowUpRight aria-hidden="true" /></a>
+          <div className="px-foot-socials">
             <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer"><Github aria-hidden="true" />github</a>
             <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer"><Linkedin aria-hidden="true" />linkedin</a>
             <a href={RESUME_URL} target="_blank" rel="noopener noreferrer"><FileText aria-hidden="true" />resume</a>
           </div>
-          <div className="portfolio-foot-bottom">
-            <span>2026 Deep Akbari - built in Tampa, FL</span>
+          <div className="px-foot-bottom">
+            <span>2026 deep akbari - built in tampa, fl</span>
             <span>go bills and pet the dog</span>
           </div>
         </div>
