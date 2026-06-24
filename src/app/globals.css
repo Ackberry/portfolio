@@ -70,10 +70,34 @@ html, body {
   --nav-h: 64px;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   min-height: 100vh;
-  background: var(--paper);
+  background: transparent;
   color: var(--ink);
   font-family: var(--serif);
   position: relative;
+}
+
+/* Dither WebGL background — fixed, full-viewport, behind all content */
+.portfolio-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.portfolio-bg canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Paper scrim so the dark dither reads as texture and text stays legible.
+   Lower the alpha to make the effect more prominent. */
+.portfolio-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(244, 239, 230, 0.55);
+  pointer-events: none;
 }
 
 .portfolio-site::before {
@@ -108,9 +132,8 @@ html, body {
   height: var(--nav-h);
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgba(220, 210, 192, 0.72);
-  background: rgba(244, 239, 230, 0.86);
-  backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--ink);
+  background: var(--paper);
 }
 
 .portfolio-topbar-inner,
@@ -136,16 +159,21 @@ html, body {
 
 .portfolio-brand {
   font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
   text-decoration: none;
-  color: var(--ink-soft);
+  color: var(--ink);
   transition: color 0.2s var(--ease);
 }
 
+.portfolio-brand b {
+  color: var(--ember);
+}
+
 .portfolio-brand:hover {
-  color: var(--ink);
+  color: var(--ember);
 }
 
 .portfolio-nav-links {
@@ -185,26 +213,29 @@ html, body {
 }
 
 .portfolio-nav-actions {
-  gap: 6px;
+  gap: 8px;
 }
 
 .portfolio-icon-btn {
   justify-content: center;
   width: 34px;
   height: 34px;
-  border-radius: 8px;
-  color: var(--ink-soft);
-  transition: background 0.2s var(--ease), color 0.2s var(--ease);
+  border: 1.5px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: var(--paper);
+  transition: background 0.12s steps(1), color 0.12s steps(1);
 }
 
 .portfolio-icon-btn:hover {
-  background: var(--paper-3);
+  background: var(--ink);
+  color: var(--paper);
 }
 
 .portfolio-icon-btn svg,
 .portfolio-resume svg {
-  width: 17px;
-  height: 17px;
+  width: 16px;
+  height: 16px;
 }
 
 .portfolio-resume {
@@ -1309,16 +1340,12 @@ html, body {
   }
 
   .portfolio-brand {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .portfolio-icon-btn {
-    display: none;
-  }
-
-  .portfolio-resume {
-    padding: 8px 10px;
-    font-size: 11px;
+    width: 32px;
+    height: 32px;
   }
 
   .portfolio-desk {

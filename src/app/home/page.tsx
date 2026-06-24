@@ -13,6 +13,8 @@ import {
   Plus,
   Trophy,
 } from 'lucide-react'
+import { SiGithub, SiLinkedin } from 'react-icons/si'
+import Dither from '../components/Dither'
 
 const RESUME_URL = 'https://drive.google.com/file/d/1WtMNZXYFlkrV2QE2-d37_CSmXZcTJn_T/view?usp=sharing'
 const GITHUB_URL = 'https://github.com/ackberry'
@@ -313,25 +315,18 @@ function TopBar() {
   return (
     <header className="portfolio-topbar">
       <div className="portfolio-wrap portfolio-topbar-inner">
-        <a className="portfolio-brand" href="#top" aria-label="Home">home</a>
-        <nav className="portfolio-nav-links" aria-label="Primary navigation">
-          <a href="#about">about</a>
-          <a href="#work">work</a>
-          <a href="#experience">experience</a>
-          <a href="#contact">say hi</a>
-        </nav>
-        <div className="portfolio-nav-actions">
+        <a className="portfolio-brand" href="#top" aria-label="Home">deep<b>.</b></a>
+        <nav className="portfolio-nav-actions" aria-label="Primary navigation">
           <a className="portfolio-icon-btn" href={GITHUB_URL} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-            <Github aria-hidden="true" />
+            <SiGithub aria-hidden="true" />
+          </a>
+          <a className="portfolio-icon-btn" href={RESUME_URL} target="_blank" rel="noopener noreferrer" aria-label="Resume">
+            <FileText aria-hidden="true" />
           </a>
           <a className="portfolio-icon-btn" href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <Linkedin aria-hidden="true" />
+            <SiLinkedin aria-hidden="true" />
           </a>
-          <a className="portfolio-resume" href={RESUME_URL} target="_blank" rel="noopener noreferrer">
-            <FileText aria-hidden="true" />
-            resume
-          </a>
-        </div>
+        </nav>
       </div>
     </header>
   )
@@ -457,6 +452,9 @@ export default function HomePage() {
 
   return (
     <main className="portfolio-site" id="top">
+      <div className="portfolio-bg" aria-hidden="true">
+        <Dither enableMouseInteraction={false} waveColor={[0.45, 0.45, 0.45]} />
+      </div>
       <TopBar />
 
       <section className="portfolio-hero">
