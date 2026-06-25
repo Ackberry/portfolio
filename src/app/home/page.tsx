@@ -11,16 +11,19 @@ const GITHUB_URL = 'https://github.com/ackberry'
 const LINKEDIN_URL = 'https://linkedin.com/in/deep-akbari'
 const EMAIL = 'ackberrie@gmail.com'
 
-const ABOUT = [
-  <>I&apos;m a junior at the <strong>University of South Florida</strong> studying Computer Science.</>,
-  <>Apart from comp sci, I&apos;ve started journaling, which gives a lot of clarity and perspective on what I see every day. I&apos;ll probably start a substack soon.</>,
-  <>There&apos;s a lot I want to say, do, and learn &mdash; and the list only gets longer the more I grow.</>,
-]
+const ABOUT = (
+  <>
+    cs junior at <strong>usf</strong> and ai engineer intern at <strong>fedcon</strong>, building ai/ml and
+    full-stack projects. i learn by building &mdash; through hackathons and research &mdash; and stay busy with
+    a few things outside the editor.
+  </>
+)
 
 const ASIDE = [
   { k: 'based in', v: 'Tampa, Florida' },
   { k: 'studying', v: 'Computer Science', small: 'USF, class of 2028' },
   { k: 'currently', v: 'AI Engineer Intern', small: 'FEDCON' },
+  { k: 'interests', v: 'running, the gym, billiards, the Buffalo Bills, and my dog' },
 ]
 
 const STATS = [
@@ -37,7 +40,7 @@ const EXPERIENCES = [
     current: true,
     role: 'AI Engineer Intern',
     description:
-      'Building a voice intelligence agent to train and onboard new advisors fast, plus a client-management API and DB. Shipped a full-stack internal platform that generates custom federal-contracting packages and quotes, with Redis-backed auth, an admin panel, and HubSpot integration through n8n workflows. Also built a campaign builder, drag-and-drop phase selection, and an internal Kanban sales system, shipping the core product in under 30 hours.',
+      'Built a full-stack internal platform that generates federal-contracting packages and quotes, with Redis-backed auth, an admin panel, and HubSpot integration via n8n; shipped the core product in under 30 hours. Also built a voice agent for advisor onboarding, a client-management API/DB, a campaign builder, and an internal Kanban sales system.',
   },
   {
     company: 'CacheAI',
@@ -45,7 +48,7 @@ const EXPERIENCES = [
     timeline: "Jul '25 - Sep '25",
     role: 'Software Engineer Intern',
     description:
-      'Built an LLM-based ranking and scoring system for a job-board platform. Deployed a Gemini API scoring pipeline to automatically rank 200+ users, and a Python pipeline that cleaned and processed data from 2,000+ U.S. engineering schools. Designed a weighted 60/40 scoring framework and validated it against real profiles.',
+      'Built an LLM ranking and scoring system for a job board: a Gemini API pipeline that auto-ranks 200+ users and a Python pipeline that cleaned data from 2,000+ U.S. engineering schools. Designed and validated a weighted 60/40 scoring framework against real profiles.',
   },
   {
     company: 'RARE Lab',
@@ -53,7 +56,7 @@ const EXPERIENCES = [
     timeline: "May '25 - Jul '25",
     role: 'ML Researcher & Software Developer - USF College of Engineering',
     description:
-      'Worked on a low-cost, LLM-powered social robot later accepted to the ACM HRI 2026 Companion. Built a conversational robotics system on a Raspberry Pi running Linux, integrating Vosk for speech-to-text, Gemini for reasoning, and Piper for text-to-speech. Helped fine-tune Gemini 2.5 Flash and LLaMA2 for multimodal assistive tasks, improving task success rates by 35%.',
+      'Built a low-cost, LLM-powered social robot on a Raspberry Pi (Linux) with Vosk (STT), Gemini (reasoning), and Piper (TTS); accepted to the ACM HRI 2026 Companion. Fine-tuned Gemini 2.5 Flash and LLaMA2 for multimodal assistive tasks, raising task success rates by 35%.',
   },
 ]
 
@@ -303,13 +306,8 @@ export default function HomePage() {
 
       <section className="px-hero">
         <div className="px-wrap">
-          <p className="px-hero-kicker">{'// hello world'}</p>
+          <p className="px-hero-kicker">{'// build. ship. repeat.'}</p>
           <h1 className="px-hero-name">DEEP<br />AKBARI<b>_</b></h1>
-          <p className="px-hero-sub">
-            incoming junior at usf and an ai engineer intern at fedcon. apart from work and school, i love
-            making random projects to learn new tech and solve my own problems. i also love running, the nfl,
-            gym, and billiards.
-          </p>
           <div className="px-hero-actions">
             <a className="px-chip solid" href="#work">see the work</a>
             <a className="px-chip" href={`mailto:${EMAIL}`}><Mail aria-hidden="true" />say hi</a>
@@ -328,7 +326,7 @@ export default function HomePage() {
           <SectionHead num="01" title="about" note={<>the person behind the commits</>} />
           <div className="px-about">
             <div className="px-about-body">
-              {ABOUT.map((p, i) => <p key={i}>{p}</p>)}
+              <p>{ABOUT}</p>
             </div>
             <aside className="px-id">
               {ASIDE.map((row) => (
@@ -426,7 +424,6 @@ export default function HomePage() {
           </div>
           <div className="px-foot-bottom">
             <span>2026 deep akbari - built in tampa, fl</span>
-            <span>go bills and pet the dog</span>
           </div>
         </div>
       </footer>

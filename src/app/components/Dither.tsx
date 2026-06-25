@@ -1,6 +1,6 @@
 'use client'
-/* eslint-disable react/no-unknown-property, @typescript-eslint/no-explicit-any */
-import { useRef, useEffect, forwardRef } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useRef, useState, useEffect, forwardRef } from 'react';
 import { Canvas, useFrame, useThree, ThreeEvent } from '@react-three/fiber';
 import { EffectComposer, wrapEffect } from '@react-three/postprocessing';
 import { Effect } from 'postprocessing';
@@ -323,12 +323,15 @@ export default function Dither({
   enableMouseInteraction = true,
   mouseRadius = 1
 }: DitherProps) {
+  const [ready, setReady] = useState(false);
   return (
     <Canvas
       className="w-full h-full relative"
       camera={{ position: [0, 0, 6] }}
       dpr={1}
       gl={{ antialias: true, preserveDrawingBuffer: true }}
+      style={{ opacity: ready ? 1 : 0, transition: 'opacity 0.7s ease-out' }}
+      onCreated={() => setReady(true)}
     >
       <DitheredWaves
         waveSpeed={waveSpeed}
