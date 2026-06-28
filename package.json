@@ -9,9 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@fontsource/pixelify-sans": "^5.2.7",
-    "@fontsource/press-start-2p": "^5.2.7",
-    "@fontsource/vt323": "^5.2.7",
     "@react-three/fiber": "^9.6.1",
     "@react-three/postprocessing": "^3.0.4",
     "lucide-react": "^0.525.0",
