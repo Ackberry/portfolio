@@ -266,6 +266,12 @@ h1 {
   font-size: 1.02rem;
 }
 
+.mini-block .mini-contribution-meta {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
 .mini-project-name {
   color: var(--fg) !important;
   font-weight: 500;

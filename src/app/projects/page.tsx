@@ -5,6 +5,7 @@ import { ArrowLeft } from 'lucide-react'
 import Dither from '../components/Dither'
 import Nav from '../components/Nav'
 import ProjectList from '../components/ProjectList'
+import OpenSourceList from '../components/OpenSourceList'
 import { projects } from '../data/projects'
 
 export default function ProjectsPage() {
@@ -30,6 +31,10 @@ export default function ProjectsPage() {
           <section className="mini-block" aria-label="All projects">
             <h2>all</h2>
             <ProjectList items={projects} />
+          </section>
+          <section className="mini-block" aria-labelledby="open-source">
+            <h2 id="open-source">open source</h2>
+            <OpenSourceList />
           </section>
         </div>
       </section>

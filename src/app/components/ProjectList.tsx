@@ -1,7 +1,5 @@
 import ExternalLink from './ExternalLink'
-import type { projects } from '../data/projects'
-
-type Project = (typeof projects)[number]
+import type { Project } from '../data/projects'
 
 export default function ProjectList({ items }: { items: readonly Project[] }) {
   return (

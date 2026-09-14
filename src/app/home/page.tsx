@@ -6,6 +6,7 @@ import Nav, { EMAIL, GITHUB_URL, LINKEDIN_URL, RESUME_URL } from '../components/
 import Dither from '../components/Dither'
 import ExternalLink from '../components/ExternalLink'
 import ProjectList from '../components/ProjectList'
+import OpenSourceList from '../components/OpenSourceList'
 import { featuredProjects } from '../data/projects'
 
 export default function HomePage() {
@@ -46,6 +47,10 @@ export default function HomePage() {
                 <ArrowRight aria-hidden="true" />
               </Link>
             </div>
+          </section>
+          <section className="mini-block" aria-labelledby="open-source">
+            <h2 id="open-source">open source</h2>
+            <OpenSourceList />
           </section>
         </div>
       </section>
