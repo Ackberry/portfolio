@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { FileText, Github, Linkedin, Mail } from 'lucide-react'
 
-export const RESUME_URL = 'https://drive.google.com/file/d/1pocPursy2Dh3G5eBsSdqiI_1aeMFp6Db/view?pli=1'
+export const RESUME_URL = 'https://drive.google.com/file/d/1I8YzZeHjU8Q7QE-AFb1r9M_bAlarT9JX/view?usp=sharing'
 export const GITHUB_URL = 'https://github.com/ackberry'
 export const LINKEDIN_URL = 'https://linkedin.com/in/deep-akbari'
 export const EMAIL = 'ackberrie@gmail.com'
