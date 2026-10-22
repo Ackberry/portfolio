@@ -20,7 +20,7 @@ export default function HomePage() {
 
       <section className="mini-shell" aria-labelledby="intro">
         <h1 id="intro">deep akbari</h1>
-        <p className="mini-line">ai engineer intern @ fedcon. cs @ usf.</p>
+        <p className="mini-line">software engineer intern @ fedcon. cs @ usf.</p>
 
         <nav className="mini-actions" aria-label="Links">
           <ExternalLink href={GITHUB_URL}><Github aria-hidden="true" />github</ExternalLink>
