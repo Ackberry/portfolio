@@ -1,5 +1,12 @@
 export const contributions = [
   {
+    name: 'Kubernetes History Inspector',
+    organization: 'Google Cloud Platform',
+    description: 'standardized klog parsing and reconstructed full log lines for control plane logs',
+    number: 1162,
+    url: 'https://github.com/GoogleCloudPlatform/khi/pull/1162',
+  },
+  {
     name: 'go-github',
     organization: 'Google',
     description: 'added organization-level Copilot Spaces CRUD endpoints',
