@@ -340,3 +340,25 @@ h1 {
     line-height: 1.4;
   }
 }
+
+.mini-contribution-prs {
+  display: grid;
+  gap: 12px;
+  margin: 12px 0 0;
+  padding-left: 18px;
+  list-style: disc;
+}
+
+.mini-list .mini-contribution-prs > li {
+  display: list-item;
+  padding: 0;
+  border: 0;
+}
+
+.mini-contribution-prs li::marker {
+  color: var(--muted);
+}
+
+.mini-contribution-meta .mini-link {
+  font-size: inherit;
+}
