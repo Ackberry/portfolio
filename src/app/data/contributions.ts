@@ -1,5 +1,17 @@
 export const contributions = [
   {
+    name: 'ferret-scan',
+    organization: 'AWS Labs',
+    url: 'https://github.com/awslabs/ferret-scan/pull/836',
+    pullRequests: [
+      {
+        description: 'isolated PR checklist logs per run to prevent concurrent runs from overwriting output',
+        number: 836,
+        url: 'https://github.com/awslabs/ferret-scan/pull/836',
+      },
+    ],
+  },
+  {
     name: 'Kubernetes History Inspector',
     organization: 'Google Cloud Platform',
     url: 'https://github.com/GoogleCloudPlatform/khi',
