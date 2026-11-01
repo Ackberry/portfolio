@@ -1,6 +1,7 @@
 export type Project = readonly [name: string, description: string, link: string]
 
 export const projects = [
+  ['Exorcist', 'npm dependency scanner; rules flag suspects, a local Gemma model judges them', 'https://github.com/Ackberry/exorcist'],
   ['LeetCode API', 'Go API for profiles, submissions, and problems, built for getfolk.app', 'https://github.com/Ackberry/leetcode-graphql'],
   ['Commit Clock', 'GitHub commit goals with live webhook updates and an iOS widget', 'https://github.com/Ackberry/committed'],
   ['GitHub → Slack', 'GitHub issue notifications via signed webhooks and repository polling', 'https://github.com/Ackberry/git-webhook-slack'],
