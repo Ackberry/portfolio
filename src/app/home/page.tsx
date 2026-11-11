@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ArrowRight, FileText, Github, Linkedin, Mail } from 'lucide-react'
 import Nav, { EMAIL, GITHUB_URL, LINKEDIN_URL, RESUME_URL } from '../components/Nav'
 import Dither from '../components/Dither'
+import SwarmIntro from '../components/SwarmIntro'
 import ExternalLink from '../components/ExternalLink'
 import ProjectList from '../components/ProjectList'
 import OpenSourceList from '../components/OpenSourceList'
@@ -12,6 +13,7 @@ import { featuredProjects } from '../data/projects'
 export default function HomePage() {
   return (
     <main className="mini-site">
+      <SwarmIntro />
       <div className="mini-bg" aria-hidden="true">
         <Dither enableMouseInteraction waveColor={[0.4, 0.4, 0.4]} mouseRadius={0.8} colorNum={4} pixelSize={2} />
       </div>
